@@ -1,0 +1,1 @@
+Synthesize [this research](researchai-techplan.research.md) into a token-optimized output of guidance without sourcing and context, except where necessary and useful for an AI Agent to use.  Claude Code will be our primary AI Project Manager, Lead, Analyst, and Curator engine.
