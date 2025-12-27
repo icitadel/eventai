@@ -1,0 +1,3 @@
+- The food waste examples are not festival & event-related.
+- The Fluid-Dynamic Objects can be put in Privacy as privacy-friendly approaches to security.
+- 

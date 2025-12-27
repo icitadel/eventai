@@ -1,0 +1,1 @@
+There is an example given of a Target AI inference engine that determined a teenager was pregnant, and violated her privacy by sending coupons to the address, alerting her father.  Find me more recent, verifiable examples of AI being misused in a seemingly innocuous/beneficial fashion.
