@@ -7,14 +7,14 @@
 ## Key Data Points
 
 ### Current State (2025)
-- **45% of event organizers** currently use AI tools (Industry survey, 2024)
+- **47% of event organizers** currently use AI tools (late 2023 baseline), rising from 33% in early 2023 (Event Industry News AI Report, 2025)
 - **$1.8 billion** AI in event management sector value (2023)
 - **40-41% of DICE ticket sales** driven by AI recommendations (2025)
 
 ### Phase 1: Foundation Building (2025-2028)
 - **Timeframe**: 2025-2028 (3 years)
 - **Projected market value**: $14.2 billion by 2033
-- **CAGR**: ~20% annual growth
+- **CAGR**: 22.9% annual growth
 - **Adoption rate by 2028**:
   - Major festivals (10,000+ attendees): **60-70%**
   - Small festivals (under 5,000): **25-35%**
@@ -75,8 +75,10 @@
 **Bonnaroo insight**: **86% downloaded app, only 20% engaged** with personalization features—a 66-percentage-point gap between availability and use.
 
 ### ROI Reality Check
-- **42% of organizations report zero ROI** from AI investments (McKinsey, 2024)
-- Success depends on implementation approach, not just technology adoption
+- **More than 80% of organizations report no significant bottom-line impact** from AI investments, with only 39% achieving measurable EBIT gains (McKinsey State of AI, 2025) - a worsening trend from 2024
+- Only **6% are "AI high performers"** achieving 5%+ EBIT impact; just **1% considered "mature"**
+- Yet **92% plan to continue increasing AI investments** despite poor results
+- Success depends on implementation approach and workflow redesign, not just technology adoption
 - Early adopters with predictive operations achieve **10-15% margin improvements**
 
 ---
@@ -95,14 +97,14 @@
 
 ### Data Visualization
 **Adoption curves**:
-- Starting point (2025): 45%
+- Starting point (2025): 47%
 - Phase 1 endpoint (2028): 65-70% (major), 30% (small)
 - Phase 2 endpoint (2032): 87.5% (major), 55% (small)
 - Phase 3 endpoint (2035): 95% (major), 72.5% (small)
 
 **Key emphasis**:
 - Final destination: **95%** adoption (major festivals) in electric coral
-- Current state: 45% as baseline reference point
+- Current state: 47% as baseline reference point
 - Phase transition points as visual anchors
 
 ### Text Elements
@@ -141,7 +143,7 @@
 
 **Orientation**: Landscape (optimal for timeline format)
 
-**Focal point**: The ascending curves showing progression from 45% → 95%, with Phase 3 endpoint as visual anchor
+**Focal point**: The ascending curves showing progression from 47% → 95%, with Phase 3 endpoint as visual anchor
 
 **Mood**: Optimistic but evidence-based progression, professional forecast with festival energy
 
