@@ -61,6 +61,8 @@ For festival-goers, AI currently manifests in three primary ways:
 
 ## The Adoption Timeline: 2025-2035
 
+![AI Adoption Timeline: Festivals 2025-2035. Chart shows three phases of adoption with two lines representing major festivals (10,000+ attendees) growing from 45% in 2025 to 95% by 2035, and small festivals (under 5,000 attendees) growing from 45% to 72.5%. Phase 1 (2025-2028): Foundation Building with EU AI Act effective and infrastructure maturation. Phase 2 (2028-2032): Mainstream Integration with cross-festival identity and AI becoming baseline expectation. Phase 3 (2032-2035): Adaptive Ecosystems with 95% major festival adoption.](../visuals/eventai-timeline-2.webp)
+
 ### Phase 1: Foundation Building (2025-2028)
 
 **Market Reality:** The AI in event management sector is projected to grow from **$1.8 billion (2023) to $14.2 billion by 2033** (Market research report, 2024). This represents a **compound annual growth rate of approximately 20%**, indicating rapid but not exponential growth. Currently, **55% of AI adopters in events are small businesses** (1-50 employees), suggesting technology is accessible beyond major festival brands.
