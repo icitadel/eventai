@@ -10,11 +10,12 @@
 ## 🎯 Recommendation After 6-Variant Evaluation
 
 **Evaluation Results:**
-- ✅ Variant #3 (pentagon + white center): **86/100** - Best visual interest + quality balance
-- ✅ Variant #4 (vertical list): **88/100** - Highest score but "too boring" (lacks whimsy)
-- ⚠️ Other pentagon variants: **68-79/100** - Good but various issues
+- ✅ Variant #6 (pentagon + external text): **79/100** - **PREFERRED** for aesthetic engagement
+- ✅ Variant #3 (pentagon + white center): **86/100** - Strongest technical scores
+- ⚠️ Variant #4 (vertical list): **88/100** - Technically highest but sterile/boring (reject)
+- ⚠️ Other pentagon variants: **68-70/100** - Various issues
 
-**Decision:** Pentagon layout recommended for EventAI brand (professional + whimsy). Variant #3's white center circle creates signature visual impact.
+**Decision:** **Pentagon layouts are aesthetically engaging and match EventAI brand** (professional + whimsy). Variant #6's external text approach or Variant #3's white center both create visual interest. **Avoid boring vertical stacks** - technical perfection without personality is not the goal.
 
 **Critical Issues Found (ALL variants):**
 - ❌ Beige/cream backgrounds (NOT pure white #FFFFFF) - #1 issue
@@ -22,9 +23,9 @@
 - ⚠️ Some low white space (<30% minimum)
 - ⚠️ Text sizes inconsistent
 
-**Prompts below incorporate ALL learnings. Two options provided:**
-1. **PENTAGON LAYOUT** (recommended - more memorable, visual interest)
-2. **VERTICAL LIST** (alternative - highest scores, maximum clarity)
+**Prompts below incorporate ALL learnings. Two aesthetically engaging options:**
+1. **PENTAGON + WHITE CENTER** (Variant #3 style - clean, striking visual impact)
+2. **PENTAGON + EXTERNAL TEXT** (Variant #6 style - spacious, highly readable)
 
 ---
 
@@ -50,9 +51,9 @@
 
 ---
 
-## 🔥 OPTION A: Pentagon Layout (Recommended)
+## 🔥 OPTION A: Pentagon + White Center (Aesthetically Engaging)
 
-**Why:** More visually interesting, better brand fit (professional + whimsy), memorable
+**Why:** Visually striking, signature EventAI element, strong focal point, memorable
 
 **Copy this prompt** (token-optimized 312 tokens):
 
@@ -123,59 +124,74 @@ Variant #3 from previous generation - white center circle, clean segments, good 
 
 ---
 
-## 💎 OPTION B: Vertical List (Alternative - Maximum Clarity)
+## 💎 OPTION B: Pentagon + External Text (Aesthetically Engaging Alternative)
 
-**Why:** Highest evaluation scores (88/100), easiest to scan, most accessible
+**Why:** Spacious, highly readable, creative text placement, visually interesting
 
-**Copy this prompt** (token-optimized 268 tokens):
+**Copy this prompt** (token-optimized 285 tokens):
 
 ```
-Vertical list infographic: 5 Major Barriers to AI Transformation at Festivals
+Pentagon infographic with external text: 5 Major Barriers to AI Transformation at Festivals
 
-🚨 CRITICAL: Pure white background #FFFFFF (NOT cream/beige), left-aligned text, 40%+ white space, festival icons
+🚨 CRITICAL: Pure white background #FFFFFF (NOT cream/beige), text OUTSIDE colored segments, 35%+ white space, festival icons
 
-LAYOUT:
-- Title at top: "5 MAJOR BARRIERS TO AI AT FESTIVALS" (bold, 32-36pt, black)
-- 5 barriers stacked vertically, each with: icon (left) + title + stat + description
-- Generous spacing between barriers (24-32px)
-- Right 40% of canvas: empty white space (breathing room)
+STRUCTURE:
+- Pentagon with 5 equal colored wedge segments radiating from center
+- White center circle: "5 Major Barriers to AI Transformation" (bold, 24-28pt)
+- Icons INSIDE each colored segment (large, visible)
+- Titles and descriptions OUTSIDE segments (on white background, highly readable)
+- Text positioned around pentagon perimeter
 
-BARRIERS (top to bottom):
+BARRIERS (clockwise from top):
 
-1️⃣ ECONOMIC CONSTRAINTS
-Icon: Festival ticket + money (coral #FF6B6B) | Title: "ECONOMIC CONSTRAINTS" (bold, 18-20pt)
-Stat: "$566K AVG INVESTMENT, >80% NO SIGNIFICANT IMPACT" (coral bold, 24-28pt)
-Text: "High upfront costs meet poor results. Most orgs see no bottom-line impact, only 6% are high performers." (14-16pt black)
+1️⃣ ECONOMIC CONSTRAINTS (Coral #FF6B6B top wedge)
+Inside segment: Festival ticket + money icon (large, 64-80px)
+Outside (above pentagon):
+  Title: "Economic Constraints" (bold, 20-24pt, black)
+  Stat: "$566K Investment • 80% No ROI" (coral bold, 28-32pt)
+  Text: "High investment, most see no impact. Only 6% high performers." (14-16pt, black)
 
-2️⃣ DATA QUALITY
-Icon: RFID wristband + database (sunlight #F6AD55) | Title: "DATA QUALITY & AVAILABILITY" (bold, 18-20pt)
-Stat: "ANNUAL FESTIVALS: 'COLD-START PROBLEM'" (sunlight bold, 24-28pt)
-Text: "Limited training data. One event per year provides only one opportunity to build historical patterns." (14-16pt black)
+2️⃣ DATA QUALITY (Sunlight #F6AD55 upper-right wedge)
+Inside segment: RFID wristband + database icon
+Outside (right side):
+  Title: "Data Quality" (bold, 20-24pt, black)
+  Stat: "One Training Opportunity/Year" (sunlight bold, 28-32pt)
+  Text: "Annual festivals suffer cold-start problem, lack historical patterns." (14-16pt, black)
 
-3️⃣ REGULATORY UNCERTAINTY
-Icon: Festival crowd + prohibition (amber #ED8936) | Title: "REGULATORY UNCERTAINTY" (bold, 18-20pt)
-Stat: "EU AI ACT: REAL-TIME BIOMETRICS BAN & €35M FINES" (amber bold, 24-28pt)
-Text: "Strict laws (Feb 2025), legal risks, financial penalties. 40+ major festivals prohibited facial recognition." (14-16pt black)
+3️⃣ REGULATORY UNCERTAINTY (Amber #ED8936 lower-right wedge)
+Inside segment: Festival crowd + prohibition sign icon
+Outside (lower right):
+  Title: "Regulatory Uncertainty" (bold, 20-24pt, black)
+  Stat: "€35M Potential Fines" (amber bold, 28-32pt)
+  Text: "EU AI Act bans real-time biometrics. 40+ festivals banned facial recognition." (14-16pt, black)
 
-4️⃣ TECHNICAL COMPLEXITY
-Icon: Festival stage + cables (blue #4299E1) | Title: "TECHNICAL COMPLEXITY" (bold, 18-20pt)
-Stat: "INTEGRATING 10+ SYSTEMS IN TEMPORARY ENVIRONMENTS" (blue bold, 24-28pt)
-Text: "Harsh conditions, limited infrastructure, multi-vendor ecosystems create significant technical debt and failure points." (14-16pt black)
+4️⃣ TECHNICAL COMPLEXITY (Blue #4299E1 lower-left wedge)
+Inside segment: Festival stage + tangled cables icon
+Outside (lower left):
+  Title: "Technical Complexity" (bold, 20-24pt, black)
+  Stat: "10+ Vendor Integrations" (blue bold, 28-32pt)
+  Text: "Temporary environments, limited infrastructure create massive technical debt." (14-16pt, black)
 
-5️⃣ ETHICAL TENSIONS
-Icon: Festival crowd dancing + algorithm (purple #6B46C1) | Title: "ETHICAL & CREATIVE TENSIONS" (bold, 18-20pt)
-Stat: "RISK OF DESTROYING 'MAGIC'" (purple bold, 24-28pt)
-Text: "AI conflicts with discovery's 'magic,' risking audience filter bubbles instead of serendipity and creative unpredictability." (14-16pt black)
+5️⃣ ETHICAL TENSIONS (Purple #6B46C1 upper-left wedge)
+Inside segment: Festival crowd dancing + balance scales icon
+Outside (left side):
+  Title: "Ethical Tensions" (bold, 20-24pt, black)
+  Stat: "Serendipity vs. Optimization" (purple bold, 28-32pt)
+  Text: "Over-optimization risks festival magic, creates filter bubbles." (14-16pt, black)
 
 STYLE:
-- Background: PURE WHITE #FFFFFF (verify exactly #FFFFFF)
-- Text: Left-aligned, black (#000000) body text on white
-- Icons: Festival-specific, outlined style (2-3px), colored per barrier
+- Background: PURE WHITE #FFFFFF (not cream, not beige)
+- Pentagon segments: Colored fills (coral, sunlight, amber, blue, purple)
+- Center circle: WHITE fill with black text
+- Icons: INSIDE colored segments, festival-specific (stages, crowds, wristbands, RFID), large 64-80px, white or black outlines
+- Text: OUTSIDE segments on white background for maximum readability, black (#000000)
 - Typography: Inter/Roboto bold titles, Source Sans/Lato body, minimum 14pt
-- White space: 40%+ (right side mostly empty, generous vertical spacing)
-- Clean, minimal design: no borders, no decoration, high data-ink ratio
+- White space: 35%+ (text placement around pentagon creates breathing room)
+- Layout: Semi-flat, rounded corners (8-12px), clean and spacious
 
-❌ AVOID: Cream/beige background, centered text, generic icons, cramped spacing, small fonts (<14pt)
+❌ AVOID: Cream/beige background, text inside colored segments (readability issue), generic business icons, cramped text, small fonts (<14pt)
+
+✅ REFERENCE: Variant #6 approach - text outside segments for readability, icons inside for visual impact
 ```
 
 ---
