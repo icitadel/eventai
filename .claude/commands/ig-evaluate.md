@@ -581,6 +581,26 @@ Minor refinements suggested (see action items), but ready for use as-is if neede
 
 ## Usage Instructions
 
+### CRITICAL: Image Format Requirements ⚠️
+
+**Always convert PNG to webp before evaluation:**
+
+```bash
+# Step 1: Convert PNGs to 1080p webp (REQUIRED)
+todd-image-convert docs/writing/*/visuals/*/*.png --resolution 1080p --output-format webp
+
+# Step 2: Evaluate the webp files (not the PNGs)
+/ig-evaluate docs/writing/*/visuals/*/*.webp
+```
+
+**Why webp, not PNG?**
+- Consistent resolution (1080p standardized)
+- Smaller file sizes for web use
+- Better compression without quality loss
+- Standard format for EventAI visual assets
+
+**DO NOT evaluate PNG files directly** - always convert first.
+
 ### Basic Evaluation (Single Infographic)
 
 ```bash
@@ -592,6 +612,7 @@ Minor refinements suggested (see action items), but ready for use as-is if neede
 # 2. Search for VIS-*.source.md in same directory
 # 3. Load EventAI style guide and best practices
 # 4. Generate comprehensive evaluation report
+# 5. Write evaluation to [directory]/VIS-X.X-EVALUATION-REPORT.md
 ```
 
 ### Evaluation with Explicit Source Material
@@ -614,6 +635,8 @@ Minor refinements suggested (see action items), but ready for use as-is if neede
 # 2. Create comparison matrix
 # 3. Recommend best variant
 # 4. Explain why winner was selected
+# 5. Write comprehensive report to VIS-X.X-EVALUATION-REPORT.md
+# 6. Update VIS-X.X-GENERATE-INSTRUCTIONS.md with learnings
 ```
 
 ### Custom Evaluation Criteria
@@ -686,6 +709,8 @@ Use this checklist to ensure comprehensive evaluation:
 - [ ] Scorecards completed
 - [ ] Recommendations prioritized (critical/high/medium/low)
 - [ ] Action items clearly stated
+- [ ] **Report written to file** (VIS-X.X-EVALUATION-REPORT.md)
+- [ ] **GENERATE-INSTRUCTIONS updated** with findings to prevent recurring issues
 
 ---
 
@@ -826,16 +851,23 @@ Priority: 🟡 High (significantly impacts effectiveness)
 - Hallucinations/unsupported claims checked
 - Numerical accuracy confirmed
 
-✅ **Report generated:**
+✅ **Report generated AND WRITTEN TO FILE:**
 - Executive summary with overall score and recommendation
 - Detailed findings (strengths and weaknesses)
 - Scorecards for each evaluation category
 - Prioritized action items (critical/high/medium/low)
+- **Report file created:** `VIS-X.X-EVALUATION-REPORT.md` in infographic directory
 
 ✅ **Comparative analysis (if multiple variants):**
 - Each variant scored individually
 - Comparison matrix created
 - Winner identified with clear rationale
+
+✅ **GENERATE-INSTRUCTIONS updated:**
+- Prompt improvements added based on evaluation findings
+- Common issues flagged with ⚠️ or ❌ in AVOID section
+- Critical requirements emphasized at top of prompt
+- Learnings fed back into generation workflow
 
 ### Evaluation is INCOMPLETE if:
 
@@ -846,6 +878,8 @@ Priority: 🟡 High (significantly impacts effectiveness)
 ❌ No clear recommendation provided
 ❌ Issues identified but not prioritized
 ❌ Scores assigned without explanation
+❌ **Report not written to file** (only in conversation)
+❌ **GENERATE-INSTRUCTIONS not updated** with learnings
 
 ---
 
@@ -938,14 +972,32 @@ Good: "Increase milestone text from 12pt to 16pt for print readability"
 
 ```bash
 # 1. Generate infographic variations in NotebookLM (manual step)
-# 2. Download and convert to webp
+#    - Follow VIS-X.X-GENERATE-INSTRUCTIONS.md
+#    - Download PNG files from NotebookLM
+#    - Save as transformation-infographic-{name}-{1,2,3}.png
+
+# 2. Convert to webp (REQUIRED - do not skip!)
+cd docs/writing/{topic}/visuals/{name}
 todd-image-convert *.png --resolution 1080p --output-format webp
 
 # 3. Evaluate all variants
-/ig-evaluate docs/writing/*/visuals/*/*.webp
+/ig-evaluate docs/writing/{topic}/visuals/{name}/*.webp
 
-# 4. Review evaluation report, select winner
-# 5. Apply recommended refinements (if any)
+# This command will:
+# - Analyze all variants against EventAI style guide
+# - Verify data accuracy against VIS-X.X-source.md
+# - Create VIS-X.X-EVALUATION-REPORT.md with findings
+# - Update VIS-X.X-GENERATE-INSTRUCTIONS.md with improvements
+# - Recommend winning variant
+
+# 4. Review evaluation report
+cat VIS-X.X-EVALUATION-REPORT.md
+
+# 5. Select winner and optionally regenerate if critical issues found
+# - If score < 80%: Regenerate with improved prompt
+# - If score 80-90%: Use as-is or apply minor refinements
+# - If score > 90%: Approved for publication
+
 # 6. Mark VIS-X.X as complete in VISUAL-CONTENT-PLAN.md
 ```
 
