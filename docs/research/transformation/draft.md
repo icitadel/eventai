@@ -37,13 +37,13 @@ For festival-goers, AI currently manifests in three primary ways:
 
 **1. Personalized Recommendations**
 
-**DICE**, a ticketing platform serving 10 million monthly active users across 10,000+ venues, reports that nearly **50% of ticket sales** now come through AI-powered recommendations rather than direct search (DICE/Fever data, 2025). The platform analyzes listening history, past attendance, social connections, and real-time availability to surface events users didn't know existed. This represents a fundamental shift from search-based discovery to algorithmic curation.
+**DICE**, a ticketing platform serving 10 million monthly active users across 10,000+ venues, reports that **40-41% of ticket sales** now come through AI-powered recommendations rather than direct search (verified across TechCrunch reporting and DICE partners page, 2025). The platform analyzes listening history, past attendance, social connections, and real-time availability to surface events users didn't know existed. This represents a fundamental shift from search-based discovery to algorithmic curation.
 
 **Coachella** partnered with Spotify to generate AI-powered festival schedules based on users' streaming data, automatically resolving time conflicts and suggesting lesser-known artists with high compatibility scores. Tens of thousands of attendees used the feature in 2023, with user surveys showing **72% rated it "very helpful"** for discovering new artists (Coachella post-event survey, 2023).
 
 **2. Dynamic Wayfinding and Logistics**
 
-**Bonnaroo** deployed iBeacon technology from 2014-2016, sending location-aware push notifications for wayfinding, hydration stations, and schedule alerts—**without any promotional messages in year one**. This restraint built trust: the platform achieved a **20% engagement rate** with 97,000+ notifications sent over four days, averaging 12.6 notifications per user (Bonnaroo case study, 2016). When commercial messages were introduced in year two, attendees had already experienced value, reducing resistance.
+**Bonnaroo** deployed iBeacon technology from 2014-2016, sending location-aware push notifications for wayfinding, hydration stations, and schedule alerts—**without any promotional messages in year one**. This restraint built trust: the platform achieved a **20% engagement rate** with 97,000+ notifications sent over four days, averaging 12.6 notifications per user (Bonnaroo case study, 2016). However, this reveals a critical adoption gap: **86% of attendees downloaded the app, but only 20% engaged with personalization features**—a 66-percentage-point difference between availability and actual use that challenges assumptions about universal AI adoption. When commercial messages were introduced in year two, attendees had already experienced value, reducing resistance.
 
 **3. Content Generation**
 
@@ -56,6 +56,8 @@ For festival-goers, AI currently manifests in three primary ways:
 ### Phase 1: Foundation Building (2025-2028)
 
 **Market Reality:** The AI in event management sector is projected to grow from **$1.8 billion (2023) to $14.2 billion by 2033** (Market research report, 2024). This represents a **compound annual growth rate of approximately 20%**, indicating rapid but not exponential growth. Currently, **55% of AI adopters in events are small businesses** (1-50 employees), suggesting technology is accessible beyond major festival brands.
+
+**Critical Evidence Gap:** Research across industry publications, vendor case studies, and academic literature found **essentially no documented AI deployments at mid-sized festivals (5,000-20,000 attendees)**. Festivals like Pitchfork (~20K), Green Man (~25K), and Shambhala (~15-20K) use basic technology stacks—simple apps, RFID cashless, push notifications—but no AI-powered personalization, wayfinding, or content generation. This suggests that claims about AI scalability from mega-festivals down to mid-sized events are **aspirational rather than documented**. The technology adoption curve shows AI features concentrated at the largest events.
 
 **Key Developments:**
 
@@ -123,7 +125,7 @@ For festival-goers, AI currently manifests in three primary ways:
 - Automatic schedule generation with conflict resolution
 - Proactive alerts for artist announcements, ticket drops, schedule changes
 
-**Real Example:** DICE's AI recommendations drive **50% of ticket sales**, meaning half of festival attendance is now algorithmically curated rather than self-selected (DICE, 2025). This fundamentally changes discovery: attendees go to festivals they didn't know existed based on AI's assessment of compatibility.
+**Real Example:** DICE's AI recommendations drive **40-41% of ticket sales**, meaning nearly half of festival attendance is now algorithmically curated rather than self-selected (DICE partners page, 2025). This represents a shift from discovery-by-search to discovery-by-algorithm that fundamentally changes how attendees find festivals. This fundamentally changes discovery: attendees go to festivals they didn't know existed based on AI's assessment of compatibility.
 
 ---
 
@@ -144,6 +146,26 @@ For festival-goers, AI currently manifests in three primary ways:
 - Opt-in location sharing for friend-finding (with explicit consent)
 
 **Real Example:** **Bonnaroo's iBeacon platform** delivered 97,000+ contextual notifications over 4 days with **20% engagement rate**—attendees voluntarily interacted with 1 in 5 notifications because content was relevant to their location and needs (Bonnaroo, 2016).
+
+**What Attendees Find Helpful vs. Intrusive:**
+
+Research across app store reviews, surveys, and social media reveals clear patterns in what AI features attendees value versus reject:
+
+**Helpful Features (Consistently Praised):**
+- Schedule management tools with lock screen widgets and live activities
+- Artist discovery via Spotify/Apple Music integration
+- Emergency and weather alerts (Lollapalooza's thunderstorm evacuation reached 90% of app users within minutes)
+- Interactive maps with walking time estimates between stages
+- Wayfinding to hydration stations and services
+
+**Intrusive Features (Consistent Complaints):**
+- Persistent location tracking that drains batteries
+- Privacy settings that auto-reset to enable tracking
+- Over-notification (industry data shows 1 notification/day yields 88% 3-month retention vs. 54% retention with 5 notifications/day)
+- Sponsor pushes perceived as spam
+- Mandatory app downloads for wristband registration forcing data collection
+
+The threshold between helpful and intrusive hinges on **user control** (can attendees disable features?), **transparency** (is tracking purpose clearly explained?), and **frequency limits** (how many notifications per day?). When iOS shifted to requiring explicit notification opt-in, **44-56% of users declined**—suggesting that passive consent dramatically overstates true acceptance of personalization.
 
 ---
 
