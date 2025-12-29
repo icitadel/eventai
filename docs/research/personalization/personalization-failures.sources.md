@@ -126,9 +126,12 @@ Privacy concerns from attendees and advocacy groups
 
 ## Additional Data Points
 
-**Mobile App Engagement (General Industry)**  
+**Mobile App Engagement (General Industry)**
 - 77% of daily active users disappear within 3 days of installation (Solveit, 2024)
-- iOS notification opt-in: 44-56% decline when explicit permission required (iZooto, 2025)
+- iOS notification opt-in: 44-56% when explicit permission required
+  *Sources: OneSignal Mobile App Benchmarks 2024-2025, Airship Push Notification Benchmarks 2025*
+  https://onesignal.com/mobile-app-benchmarks-2024
+  https://www.airship.com/resources/benchmark-report/mobile-app-push-notification-benchmarks-for-2025/
 
 **Total Cost of Ownership Estimates**  
 - iBeacon deployment: $10-50/beacon hardware + ~$100/beacon installation

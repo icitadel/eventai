@@ -79,18 +79,25 @@
     https://www.festivalinsights.com/2023/05/10-ways-ai-revolutionise-music-festival-industry/  
     (Forward-looking; not documented deployments)
 
-23. **DICE Platform - Variety Interview (Dec 2024)**  
-    https://variety.com/2025/music/global/dice-ceo-phil-hutcheon-fighting-dynamic-pricing-ticketing-industry-1236269673/  
+23. **DICE Platform - Variety Interview (Dec 2024)**
+    https://variety.com/2025/music/global/dice-ceo-phil-hutcheon-fighting-dynamic-pricing-ticketing-industry-1236269673/
     (Opposes dynamic pricing)
+
+24. **Playbook Sports - AI Dynamic Pricing Case Studies** ⚠️
+    https://www.callplaybook.com/reports/top-5-ai-marketing-strategies-for-dynamic-ticket-pricing
+    Real Madrid: 29% matchday revenue increase (3,000 price adjustments per match)
+    Golden State Warriors: 27% revenue increase for high-demand games; 92% prediction accuracy
+    Manchester United: 22% ticket sales increase
+    (Sports venue context; festival transferability unverified)
 
 ---
 
 ## Tier 4: Small Festival Tools (No AI Capabilities)
 
-24. **FIXR Platform**  
+25. **FIXR Platform**
     https://fixr.co/ (Real-time dashboards; no predictive AI)
 
-25. **Eventbrite**  
+26. **Eventbrite**
     https://www.eventbrite.com/blog/ai-tools-for-events/ (AI for marketing; not operations)
 
 ---
@@ -98,11 +105,11 @@
 ## Summary by Evidence Strength
 
 - **Festival-Specific with Metrics**: 8 sources (primarily Crowd Connected)
-- **Sports/Hospitality Extrapolations**: 10 sources (Legion, NEC, food waste)
+- **Sports/Hospitality Extrapolations**: 11 sources (Legion, NEC, food waste, Playbook Sports)
 - **Vendor Claims (Unverified)**: 3 sources
 - **Non-AI Comparisons**: 4 sources
 
-**Total Sources**: 25 catalogued
+**Total Sources**: 26 catalogued
 
 ---
 

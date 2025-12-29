@@ -17,6 +17,8 @@
 10. **Eventbrite TRNDS (2023-25)** - Event Statistics Reports - https://www.eventbrite.com/blog/event-statistics-ds00/
 11. **Höme/Yourope (2024)** - European Festival Survey (7K respondents) - via IQ Magazine
 12. **SpotMe (2024-25)** - Event Technology Trends - https://spotme.com/blog/event-trends/
+13. **Market.us (2024)** - AI in Event Management Market Report: $1.8B (2023) → $14.2B (2033), CAGR 22.9% - https://market.us/report/ai-in-event-management-market/
+14. **McKinsey (2024-25)** - The State of AI Global Surveys: 42% companies abandoned AI initiatives - https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai
 
 ## Vendor Case Studies
 
@@ -38,4 +40,4 @@
 
 ---
 
-**Total: 24 distinct sources** (8 peer-reviewed, 4 industry reports, 8 vendor studies, 4 user-generated)
+**Total: 26 distinct sources** (8 peer-reviewed, 6 industry reports, 8 vendor studies, 4 user-generated)

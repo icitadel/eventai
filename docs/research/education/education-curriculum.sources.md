@@ -2,6 +2,8 @@
 
 ## Academic Journals (Peer-Reviewed)
 
+- **Long, D., & Magerko, B.** (2020). "What is AI Literacy? Competencies and Design Considerations." CHI 2020: ACM Conference on Human Factors in Computing Systems. DOI: 10.1145/3313831.3376727
+
 - **Journal of Hospitality & Tourism Education** (2024). "The Digital Skills Gap – Is it Time to Rethink the Needs of Tourism and Hospitality Organizations in the UK?" DOI: 10.1080/10963758.2024.2316338
 
 - **Journal of Hospitality, Leisure, Sport & Tourism Education** (2024). Dalgıç et al., "ChatGPT and learning outcomes in tourism education"
