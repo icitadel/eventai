@@ -32,13 +32,32 @@ This folder contains visual assets for the Transformation topic, including infog
 
 ---
 
-### VIS-1.2: Before/After Comparison
+### VIS-1.2: Before/After Comparison ✅ READY TO GENERATE
 
 **Type**: Comparative Infographic
 **Platform**: NotebookLM
-**Status**: 📋 Planned
+**Status**: Test package prepared, ready for generation
 
-**What it shows**: Side-by-side comparison of traditional vs AI-optimized festival experiences across key dimensions (discovery, ticketing, on-site experience, operations)
+**Files**:
+- `VIS-1.2-source.md` - Focused source document for NotebookLM upload
+- `VIS-1.2-GENERATE-INSTRUCTIONS.md` - Complete step-by-step generation guide
+- `transformation-infographic-before-after.png` - Generated infographic (after creation)
+
+**What it shows**: Side-by-side comparison of traditional vs AI-optimized festival experiences across three key dimensions:
+- **Discovery & Ticketing**: Manual browsing vs AI recommendations (40-41% of sales now algorithmic)
+- **On-Site Experience**: Paper maps vs real-time apps (20% engagement with contextual notifications)
+- **Post-Festival**: Manual photos vs AI-generated recaps (with privacy opt-in requirements)
+
+**Key statistics**:
+- 40-41% ticket sales via AI recommendations
+- 20% engagement rate with contextual notifications
+- 44-56% users decline notification permissions when asked explicitly
+
+**Privacy focus**: Clearly shows which features require opt-in, balances benefits with privacy considerations
+
+**Estimated generation time**: ~15 minutes
+
+**To generate**: Follow instructions in `VIS-1.2-GENERATE-INSTRUCTIONS.md`
 
 ---
 
