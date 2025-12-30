@@ -349,9 +349,14 @@ Quadrant matrix (Value vs. Ease of Implementation):
 **Draft Length**: TBD (estimated 3,500-4,000 words)
 **Visual Opportunities**: 4 infographics
 
-### VIS-4.1: EU AI Act Risk Classification
+### VIS-4.1: EU AI Act Risk Classification ✅ COMPLETE
 **Type**: Pyramid/Tier Diagram
 **Purpose**: Show the risk-based regulatory framework
+**Status**: ✅ Generated and evaluated - Variant #3 selected (91/100)
+**Files**:
+- Winner: `docs/writing/4-privacy/visuals/eu-ai-act/eu-ai-act-3.webp`
+- Evaluation: `docs/writing/4-privacy/visuals/eu-ai-act/eu-ai-act.eval.md`
+**Completed**: December 30, 2025
 
 **Content**:
 Three-tier pyramid:
@@ -378,9 +383,11 @@ Three-tier pyramid:
 
 ---
 
-### VIS-4.2: GDPR Biometric Data Requirements Flowchart
+### VIS-4.2: GDPR Biometric Data Requirements Flowchart ✅ COMPLETE
 **Type**: Decision Tree/Flowchart
 **Purpose**: Guide festival organizers through compliance requirements
+**Status**: ✅ Generated and evaluated
+**Completed**: December 30, 2025
 
 **Content**:
 Decision flowchart:
@@ -724,15 +731,15 @@ All visuals follow EventAI style principles:
 Generate in this order for maximum pedagogical impact:
 
 1. **High Priority** (Core Concepts):
-   - VIS-1.1: AI Adoption Timeline
+   - ✅ VIS-1.1: AI Adoption Timeline - COMPLETE
    - VIS-2.1: Functional vs. Critical Literacy
-   - VIS-4.1: EU AI Act Risk Classification
+   - ✅ VIS-4.1: EU AI Act Risk Classification - COMPLETE (91/100)
    - VIS-5.1: Traditional vs. AI-Powered Analytics
 
 2. **Medium Priority** (Supporting Evidence):
    - VIS-1.2: Before/After Festival Experience
    - VIS-3.3: Helpful vs. Intrusive Features
-   - VIS-4.2: GDPR Compliance Flowchart
+   - ✅ VIS-4.2: GDPR Compliance Flowchart - COMPLETE
    - VIS-5.2: Dynamic Pricing Mechanics
 
 3. **Lower Priority** (Supplementary):
