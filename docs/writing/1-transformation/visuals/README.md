@@ -106,13 +106,99 @@ This folder contains visual assets for the Transformation topic, including infog
 
 ## File Naming Convention
 
-**Format**: `transformation-[type]-[descriptor].png`
+### Image Files
+**Format**: `{topic}-N.{ext}`
 
 **Examples**:
-- `transformation-infographic-adoption-timeline.png` (VIS-1.1)
-- `transformation-infographic-before-after.png` (VIS-1.2)
-- `transformation-diagram-barriers.png` (VIS-1.3)
-- `transformation-infographic-capabilities-matrix.png` (VIS-1.4)
+- `timeline-1.png`, `timeline-2.png`, `timeline-3.png` (VIS-1.1)
+- `before-after-1.png`, `before-after-2.png`, `before-after-3.png` (VIS-1.2)
+- `barriers-1.png` through `barriers-6.png` (VIS-1.3)
+- `capabilities-1.png`, `capabilities-2.png`, `capabilities-3.png` (VIS-1.4)
+
+### Documentation Files
+**Format**: `{topic}.{type}.md`
+
+**Types**:
+- `.content.md` - Source material/data for NotebookLM upload
+- `.prompt.md` - Raw NotebookLM prompt (token-optimized, no framing)
+- `.instructions.md` - Workflow guidance and generation steps
+- `.eval.md` - Evaluation report from /ig-evaluate
+
+**Examples**:
+- `barriers.content.md`, `barriers.prompt.md`, `barriers.instructions.md`, `barriers.eval.md`
+- `timeline.content.md`, `timeline.prompt.md`, `timeline.instructions.md`
+
+---
+
+## Token Optimization Requirements
+
+**🚨 CRITICAL**: `.content.md` and `.prompt.md` files MUST be token-optimized before upload to AI agents (NotebookLM, Claude, etc.)
+
+### Why This Matters
+- AI models charge per token consumed
+- NotebookLM has context limits that benefit from compact source material
+- Verbose content increases costs and may hit limits unnecessarily
+- Token-optimized content preserves ALL information while reducing waste
+
+### Target Metrics
+- ✅ **Token reduction**: 40-70% from verbose original
+- ✅ **Information preservation**: 100% of substantive points
+- ✅ **Readability**: High (scannable, clear structure)
+- ✅ **Completeness**: All facts, stats, technical details intact
+
+### Optimization Strategies
+
+**Rephrase for conciseness**:
+- Verbose → terse, information-dense phrasing
+- Example: "You should ensure that the background color is exactly pure white" → "Background: Pure white #FFFFFF"
+
+**Use fragments over sentences**:
+- Bullet points and fragments instead of prose
+- Strip unnecessary articles (a, an, the)
+- Remove transitions ("In conclusion," "As mentioned," "It's important that")
+
+**Consolidate and deduplicate**:
+- Group related concepts together
+- Eliminate redundancy across sections
+- Use hierarchical bullets to show relationships
+
+**Remove fluff, preserve substance**:
+- ❌ Remove: Filler words (very, really, quite, actually, basically)
+- ❌ Remove: Redundant examples (keep most illustrative only)
+- ❌ Remove: Excessive context or marketing language
+- ✅ Preserve: Unique facts, numbers, dates, statistics
+- ✅ Preserve: Technical details (hex codes, point sizes, measurements)
+- ✅ Preserve: Decision criteria, warnings, recommendations
+- ✅ Preserve: Source attributions and citations
+
+### File-Specific Guidelines
+
+**`.content.md` files** (source material):
+- Compress narrative sections by 50-60%
+- Preserve all data points, statistics, examples
+- Use tables/lists instead of prose where possible
+- Keep section headers for structure
+
+**`.prompt.md` files** (NotebookLM prompts):
+- Compress by 40-55%
+- Preserve ALL technical specifications (colors, sizes, layout details)
+- Keep markdown headers (# ##) for implicit structure
+- Remove all explanatory framing ("This prompt will...", "Make sure to...")
+- Keep only the directive content AI needs to execute
+
+### Quality Verification
+
+Before committing optimized files, verify:
+- [ ] No substantive information lost
+- [ ] All numbers, stats, technical specs preserved
+- [ ] Markdown structure clean and readable
+- [ ] 40-70% token reduction achieved
+- [ ] File scans quickly (test by reading it yourself)
+
+### Token Estimation
+- 1 token ≈ 4 characters in English text
+- Use `/optimize-tokens` command to apply optimization principles
+- Count approximate tokens: `wc -m file.md` divided by 4
 
 ---
 

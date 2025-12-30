@@ -1,154 +1,88 @@
-# VIS-1.1: AI Adoption Timeline (2025-2035)
+# AI Adoption Timeline
 
-**Infographic Purpose**: Visualize the three-phase AI adoption progression in the festival industry over the next decade, showing percentage adoption rates and key milestones for each phase.
+Timeline infographic: AI adoption in festival industry 2025-2035
 
----
-
-## Key Data Points
-
-### Current State (2025)
-- **47% of event organizers** currently use AI tools (late 2023 baseline), rising from 33% in early 2023 (Event Industry News AI Report, 2025)
-- **$1.8 billion** AI in event management sector value (2023)
-- **40-41% of DICE ticket sales** driven by AI recommendations (2025)
-
-### Phase 1: Foundation Building (2025-2028)
-- **Timeframe**: 2025-2028 (3 years)
-- **Projected market value**: $14.2 billion by 2033
-- **CAGR**: 22.9% annual growth
-- **Adoption rate by 2028**:
-  - Major festivals (10,000+ attendees): **60-70%**
-  - Small festivals (under 5,000): **25-35%**
-
-**Key Developments**:
-- EU AI Act effective (February 2, 2025) - regulatory clarity
-- 5G networks + edge computing infrastructure maturation
-- Vendor consolidation (Fever acquiring DICE, June 2025)
-
-**Primary Applications**:
-- Ticketing and marketing AI
-- Basic crowd monitoring
-- Initial personalization features
-
-### Phase 2: Mainstream Integration (2028-2032)
-- **Timeframe**: 2028-2032 (4 years)
-- **Adoption rate by 2032**:
-  - Major festivals: **85-90%**
-  - Small festivals: **50-60%**
-
-**Key Developments**:
-- Cross-festival identity (portable preference profiles)
-- Generative AI for visual content and immersive experiences
-- Predictive operations (10-15% margin improvements)
-- AI becomes baseline attendee expectation (like WiFi in 2010s)
-
-**Primary Applications**:
-- Dynamic pricing and resource allocation
-- Real-time wait times and crowd density heatmaps
-- AI-generated visual art and content
-- Cross-platform recommendation systems
-
-### Phase 3: Adaptive Ecosystems (2032-2035)
-- **Timeframe**: 2032-2035 (3 years)
-- **Adoption rate by 2035**:
-  - Major festivals: **95%+**
-  - Small festivals: **70-75%**
-
-**Key Developments**:
-- Real-time program adjustments based on crowd behavior
-- Environmental responsiveness (weather-triggered operations)
-- Hyper-personalization with privacy preservation
-- AI infrastructure becomes commodity technology
-
-**Primary Applications**:
-- Real-time schedule and programming modifications
-- Automated environmental response systems
-- Anonymous aggregate insights (no individual tracking)
-- AI-orchestrated operational optimization
-
----
-
-## Critical Context
-
-### The Adoption Gap
-**Current reality**: Research found **no documented AI deployments** at mid-sized festivals (5,000-20,000 attendees). Technology adoption concentrated at largest events.
-
-**Bonnaroo insight**: **86% downloaded app, only 20% engaged** with personalization features—a 66-percentage-point gap between availability and use.
-
-### ROI Reality Check
-- **More than 80% of organizations report no significant bottom-line impact** from AI investments, with only 39% achieving measurable EBIT gains (McKinsey State of AI, 2025) - a worsening trend from 2024
-- Only **6% are "AI high performers"** achieving 5%+ EBIT impact; just **1% considered "mature"**
-- Yet **92% plan to continue increasing AI investments** despite poor results
-- Success depends on implementation approach and workflow redesign, not just technology adoption
-- Early adopters with predictive operations achieve **10-15% margin improvements**
-
----
-
-## Visual Guidance for Infographic
-
-### Layout Recommendation
-**Timeline format**: Horizontal timeline spanning 2025-2035 with three distinct phases
-
-**Visual structure**:
+## VISUAL STRUCTURE
+- Horizontal timeline 2025-2035
+- Two ascending line graphs:
+  * Solid: Major festivals (10K+ attendees)
+  * Dashed: Small festivals (<5K attendees)
+- Three phases, vertical dividers at 2028, 2032
+- Y-axis: Adoption % (0-100%)
 - X-axis: Years (2025, 2028, 2032, 2035)
-- Y-axis: Adoption percentage (0-100%)
-- Two lines: Major festivals (solid) and Small festivals (dashed)
-- Phase markers separating three stages
-- Milestone callouts for each phase
 
-### Data Visualization
-**Adoption curves**:
-- Starting point (2025): 47%
-- Phase 1 endpoint (2028): 65-70% (major), 30% (small)
-- Phase 2 endpoint (2032): 87.5% (major), 55% (small)
-- Phase 3 endpoint (2035): 95% (major), 72.5% (small)
+## DATA POINTS
 
-**Key emphasis**:
-- Final destination: **95%** adoption (major festivals) in electric coral
-- Current state: 47% as baseline reference point
-- Phase transition points as visual anchors
+**Major (solid, deep purple):**
+- 2025: 45%
+- 2028: 67.5%
+- 2032: 87.5%
+- 2035: 95%
 
-### Text Elements
-**Phase labels** (above timeline):
-- "Phase 1: Foundation Building (2025-2028)"
-- "Phase 2: Mainstream Integration (2028-2032)"
-- "Phase 3: Adaptive Ecosystems (2032-2035)"
+**Small (dashed, sky blue):**
+- 2025: 45%
+- 2028: 30%
+- 2032: 55%
+- 2035: 72.5%
 
-**Milestone callouts** (beside timeline):
-- 2025: "EU AI Act effective, DICE @ 40% recommendation-driven sales"
-- 2028: "70% of major festivals deploy AI, 5G infrastructure mature"
-- 2032: "AI becomes baseline expectation, cross-festival identity standard"
-- 2035: "95% adoption, AI infrastructure becomes commodity"
+## PHASE LABELS (above timeline, bold)
+1. "Phase 1: Foundation Building (2025-2028)"
+2. "Phase 2: Mainstream Integration (2028-2032)"
+3. "Phase 3: Adaptive Ecosystems (2032-2035)"
 
-**Source citation**: "Source: Industry surveys (2024), Market research (2024), EU AI Act (2025), DICE partners (2025)"
+## MILESTONE CALLOUTS (beside timeline, connected with lines)
+- 2025: "EU AI Act effective • DICE 40% AI-driven sales • $1.8B market"
+- 2028: "70% major adoption • 5G infrastructure mature • Vendor consolidation"
+- 2032: "AI = baseline expectation • Cross-festival identity • 10-15% margin gains"
+- 2035: "95% major adoption • AI becomes commodity • Adaptive ecosystems"
 
----
+## EMPHASIS
+- 95% endpoint at 2035 = largest element (electric coral, 56pt)
+- Phase transitions (2028, 2032) clearly marked
+- Ascending curves = dominant visual
 
-## Festival Context Elements
+## EVENTAI STYLE
 
-**Visual metaphors**:
-- Stage icons at each data point (increasing in complexity/sophistication from 2025→2035)
-- Crowd silhouettes growing in size to suggest increasing adoption
+**Colors:**
+- Deep purple (#6B46C1): Major line, phase labels, primary
+- Electric coral (#FF6B6B): 95% endpoint, key stats
+- Sky blue (#4299E1): Small line, supporting data
+- Warm sunlight (#F6AD55): Phase dividers
+- Midnight slate (#2D3748): Axis labels, milestones
+- Clean white background
+
+**Typography:**
+- Title: "AI Adoption Timeline: Festivals 2025-2035" (bold Inter, 36pt, purple)
+- Phase labels: Bold Inter 20pt, purple
+- Data labels: Bold Inter 18pt (%) + 14pt (year)
+- Final 95%: Extra bold Inter 56pt, coral
+- Milestones: Source Sans Pro 14pt, slate
+- Axis labels: Source Sans Pro 12pt, mid gray
+
+**Design:**
+- Semi-flat, subtle depth (NOT 3D)
+- Rounded corners 8px
+- Line weight 2-3px
+- Grid: Horizontal lines at 25%, 50%, 75%, 100% (1px light gray)
+- Clean, generous white space
+- High data-ink ratio (minimal decoration)
+
+**Festival Context:**
+- Stage icons at major festival data points
+- Stages increase detail/complexity 2025 → 2035 (evolution)
 - RFID wristband symbols at phase transitions
-- Network/connection lines suggesting ecosystem integration in Phase 3
+- Crowd silhouette growing left → right (increasing adoption)
 
-**Color coding**:
-- Deep purple (#6B46C1): Timeline and major festival line
-- Electric coral (#FF6B6B): 95% endpoint emphasis, key statistics
-- Sky blue (#4299E1): Small festival line, supporting data
-- Warm sunlight (#F6AD55): Phase transition markers
+**Layout:**
+- Title top center
+- Timeline: central 70% canvas
+- Phase labels above timeline
+- Milestones right side (avoid line overlap)
+- Source bottom right: "Source: Industry surveys (2024), Market research, EU AI Act (2025), DICE (2025)"
+- Legend bottom left: Major/Small line styles
 
----
+**Mood:**
+Clean, evidence-based, festival context (NOT generic business), optimistic + grounded, academic/professional appropriate
 
-## Orientation and Emphasis
-
-**Orientation**: Landscape (optimal for timeline format)
-
-**Focal point**: The ascending curves showing progression from 47% → 95%, with Phase 3 endpoint as visual anchor
-
-**Mood**: Optimistic but evidence-based progression, professional forecast with festival energy
-
----
-
-*Source document prepared for NotebookLM infographic generation*
-*Target visual: VIS-1.1 in VISUAL-CONTENT-PLAN.md*
-*Save as: transformation-infographic-adoption-timeline.png*
+## ❌ AVOID
+Generic business (suits, offices, corporate charts), clichéd AI (robots, circuit brains), complex 3D, clutter, unnecessary decoration
