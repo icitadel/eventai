@@ -78,7 +78,7 @@ VARIANT #{variant_num}: Generate a unique visual approach for this variant.
 
     return prompt
 
-async def generate_infographics(content, direction, num_variants, aspect_ratio, output_dir, base_name, start_num):
+async def generate_infographics(content, direction, num_variants, aspect_ratio, output_dir, base_name, start_num, chrome_profile="Default"):
     """Generate infographics using Gemini chat interface"""
 
     print("=" * 60)
@@ -88,33 +88,74 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
     print(f"🖼️  Base name: {base_name}")
     print(f"🔢 Variants: {num_variants} (starting from #{start_num})")
     print(f"📐 Aspect ratio: {aspect_ratio}")
+    print(f"👤 Chrome profile: {chrome_profile}")
 
     playwright = await setup_playwright()
 
+    # Chrome user data directory
+    import os
+    chrome_user_data = os.path.expanduser(f"~/Library/Application Support/Google/Chrome")
+    profile_dir = os.path.join(chrome_user_data, chrome_profile)
+
     async with playwright as p:
-        # Launch browser
-        print("\n🌐 Launching browser...")
-        browser = await p.chromium.launch(headless=False)  # headless=False so user can see
-        context = await browser.new_context()
-        page = await context.new_page()
+        # Launch browser with existing Chrome profile
+        print(f"\n🌐 Launching Chrome with profile: {chrome_profile}...")
+        context = await p.chromium.launch_persistent_context(
+            user_data_dir=profile_dir,
+            headless=False,
+            channel="chrome"  # Use installed Chrome, not Chromium
+        )
+        # Get existing page or create new one
+        if context.pages:
+            page = context.pages[0]
+        else:
+            page = await context.new_page()
 
         # Navigate to Gemini
         print("🔗 Navigating to gemini.google.com...")
         await page.goto('https://gemini.google.com/app')
 
-        # Wait for user to sign in if needed
-        print("\n⏸️  Checking sign-in status...")
-        try:
-            # Check if already signed in by looking for prompt input
-            await page.wait_for_selector('[data-test-id="input-area"]', timeout=5000)
-            print("✅ Already signed in!")
-        except:
-            print("⚠️  Not signed in. Please sign in to Gemini...")
-            print("   Press ENTER when you're signed in and ready to continue...")
-            input()
-            # Wait for prompt input to appear after sign-in
-            await page.wait_for_selector('[data-test-id="input-area"]', timeout=30000)
-            print("✅ Sign-in detected!")
+        # Wait for page to load (already signed in via Chrome profile)
+        print("\n⏸️  Waiting for Gemini to load...")
+
+        # Smart wait: short sleeps with retries
+        input_selector = None
+        start_time = time.time()
+        max_wait = 30  # 30 seconds max
+
+        selectors_to_try = [
+            '.ql-editor',
+            '[data-test-id="input-area"]',
+            '[data-test-id="text-input"]',
+            'textarea[placeholder*="Enter"]',
+            'textarea[aria-label*="prompt"]',
+            'rich-textarea'
+        ]
+
+        while time.time() - start_time < max_wait:
+            for selector in selectors_to_try:
+                try:
+                    await page.wait_for_selector(selector, timeout=2000)
+                    input_selector = selector
+                    elapsed = time.time() - start_time
+                    print(f"✅ Gemini loaded in {elapsed:.1f}s! Found input: {selector}")
+                    break
+                except:
+                    continue
+
+            if input_selector:
+                break
+
+            # Wait before next attempt
+            await asyncio.sleep(2)
+
+        if not input_selector:
+            # Take screenshot for debugging
+            await page.screenshot(path=str(output_dir / "debug_screenshot.png"))
+            print(f"⚠️  Couldn't find input area. Check debug_screenshot.png")
+            print(f"  Page URL: {page.url}")
+            print(f"  Page title: {await page.title()}")
+            raise Exception("Input area not found after 30s")
 
         generated_files = []
 
@@ -125,31 +166,60 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
 
             # Build prompt
             prompt_text = build_prompt(content, direction, aspect_ratio, i)
-
             print(f"   📝 Prompt length: {len(prompt_text)} chars")
 
-            # Find and fill the textbox
-            textbox = page.get_by_test_id('text-input')
+            # Find and fill the textbox using the selector we discovered
+            print(f"   ⌨️  Filling prompt using {input_selector}...")
+            textbox = page.locator(input_selector).first
+            await textbox.click()  # Focus the input
             await textbox.fill(prompt_text)
+            print("   ✅ Prompt filled (text paste is fast!)")
 
             # Submit
-            print("   ⏳ Submitting prompt...")
+            print("   ⏳ Submitting...")
             await textbox.press('Enter')
 
-            # Wait for image generation (look for download button)
-            print("   🖼️  Waiting for image generation...")
-            try:
-                await page.wait_for_selector('[data-test-id="download-generated-image-button"]', timeout=120000)  # 2 min max
-                print("   ✅ Image generated!")
-            except:
-                print(f"   ❌ Timeout waiting for image {i}")
+            # Wait for image generation (10-15s typically)
+            print("   🖼️  Waiting for image (10-15s typically)...")
+            gen_start = time.time()
+
+            # Smart wait for download button with 2s checks
+            download_button_found = False
+            while time.time() - gen_start < 30:  # 30s max
+                try:
+                    await page.wait_for_selector('[data-test-id="download-generated-image-button"]', timeout=2000)
+                    download_button_found = True
+                    gen_time = time.time() - gen_start
+                    print(f"   ✅ Image generated in {gen_time:.1f}s!")
+                    break
+                except:
+                    # Try alternate selectors
+                    try:
+                        await page.wait_for_selector('button[aria-label*="Download"]', timeout=2000)
+                        download_button_found = True
+                        gen_time = time.time() - gen_start
+                        print(f"   ✅ Image generated in {gen_time:.1f}s!")
+                        break
+                    except:
+                        await asyncio.sleep(2)
+
+            if not download_button_found:
+                print(f"   ❌ Timeout waiting for image {i} after 30s")
                 continue
 
-            # Download the image
-            print("   ⬇️  Downloading image...")
+            # Download the image (~5s typically)
+            print("   ⬇️  Downloading (~5s)...")
+            download_start = time.time()
+
             async with page.expect_download() as download_info:
-                await page.locator('[data-test-id="download-generated-image-button"]').click()
+                # Try both selectors
+                try:
+                    await page.locator('[data-test-id="download-generated-image-button"]').click()
+                except:
+                    await page.locator('button[aria-label*="Download"]').click()
             download = await download_info.value
+            download_time = time.time() - download_start
+            print(f"   ✅ Downloaded in {download_time:.1f}s")
 
             # Save to output directory with proper naming
             output_path = output_dir / f"{base_name}-{i}.png"
@@ -164,7 +234,7 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
 
         # Close browser
         print("\n🔒 Closing browser...")
-        await browser.close()
+        await context.close()
 
         return generated_files
 
@@ -262,6 +332,11 @@ Examples:
         default='1080p',
         help='Resolution for WebP conversion (default: 1080p)'
     )
+    parser.add_argument(
+        '--chrome-profile',
+        default='Default',
+        help='Chrome profile to use (Default, Profile 1, Profile 3, etc.)'
+    )
 
     args = parser.parse_args()
 
@@ -292,7 +367,8 @@ Examples:
         aspect_ratio=args.aspect_ratio,
         output_dir=args.output_dir,
         base_name=args.name,
-        start_num=start_num
+        start_num=start_num,
+        chrome_profile=args.chrome_profile
     ))
 
     if not png_files:

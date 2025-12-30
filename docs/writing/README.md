@@ -120,12 +120,196 @@ See [../lemmy/style-guide/README.md](../lemmy/style-guide/README.md) for full de
 
 ---
 
+## Visual Placeholder Workflow
+
+### Creating Visual Placeholders for New Sections
+
+Each section requires visual content placeholders before generation. Follow this standardized process:
+
+#### 1. Folder Structure Setup
+
+Create visual folders for each planned infographic:
+
+```bash
+mkdir -p docs/writing/{section-name}/visuals/{visual-topic}/
+```
+
+**Example** (Education section with 4 visuals):
+```bash
+mkdir -p docs/writing/2-education/visuals/literacy-comparison
+mkdir -p docs/writing/2-education/visuals/academic-integration
+mkdir -p docs/writing/2-education/visuals/skills-gap-cycle
+mkdir -p docs/writing/2-education/visuals/curriculum-structure
+```
+
+#### 2. Required Files for Each Visual
+
+Each visual folder needs 4 core files:
+
+**a. `{visual-name}.content.md`** - Source Material
+- Purpose: Full source material for NotebookLM upload
+- Content: All data, statistics, examples, context needed for visual
+- Style: Detailed and comprehensive (NOT token-optimized)
+- Structure:
+  - Title and purpose
+  - Content sections with all relevant information
+  - Visual design notes
+  - Key statistics to highlight
+  - Color/style guidance
+
+**b. `{visual-name}.prompt.md`** - Token-Optimized Prompt
+- Purpose: Lean, directive-only prompt for AI generation
+- Content: Same information as .content.md but **40-70% more compact**
+- Optimization: Remove framing, transitions, explanations—keep only directives
+- Structure:
+  - Visual type and orientation
+  - Layout specification
+  - Content sections (bullet format)
+  - Design requirements (colors, typography, style)
+  - Key stats prominently listed
+
+**c. `{visual-name}.instructions.md`** - Generation Workflow
+- Purpose: Step-by-step guide for generating the visual
+- Content:
+  - NotebookLM workflow (upload → generate → check → save → evaluate)
+  - Quality checklist (visual hierarchy, accuracy, style, accessibility)
+  - Common issues & fixes
+  - Alternative generation methods
+  - Expected quality scores
+  - Next steps after generation
+
+**d. `{visual-name}.eval.md`** - Evaluation Report (created after generation)
+- Purpose: Document quality assessment from `/ig-evaluate` command
+- Created: After generating visual variants
+- Content: Scoring across visual clarity, accuracy, style, accessibility
+
+#### 3. Section README.md
+
+Create `{section-name}/visuals/README.md` with:
+
+- Overview of all visuals in the section
+- Status for each visual (READY TO GENERATE, In Progress, Complete)
+- File naming conventions
+- Generation workflow summary
+- Quality checklist specific to section
+- Links to related documentation
+
+**Template sections**:
+```markdown
+# {Section Name} Topic - Visual Assets
+
+## Visual Content Plan
+### VIS-X.1: {Visual Name}
+- Type, Platform, Status
+- Files list
+- What it shows
+- Key statistics
+- Estimated generation time
+- Link to instructions
+
+## Generation Workflow
+## File Naming Convention
+## EventAI Style Standards
+## Quality Checklist
+## Related Documentation
+```
+
+#### 4. Token Optimization Strategy
+
+**Critical for `.prompt.md` files**:
+
+**Remove**:
+- Framing text ("This prompt will...", "Make sure to...")
+- Transitions ("In conclusion," "As mentioned")
+- Redundant examples (keep most illustrative only)
+- Filler words (very, really, quite, actually, basically)
+- Excessive context or marketing language
+
+**Preserve**:
+- ALL unique facts, numbers, dates, statistics
+- ALL technical details (hex codes, sizes, measurements)
+- Decision criteria, warnings, recommendations
+- Source attributions and citations
+
+**Target**: 40-70% token reduction while maintaining 100% information preservation
+
+**Techniques**:
+- Use fragments over complete sentences
+- Bullet points instead of prose
+- Strip unnecessary articles (a, an, the)
+- Consolidate related concepts
+- Use hierarchical bullets to show relationships
+
+**Quality check**:
+```bash
+# Before optimization
+wc -m {visual-name}.content.md
+
+# After optimization
+wc -m {visual-name}.prompt.md
+
+# Should be 30-60% of original character count
+```
+
+#### 5. Process Encoding Example (2-Education)
+
+See [2-education/visuals/README.md](2-education/visuals/README.md) for complete working example showing:
+- ✅ 4 visuals with complete placeholder files
+- ✅ Consistent naming: literacy-comparison, academic-integration, skills-gap-cycle, curriculum-structure
+- ✅ All files following template pattern
+- ✅ Token-optimized .prompt.md files (40-60% reduction)
+- ✅ Complete .instructions.md workflows
+- ✅ Section-specific quality checklists
+
+**Files created per visual**: 3 core files (12 files total for 4 visuals in education section)
+
+#### 6. EventAI Style Compliance
+
+All visuals must adhere to:
+
+**Colors**:
+- Deep purple #6B46C1 (primary brand, critical thinking)
+- Electric coral #FF6B6B (emphasis, urgency, problems)
+- Sky blue #4299E1 (functional elements, data, processes)
+- Midnight slate #2D3748 (body text)
+- Pure white #FFFFFF background (NOT beige, NOT cream)
+
+**Typography**:
+- Headers: Inter bold 24-36pt
+- Body: Source Sans Pro regular 14-16pt
+- Stats: Inter bold 48-72pt
+
+**Design**:
+- Semi-flat with subtle depth
+- Rounded corners 8-12px
+- 2-3px outlines for clarity
+- High data-ink ratio (minimal decoration)
+- Festival/event context icons (NOT generic business/academic imagery)
+- White space ≥30%
+- Professional + energetic mood
+
+#### 7. Quality Standards
+
+Before marking visual as complete:
+
+- ✅ **Factual Accuracy**: All data verified against sources
+- ✅ **EventAI Style**: Colors, typography, design match guide
+- ✅ **Festival Context**: Industry-specific imagery, not generic
+- ✅ **Accessibility**: WCAG AA contrast, readable text sizes (14-16pt min)
+- ✅ **Token Optimization**: .prompt.md files 40-70% leaner than .content.md
+- ✅ **File Organization**: Correct naming, proper folder placement
+- ✅ **Documentation**: Status updated in VISUAL-CONTENT-PLAN.md and section README
+
+---
+
 ## Next Steps
 
-1. **Visual Content Planning**: Create detailed plan for infographics, diagrams, and illustrations ([VISUAL-CONTENT-PLAN.md](VISUAL-CONTENT-PLAN.md))
-2. **NotebookLM Generation**: Use prompt templates to generate visual content
-3. **Audio Overview Creation**: Generate podcast-style explanations for each topic
-4. **Integration**: Combine text + visuals + audio into comprehensive multi-format curriculum
+1. ✅ **Visual Placeholder Creation**: Template files created for all 5 sections (complete)
+2. **NotebookLM Generation**: Use .prompt.md files to generate visual content (next phase)
+3. **Quality Evaluation**: Run `/ig-evaluate` on generated visuals
+4. **Web Optimization**: Convert to WebP using `/todd-image-convert`
+5. **Audio Overview Creation**: Generate podcast-style explanations for each topic
+6. **Integration**: Combine text + visuals + audio into comprehensive multi-format curriculum
 
 ---
 
