@@ -76,24 +76,34 @@ Example: Configure algorithm (functional) + understand serendipity impact (criti
 
 ## Design Requirements
 
+**CRITICAL - FESTIVAL CONTEXT INTEGRATION (ENFORCED FOR 90%+):**
+- ❌ DO NOT limit festival elements to header/footer only
+- ✅ MUST integrate festival context THROUGHOUT all content areas
+- ✅ REQUIRED: Tent/stage illustrations at TOP AND BOTTOM
+- ✅ REQUIRED: Festival icons (wristbands, stages, crowds) WITHIN each column content
+- ✅ REQUIRED: Every section must have visible festival atmosphere
+- Goal: Immediately recognizable as festival industry content (not generic business)
+
 **Colors**:
 - Functional: Sky blue #4299E1
 - Critical: Deep purple #6B46C1
 - Gap: Electric coral #FF6B6B
 - Text: Midnight slate #2D3748
 - Background: Pure white #FFFFFF
+- ✅ WCAG AA contrast minimum 4.5:1 for all text
 
-**Typography**:
+**Typography (ENFORCED FOR 90%+):**
 - Headers: Inter bold 24-36pt
-- Body: Source Sans Pro 14-16pt
+- Body: Source Sans Pro **16-18pt MINIMUM** (NOT 14pt - must be print-ready)
 - Stats: Inter bold 48-72pt
+- ❌ NO TEXT BELOW 16PT (critical for accessibility + print)
 
 **Style**:
-- Festival context icons (stages, wristbands, NOT generic business)
+- Festival context icons INTEGRATED in content (stages, wristbands, NOT generic business)
 - Semi-flat with subtle depth
 - Rounded corners 8-12px
 - 2-3px outlines
-- High data-ink ratio
+- High data-ink ratio (minimal cruft)
 - Professional + energetic mood
 - White space ≥30%
 
