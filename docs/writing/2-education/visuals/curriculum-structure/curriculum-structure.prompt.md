@@ -65,14 +65,20 @@ Create an infographic showing a complete 15-week AI literacy curriculum for even
 - Show week numbers (1-4, 5-8, 9-12, 13-15) on left side or integrated into flow
 - Use progressive color intensification to show learning deepening
 
-### Festival Context Icons (NOT Generic):
-- Audience/crowds (people gathering)
-- Security gates/checkpoints
-- Scales/balance (ethical questions)
-- Stage/podium (presentations)
-- Event app icons
-- Wristband/ticket imagery
-- NO gears, money bags, generic lightbulbs, or corporate imagery
+### Festival Context (CRITICAL - MUST BE PROMINENT):
+**Required visual elements to establish festival atmosphere:**
+- **Crowd silhouettes**: Prominent festival audience in background or integrated throughout
+- **Stage elements**: Main stage, performance areas visible
+- **Security gates/checkpoints**: Entry points, scanning systems
+- **Wristbands/credentials**: RFID bands, festival passes
+- **Event infrastructure**: Headsets, walkie-talkies, coordination tools
+- **Festival lighting**: Stage lights, atmospheric lighting
+
+**Icon Requirements:**
+- Use festival-specific icons THROUGHOUT (not just decoration)
+- Icons must be INTEGRATED into content areas, not just header/footer
+- Every module should have clear festival context visible
+- ❌ NO gears, money bags, generic lightbulbs, handshakes, or corporate imagery
 
 ---
 
@@ -111,25 +117,30 @@ Create an infographic showing a complete 15-week AI literacy curriculum for even
 - **Module 3 (Ethics)**: Deep purple #6B46C1 - complex, thoughtful
 - **Module 4 (Policy)**: Coral #FF6B6B - decisive, actionable
 - **Text**: Midnight slate #2D3748 (high contrast, readable)
-- **Background**: Pure white #FFFFFF (clean, professional)
-- **Accent/connectors**: Light gray #E2E8F0 for visual flow lines
+- **Background**: Pure white #FFFFFF (clean, professional) - ❌ NO DECORATIVE PATTERNS
+- **Header**: Solid midnight slate #2D3748 if needed - ❌ NO DECORATIVE PATTERNS OR TEXTURES
+- **Accent/connectors**: Light gray #E2E8F0 for visual flow lines ONLY
 
-### Typography:
-- **Module headers**: Inter bold 28-32pt (large, clear hierarchy)
-- **Week numbers**: Inter bold 20-24pt (visible, distinct)
-- **Topic titles**: Source Sans Pro 16-18pt bold (secondary headers)
-- **Content text**: Source Sans Pro 12-14pt (readable without squinting)
-- **Deliverable callouts**: Inter bold 14-16pt (emphasis for major projects)
+### Typography (CRITICAL - TEXT SIZES MUST BE LARGER):
+- **Module headers**: Inter bold 32-36pt (large, dominant)
+- **Week numbers**: Inter bold 22-26pt (very visible)
+- **Topic titles**: Source Sans Pro 18-20pt bold (clear secondary headers)
+- **Content text**: Source Sans Pro 16-18pt (MINIMUM 16pt - must be readable at print scale)
+- **Deliverable callouts**: Inter bold 18-20pt (prominent emphasis)
+- ❌ **NO TEXT BELOW 16PT** - Everything must be readable without zooming
 
-### Layout & Spacing:
+### Layout & Spacing (CRITICAL - MINIMIZE CRUFT):
 - **Portrait orientation** (taller than wide, ~9:16 or 3:5 ratio)
 - **Vertical flow**: Modules stack from top to bottom
-- **White space**: ≥30% (NOT cramped, NOT busy)
-- **Rounded corners**: 8-12px on module cards/boxes
-- **Subtle depth**: Semi-flat style with light shadows (not 3D overdone)
-- **Visual connectors**: Flow lines or subtle arrows showing progression between modules
-- **Week numbers left margin**: Small, aligned left, consistent spacing
-- **Module color bars**: Vertical bar on left of each module showing color theme
+- **White space**: ≥40% (generous breathing room - NOT cramped, NOT busy)
+- **Minimal containers**: Reduce or eliminate unnecessary boxes/borders around modules
+- **Subtle depth**: Minimal shadows only where necessary for hierarchy
+- **Visual connectors**: Simple flow lines ONLY - no decorative elements
+- **Week numbers**: Integrated into layout, not in separate containers
+- **Color coding**: Use background color fills, not heavy borders
+- ❌ **NO decorative borders** - functional lines only
+- ❌ **NO decorative patterns** - solid colors only
+- ❌ **NO ornamental shapes** - every visual element must serve information
 
 ### Visual Style:
 - **Festival context ONLY**: Stages, crowds, security gates, event apps, wristbands, headsets
@@ -151,11 +162,14 @@ Create an infographic showing a complete 15-week AI literacy curriculum for even
 ❌ Academic stereotypes (graduation caps, books, chalkboards)
 ❌ Beige/cream background (pure white only)
 ❌ Muddy or unclear color differentiation between modules
-❌ Text smaller than 12pt
-❌ Cramped layout (need breathing room)
+❌ **Text smaller than 16pt** (CRITICAL - minimum 16pt for all text)
+❌ Cramped layout (need 40%+ white space)
 ❌ Literal geographic map or pins
 ❌ Overly technical AI diagrams or neural networks
 ❌ Sad/serious tone (it's educational but should be engaging)
+❌ **Decorative patterns or textures** (backgrounds must be solid colors)
+❌ **Unnecessary borders or containers** (minimal cruft)
+❌ **Weak festival context** (must be prominent and integrated)
 
 ---
 

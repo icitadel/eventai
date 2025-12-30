@@ -1,64 +1,66 @@
 # /generate-infographic: Automated Infographic Generation
 
-**Purpose:** Fully automated infographic generation using Gemini API (Imagen)
+**Purpose:** Fully automated infographic generation using Gemini web automation (Playwright)
 
 **Workflow:**
-1. Reads prompt.md and content.md
-2. Generates 3 variants using Gemini API
-3. Converts to WebP using todd-image-convert
-4. Runs /ig-evaluate
-5. If best score < 90%, generates next batch of 3
-6. Repeats until 90%+ score achieved
+1. Reads prompt.md and content.md from directory
+2. Opens Gemini in Chrome browser with parallel tabs
+3. Generates 3 variants simultaneously
+4. Downloads PNG files
+5. Converts to WebP using todd-image-convert
+6. Ready for /ig-evaluate
 
-**Free Tier:** 500 images/day (plenty for iterative generation)
+**Method:** Browser automation via Playwright (not API - uses gemini.google.com directly)
 
 ---
 
 ## Quick Start
 
 ```bash
-# Generate infographics for barriers
-/generate-infographic docs/writing/1-transformation/visuals/barriers
+# The /ig-generate skill uses the gemini-generate CLI
+gemini-generate \
+  --content docs/writing/1-transformation/visuals/barriers/barriers.content.md \
+  --prompt docs/writing/1-transformation/visuals/barriers/barriers.prompt.md \
+  --output-dir docs/writing/1-transformation/visuals/barriers \
+  --name barriers
 
 # Generates:
 # - barriers-1.png, barriers-2.png, barriers-3.png
-# - Auto-converts to webp
-# - Auto-evaluates
-# - If score < 90%, prompts for next batch
+# - barriers-1.webp, barriers-2.webp, barriers-3.webp
+# - Ready for /ig-evaluate
 ```
 
 ---
 
 ## Setup (One-Time)
 
-### 1. Install Gemini SDK
+### 1. Install CLI Tool
 
 ```bash
-pip install google-generativeai
+cd .todd/lib/py/todd-media
+pip install -e .
 ```
 
-### 2. Get API Key
+This installs:
+- `gemini-generate` CLI command (installed to `~/.local/bin/`)
+- Playwright dependency for browser automation
 
-1. Go to https://aistudio.google.com/apikey
-2. Create API key (free tier)
-3. Copy key
-
-### 3. Set Environment Variable
+### 2. Install Playwright Browsers
 
 ```bash
-# Add to ~/.zshrc:
-export GEMINI_API_KEY='your-api-key-here'
-
-# Reload:
-source ~/.zshrc
+playwright install chromium
 ```
 
-### 4. Verify Setup
+### 3. Verify Setup
 
 ```bash
-python3 -c "import google.generativeai as genai; print('✅ Gemini SDK installed')"
-echo $GEMINI_API_KEY  # Should show your key
+which gemini-generate  # Should show ~/.local/bin/gemini-generate
+gemini-generate --help # Should show usage
 ```
+
+**Requirements:**
+- Chrome browser with signed-in Google account
+- Gemini access at gemini.google.com
 
 ---
 
@@ -67,40 +69,53 @@ echo $GEMINI_API_KEY  # Should show your key
 ### Basic Generation
 
 ```bash
-/generate-infographic <directory>
+gemini-generate \
+  --content path/to/content.md \
+  --prompt path/to/prompt.md \
+  --output-dir path/to/output \
+  --name base-name
 
 # Example:
-/generate-infographic docs/writing/1-transformation/visuals/barriers
+gemini-generate \
+  --content docs/writing/1-transformation/visuals/barriers/barriers.content.md \
+  --prompt docs/writing/1-transformation/visuals/barriers/barriers.prompt.md \
+  --output-dir docs/writing/1-transformation/visuals/barriers \
+  --name barriers
 ```
 
-**Expected files in directory:**
-- `barriers.prompt.md` (or `prompt.md`)
-- `barriers.content.md` (or `content.md`)
+**Required arguments:**
+- `--content`: Path to content markdown file
+- `--prompt`: Path to prompt/style instructions file
+- `--output-dir`: Directory for generated files
+- `--name`: Base filename for outputs
 
 **Generated files:**
 - `barriers-1.png` through `barriers-3.png`
 - `barriers-1.webp` through `barriers-3.webp`
-- `barriers.eval.md` (evaluation report)
 
-### With Custom Name
+### Iterative Generation (Multiple Batches)
 
 ```bash
-/generate-infographic docs/writing/.../timeline --name timeline
+# First batch (generates #1-3)
+gemini-generate --content barriers.content.md --prompt barriers.prompt.md \
+  --output-dir ./barriers --name barriers --batch 1
 
-# Generates: timeline-1.png, timeline-2.png, timeline-3.png
+# Second batch (generates #4-6)
+gemini-generate --content barriers.content.md --prompt barriers.prompt.md \
+  --output-dir ./barriers --name barriers --batch 2
+
+# Each batch generates 3 new variants
 ```
 
-### Iterative Generation (Until 90%+)
+### Optional Arguments
 
 ```bash
-# First batch
-/generate-infographic barriers/
-
-# Review evaluation report
-# If best score < 90%, run again for next batch:
-/generate-infographic barriers/ --batch 2
-
-# Repeat until 90%+ achieved
+--variants 5          # Generate 5 instead of 3 (default: 3, max: 5)
+--aspect-ratio portrait  # portrait, landscape (default), or square
+--batch 2             # Batch number for iterative generation
+--skip-webp           # Skip WebP conversion, keep PNGs only
+--resolution 1080p    # WebP resolution (default: 1080p)
+--chrome-profile ProfileName  # Use specific Chrome profile (default: Default)
 ```
 
 ---
@@ -116,18 +131,23 @@ barriers/
   └── (output files will be created here)
 ```
 
-### Step 2: Generate with Gemini API
+### Step 2: Browser Automation
 
-```python
-# Combines prompt + content
-combined = prompt.md + "\n\n" + content.md
-
-# Calls Gemini 2.5 Flash Image API
-model = genai.GenerativeModel('gemini-2.5-flash-image')
-response = model.generate_content([combined])
-
-# Saves: barriers-1.png, barriers-2.png, barriers-3.png
 ```
+1. Launches Chrome browser with user profile (already logged in)
+2. Opens 3 parallel tabs to gemini.google.com
+3. Enables "Create images" mode in each tab
+4. Fills combined prompt + content into each tab
+5. Submits all prompts simultaneously
+6. Waits for image generation (typically 40-50s per variant)
+7. Downloads generated PNGs sequentially
+```
+
+**Advantages over API:**
+- No API key needed (uses your Google account)
+- No rate limits or quotas (free unlimited use)
+- Same quality as NotebookLM (uses Gemini Imagen)
+- Parallel generation speeds up workflow
 
 ### Step 3: Convert to WebP
 
@@ -138,22 +158,14 @@ todd-image-convert barriers-*.png \
   --no-replace
 ```
 
-### Step 4: Evaluate
+### Step 4: Ready for Evaluation
 
 ```bash
-# Calls /ig-evaluate skill
-/ig-evaluate barriers/*.webp
+# Run evaluation manually
+/ig-evaluate
 
-# Generates: barriers.eval.md
-```
-
-### Step 5: Check Score
-
-```
-If best_score >= 90%:
-  ✅ Done! Use winner
-Else:
-  🔄 Generate next batch of 3
+# Or use the CLI directly
+# Generates: barriers.eval.md with scores
 ```
 
 ---
@@ -195,19 +207,22 @@ Else:
 
 ---
 
-## Free Tier Limits
+## No Limits - Free Unlimited Use
 
-**Daily Quota:** 500 images/day
+**Browser Automation Benefits:**
+- ✅ No daily quotas or rate limits
+- ✅ No API key required
+- ✅ Free unlimited use (via your Google account)
+- ✅ No watermarks
+- ✅ Same quality as NotebookLM/Gemini web interface
 
 **Realistic Usage:**
-- 3 variants per batch
-- ~5 batches max to reach 90% (15 images)
-- Can generate ~30 infographic topics per day
+- 3 variants per batch (~95 seconds total)
+- ~5 batches max to reach 90% (15 images, ~8 minutes)
+- Can generate unlimited infographics per day
 - Perfect for EventAI curriculum (10-15 topics total)
 
-**Cost:** $0 (free tier with small watermark)
-
-**Paid Tier:** $0.039/image if free tier exhausted
+**Cost:** $0 (completely free via browser automation)
 
 ---
 
@@ -344,54 +359,73 @@ python3 .claude/scripts/generate-infographic.py barriers/ --skip-convert
 
 ---
 
-## Gemini API Benefits
+## Browser Automation Benefits
 
-### Why Gemini vs Manual NotebookLM?
+### Why gemini-generate vs Manual NotebookLM/Gemini?
 
 ✅ **Fully automated** - zero manual clicking
+✅ **Parallel generation** - 3 variants simultaneously (~95s total)
 ✅ **Iterative** - generate batches until quality target met
 ✅ **Reproducible** - version-controlled prompts
-✅ **Fast** - ~6 seconds per image
-✅ **Free tier** - 500/day (plenty for EventAI)
+✅ **Unlimited** - no API quotas or rate limits
+✅ **Free** - no API costs, uses your Google account
 ✅ **Programmatic** - integrate with other tools
-✅ **No UI** - direct filesystem writes
+✅ **Direct filesystem writes** - no manual downloads
 
-### NotebookLM Equivalence
+### Gemini Web Interface Equivalence
 
 **Same underlying model:**
-- NotebookLM "Infographic" = Gemini 2.5 Flash Image
-- Same quality, same capabilities
-- API gives programmatic access
+- gemini.google.com "Create images" = Gemini Imagen
+- Same quality as NotebookLM infographic generation
+- Browser automation gives programmatic access
+- No watermarks (unlike API free tier)
 
-**Proof:** Generate side-by-side comparison shows identical results
+**Proof:** Identical output quality to manual generation
 
 ---
 
 ## Troubleshooting
 
-### Images Look Different Than NotebookLM
+### Browser Doesn't Launch
 
-**Check model:**
-- Use `gemini-2.5-flash-image` (not older models)
-- Verify API key is active
-- Check generation parameters
+**Check installation:**
+```bash
+which gemini-generate  # Should show ~/.local/bin/gemini-generate
+playwright install chromium  # Install browsers if missing
+```
 
-### Watermark on Images
+### Chrome Profile Not Found
 
-**Free tier adds small Gemini sparkle watermark**
+**Common issue:** Profile name mismatch
 
-**Options:**
-1. Accept watermark (barely visible)
-2. Use paid tier ($0.039/image) - no watermark
-3. Credit Gemini in acknowledgments (good practice anyway!)
+```bash
+# Find your Chrome profile names
+ls ~/Library/Application\ Support/Google/Chrome/
 
-### Generation Fails
+# Use correct profile name
+gemini-generate --chrome-profile "Profile 1" ...
+```
 
-**Common issues:**
-1. API key expired → regenerate at aistudio.google.com
-2. Rate limit hit → wait 60 seconds, retry
-3. Daily quota exhausted → wait until midnight PT
-4. Prompt too long → shorten prompt.md or content.md
+### Image Mode Activation Warning
+
+**Message:** `⚠️ Image mode activation failed`
+
+**This is OK!** The warning appears but generation continues. The script attempts to enable image mode but will work even if already enabled.
+
+### Generation Timeout
+
+**If variants timeout after 60s:**
+1. Check Gemini is accessible at gemini.google.com
+2. Ensure you're logged into Google account
+3. Try with fewer variants (--variants 1)
+4. Check prompt length (very long prompts may slow generation)
+
+### Download Fails
+
+**If downloads fail:**
+- Ensure Downloads folder is accessible
+- Close other Chrome windows/tabs that might conflict
+- Try again with --batch parameter to resume
 
 ---
 
@@ -478,12 +512,15 @@ CRITICAL REQUIREMENTS:
 
 - **`/infographics-bestpractices`** - Load Tufte principles and EventAI design standards (USE BEFORE /ig-generate!)
 - **`/ig-evaluate`** - Evaluation workflow (automatically uses loaded best practices)
-- **`todd-image-convert`** - Image conversion
+- **`gemini-generate`** - The CLI tool (installed from `.todd/lib/py/todd-media/setup.py`)
+- **`todd-image-convert`** - Image conversion to WebP
 - **EventAI Visual Identity Guide** - Brand color palette and typography
-- **Gemini API Documentation:** https://ai.google.dev/
+- **Gemini Web Interface:** https://gemini.google.com
 
 ---
 
 *Skill created: December 29, 2025*
-*Powered by: Gemini 2.5 Flash Image API (free tier)*
+*Powered by: Gemini Imagen via browser automation (Playwright)*
+*Method: Parallel tab generation at gemini.google.com*
+*CLI: gemini-generate (installed from .todd/lib/py/todd-media)*
 *Integration: EventAI + Lemmy Content Generation System*
