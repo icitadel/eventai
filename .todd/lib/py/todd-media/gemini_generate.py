@@ -96,23 +96,23 @@ async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, o
         print(f"   [{variant_num}] ⏳ Submitting...")
         await textbox.press('Enter')
 
-        # Wait for image generation (10-15s typical, 60s max)
+        # Wait for image generation (10-15s typical, 180s max for complex infographics)
         print(f"   [{variant_num}] 🖼️  Generating...")
         gen_start = time.time()
 
         download_button_found = False
-        while time.time() - gen_start < 60:  # 60s max for generation
+        while time.time() - gen_start < 180:  # 180s max for generation (3 minutes)
             try:
-                await page.wait_for_selector('[data-test-id="download-generated-image-button"]', timeout=10000)
+                await page.wait_for_selector('[data-test-id="download-generated-image-button"]', timeout=60000)
                 download_button_found = True
                 gen_time = time.time() - gen_start
                 print(f"   [{variant_num}] ✅ Generated in {gen_time:.1f}s")
                 break
             except:
-                await asyncio.sleep(10)  # Poll every 10s
+                await asyncio.sleep(60)  # Poll every 60s (1 minute)
 
         if not download_button_found:
-            print(f"   [{variant_num}] ❌ Timeout (60s)")
+            print(f"   [{variant_num}] ❌ Timeout (180s)")
             return None
 
         # Return the page for later download

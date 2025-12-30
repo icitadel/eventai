@@ -2,7 +2,26 @@
 
 Horizontal spectrum: Coercive to Voluntary consent designs for festival biometric systems
 
-🚨 CRITICAL: Pure white background #FFFFFF, left-to-right progression (coercive → voluntary), three distinct color zones, real examples, GDPR principles embedded
+🚨 CRITICAL TEXT SIZING (MUST MEET):
+- Body text: 16-18pt MINIMUM (NOT 12-14pt)
+- Zone labels/headers: 24-28pt
+- Title: 32-36pt
+- Bottom GDPR principles: 14-16pt
+- NO TEXT BELOW 14pt except micro-labels
+
+🚨 CRITICAL WHITE SPACE (MUST MEET):
+- 35-40% white space of total composition (NOT 25-30%)
+- 12-16px internal padding inside colored zone boxes (NOT minimal)
+- 56-64px margins all sides
+- Generous breathing room between examples (16-24px vertical spacing)
+
+🚨 CRITICAL FESTIVAL CONTEXT (ADD VISUAL ELEMENTS):
+- Small RFID wristband icon in biometric entry examples
+- Simplified stage/venue icon in festival entry scenarios
+- Festival-goer silhouettes (NOT generic business people)
+- Entry gate context where applicable
+
+🚨 CRITICAL REQUIREMENTS: Pure white background #FFFFFF, left-to-right progression (coercive → voluntary), three distinct color zones, real examples, GDPR principles embedded
 
 ## STRUCTURE
 
@@ -130,15 +149,26 @@ Background: Pure white #FFFFFF
 Spectrum gradient: Red → Orange → Green (left to right)
 Section backgrounds: Distinct color zones (coercive red, problematic orange, voluntary green)
 Text: White on dark (red/orange), dark slate #2D3748 on light (green)
-Typography: Inter/Roboto bold titles (20-24pt), Source Sans body (12-14pt)
+Typography: Inter/Roboto bold titles (24-28pt), Source Sans body (16-18pt MINIMUM - NOT 12-14pt)
 Icons: Prohibition/lock (coercive), warning/question (problematic), checkmark/open (voluntary)
+  → Include RFID wristband icons, stage/venue icons, festival-goer silhouettes
 Borders: Midnight slate #2D3748, 2-3px, rounded 8-12px
-Layout: Semi-flat, horizontal flow, equal example spacing
-White space: 25-30% breathing room
+Internal padding: 12-16px inside colored zone boxes (generous, NOT cramped)
+Layout: Semi-flat, horizontal flow, generous spacing between examples (16-24px vertical)
+White space: 35-40% breathing room (NOT 25-30% - aim for premium, spacious feel)
 
-## ❌ AVOID
+## ❌ AVOID (CRITICAL - WILL FAIL EVALUATION IF PRESENT)
 
-Cream/beige backgrounds, vertical layout, unclear spectrum progression, missing examples, generic icons (not consent-related), text <12pt, missing GDPR principles, non-festival context
+- ❌ Text below 14pt (CRITICAL - evaluation showed 10-12pt text = FAIL)
+- ❌ White space <30% (CRITICAL - cramped layouts scored 6/10, need 35-40%)
+- ❌ Minimal internal padding in colored boxes (CRITICAL - causes cramped feel)
+- ❌ Solid colored backgrounds behind text (reduces readability/contrast)
+- ❌ Generic biometric/security imagery without festival context
+- ❌ Missing festival visual elements (no wristbands, stages, festival-goers)
+- ❌ Cream/beige backgrounds (must be pure white #FFFFFF)
+- ❌ Vertical layout (must be horizontal left-to-right)
+- ❌ Unclear spectrum progression
+- ❌ Missing GDPR Article 7 or Article 9 principles
 
 ## ✅ REFERENCE
 
