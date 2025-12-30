@@ -218,17 +218,24 @@ How to achieve the EventAI goal: professional credibility + whimsical approachab
 
 ### Visual Approach Patterns
 
-**Pattern 1: Soft Pastels + Crisp Lines**
+**Pattern 1: Less Saturated Backgrounds + Full Saturation Emphasis** ⭐ EventAI Preferred
+- Desaturated/lighter backgrounds (30-40% opacity) - Readability, professionalism
+- Full saturation for critical elements (warnings, verdicts, key stats) - Whimsy, emphasis
+- Festival-specific illustrations (security guard, stage icons) - Brand identity
+- **Result**: Readable, memorable, distinctive
+- **Tufte Alignment**: Strategic use of visual weight to direct attention
+
+**Pattern 2: Soft Pastels + Crisp Lines**
 - Playful pastel color scheme (approachability)
 - Clean typography and uncluttered composition (professionalism)
 - **Result**: Expressive character + aspiration
 
-**Pattern 2: Bold Color + Minimalist Layout**
+**Pattern 3: Bold Color + Minimalist Layout**
 - Vibrant, daring colors (whimsy)
 - Minimal elements, lots of white space (professionalism)
 - **Result**: Eye-catching yet sophisticated
 
-**Pattern 3: Quirky Icons + Serious Data**
+**Pattern 4: Quirky Icons + Serious Data**
 - Illustrated, personality-rich icons (whimsy)
 - Precise data visualization (professionalism)
 - **Result**: Engaging yet trustworthy
@@ -248,6 +255,31 @@ How to achieve the EventAI goal: professional credibility + whimsical approachab
 
 ## EventAI-Specific Applications
 
+### Color Saturation for Emphasis (Tufte-Aligned)
+
+**Principle**: Use heavy saturation sparingly to draw attention to specific critical elements.
+
+**Best Practice**:
+- ✅ **Less saturated backgrounds** (lighter tints, ~30-50% opacity) - Improve readability, reduce visual fatigue
+- ✅ **Full saturation for emphasis** - Reserve for critical data points, warnings, key statistics
+- ✅ **Strategic contrast** - Saturated elements pop against desaturated backgrounds
+
+**Example Application**:
+- Quadrant backgrounds: 30-40% opacity (readable, calm)
+- Critical warning (Q2 "Illegal"): 80-100% saturation (immediate attention)
+- Key statistics: Full saturation (emphasis)
+- Supporting text: Minimal saturation (neutral)
+
+**Tufte Connection**: This aligns with Tufte's principle of using visual contrast to guide the eye to important information. Heavy saturation = visual weight = directs attention.
+
+**EventAI Implementation**:
+- Green `#48BB78` at 30-40% opacity for Q1 background
+- Red `#FF6B6B` at 80-100% opacity for Q2 warnings/violations
+- Orange/Yellow at 30-40% opacity for Q3/Q4 backgrounds
+- Full saturation reserved for icons, verdicts (✅/❌), hero statistics
+
+---
+
 ### Minimal Cruft Principle
 
 **What is "Cruft"?**:
@@ -257,13 +289,19 @@ How to achieve the EventAI goal: professional credibility + whimsical approachab
 - Excessive ornamentation
 - Visual noise
 
+**What is NOT Cruft (EventAI Context)**:
+- ✅ Festival-specific illustrations (security guard, stage, crowd) - Creates brand identity
+- ✅ Icons that reinforce meaning (checkmark for approved, X for rejected)
+- ✅ Less saturated backgrounds - Improves readability, not decoration
+
 **How to Avoid**:
-1. **Question Every Element**: "Does this help understanding?"
-2. **Remove Decoration**: If it's purely decorative, cut it
+1. **Question Every Element**: "Does this help understanding or brand identity?"
+2. **Remove Pure Decoration**: If it's purely decorative AND generic, cut it
 3. **Functional Beauty**: Let data and structure create the aesthetic
 4. **White Space is Good**: Don't fear emptiness
+5. **Festival Context is Essential**: EventAI needs festival-specific visual vocabulary
 
-**Tufte Connection**: This aligns perfectly with Tufte's data-ink ratio principle.
+**Tufte Connection**: This aligns perfectly with Tufte's data-ink ratio principle, but recognizes that brand-specific visual elements serve information (context, identity) even if not pure data.
 
 ### Distinctive Identity
 
