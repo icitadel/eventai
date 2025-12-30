@@ -1,6 +1,6 @@
 # 2×2 Matrix: Personalization ROI vs. Implementation Barriers
 
-🚨 CRITICAL: Pure white background (#FFFFFF), clear 2×2 quadrants with color coding, 30%+ white space, festival icons
+🚨 CRITICAL: Pure white background (#FFFFFF), clear 2×2 quadrants with color coding, 35%+ white space (NOT 30%), EventAI-distinctive festival icons (stage outlines, RFID wristbands, crowd silhouettes - NOT generic tech icons)
 
 ## STRUCTURE
 - 2×2 matrix: X-axis (Ease of Implementation), Y-axis (Value/ROI)
@@ -29,24 +29,26 @@
 **Tagline**: "High Value + Easy = Immediate Wins" (14pt gray)
 
 ### Feature 1: AI Schedule Recommendations (Top-right corner)
-Icon: Calendar + artist/star (festival-specific)
-Feature name: "AI Schedule Recommendations" (bold 16pt)
-Value stat: "5-8% revenue impact" (bold 14pt, green)
-Adoption: "25-35% adoption" (12pt)
-Effort: "4-8 weeks • $50-100K" (italic 11pt)
-NPS: "+45 NPS" (bold 12pt, green)
+Icon: Festival stage outline + artist silhouette + calendar (NOT generic calendar icon)
+Feature name: "AI Schedule Recommendations" (bold 18pt, clear readability)
+Value stat: "5-8% revenue impact" (bold 16pt, green)
+Adoption: "25-35% adoption" (14pt)
+Effort: "4-8 weeks • $50-100K" (italic 12pt - NO TEXT BELOW 12PT)
+NPS: "+45 NPS" (bold 14pt, green)
 Priority: ⭐⭐⭐⭐⭐ (5 stars - highest)
-Color: Light green background box
+Mini case study: "Bonnaroo: 25% adoption, +45 NPS" (12pt italic, callout box)
+Color: Light green background box with generous padding (8-12px internal)
 
 ### Feature 2: Artist Discovery Integrations (Upper-right)
-Icon: Stars + artist + music note
-Feature name: "Artist Discovery" (bold 16pt)
-Value stat: "8-12% revenue impact" (bold 14pt, green)
-Adoption: "20-30% adoption" (12pt)
-Effort: "4-8 weeks • $30-80K" (italic 11pt)
-NPS: "+35 NPS" (bold 12pt, green)
+Icon: RFID wristband + music waveform + star (festival-specific, NOT generic)
+Feature name: "Artist Discovery" (bold 18pt)
+Value stat: "8-12% revenue impact" (bold 16pt, green)
+Adoption: "20-30% adoption" (14pt)
+Effort: "4-8 weeks • $30-80K" (italic 12pt - NO TEXT BELOW 12PT)
+NPS: "+35 NPS" (bold 14pt, green)
 Priority: ⭐⭐⭐⭐⭐ (5 stars)
-Color: Light green background box
+Context note: "40% attend to discover new artists" (12pt, callout)
+Color: Light green background box with generous padding
 
 ## QUADRANT 2: TOP-LEFT (Yellow #F6AD55) - "Strategic Investment"
 
@@ -54,15 +56,16 @@ Color: Light green background box
 **Tagline**: "High Value + Hard = Long-Term Advantage" (14pt gray)
 
 ### Feature 1: Real-Time Crowd-Responsive Programming (Top-left)
-Icon: Crowd + dynamic movement arrows (NOT generic)
-Feature name: "Crowd-Responsive Programming" (bold 16pt)
-Value stat: "3-5% revenue + 20-30% safety improvement" (bold 14pt, yellow)
-Adoption: "Estimated 15-25%" (12pt)
-Effort: ">6 months • $500K-2M" (italic 11pt, bold red for challenge)
-Impact: "3-5 year timeline" (12pt)
+Icon: Festival crowd silhouette + dynamic flow arrows + stage (EventAI-specific, NOT generic tech)
+Feature name: "Crowd-Responsive Programming" (bold 18pt)
+Value stat: "3-5% revenue + 20-30% safety ↑" (bold 16pt, yellow)
+Adoption: "Estimated 15-25%" (14pt)
+Effort: ">6 months • $500K-2M" (italic 12pt, bold red)
+Impact: "3-5 year timeline" (14pt)
 Priority: ⭐⭐⭐⭐ (4 stars - long-term value)
-Risk annotation: "GDPR compliance required, privacy-first design" (10pt italic, red)
-Color: Light yellow background box
+Risk annotation: "GDPR compliance required, privacy-first design" (12pt italic, red - NO TEXT BELOW 12PT)
+Case study: "Glastonbury 2022: 40% bottleneck reduction" (12pt callout)
+Color: Light yellow background box with generous padding
 
 ### Feature 2: Cross-Festival Portable Profiles (Lower-left area)
 Icon: Network/connected festival icons (NOT generic database)
@@ -154,17 +157,35 @@ Color: Light gray background box
 
 ## STYLE
 
-Background: PURE WHITE #FFFFFF (exactly)
-Quadrant backgrounds: Colored tints (10% opacity)
+Background: PURE WHITE #FFFFFF (exactly) - NO cream, beige, or off-white
+White space: MINIMUM 35% of total composition (generous margins 64px+, padding 12px+ inside boxes)
+Quadrant backgrounds: Colored tints (5-10% opacity - subtle)
 Typography: Inter bold titles/stats, Source Sans regular details
-Icons: Festival-specific (calendars, artists, crowds, maps, faces, surveillance) NOT generic
-Boxes: Semi-flat, rounded corners 8px, 2px outlines
-Font sizes: Title 36pt, quadrant labels 20pt, feature names 16pt, stats 12-14pt, effort 11pt
-Colors: Green Q1, Yellow Q2, Red Q3, Gray Q4, Purple axes, White background
+Icons: EventAI-DISTINCTIVE festival elements (stage outlines, RFID wristbands, crowd silhouettes, festival entrance gates) - ABSOLUTELY NOT generic tech icons (no generic calendars, charts, networks)
+Boxes: Semi-flat, rounded corners 8-12px, 2px outlines, GENEROUS internal padding (12px minimum)
+Font sizes: Title 36-40pt, quadrant labels 20-22pt, feature names 18pt (NOT 16pt), stats 14-16pt (NOT 12pt), smallest text 12pt (NEVER below 12pt)
+Colors: Green Q1 (#A8E6CF), Yellow Q2 (#F6AD55), Red Q3 (#FF6B6B), Gray Q4 (#CCCCCC), Purple axes (#6B46C1), Sky blue accents (#4299E1), White background (#FFFFFF)
 
-## ❌ AVOID
+## ❌ BATCH 1 LEARNINGS - AVOID THESE ERRORS
 
-Cream/beige backgrounds, generic business icons, text <10pt, cramped <25% space, dark backgrounds, missing axis labels, unclear quadrant positioning, all features appear equally important (should use star ratings)
+⚠️ **From Variant #2 and #3 evaluation (scored 78-85, need 90%+):**
+- ❌ Generic icons (calendar, chart, network icons) - USE EventAI-distinctive festival elements instead
+- ❌ White space 25-30% (too cramped) - MUST BE 35%+ for optimal quality
+- ❌ Text below 12pt (accessibility failure) - 12pt ABSOLUTE MINIMUM
+- ❌ Feature names 14-16pt (too small) - MUST BE 18pt for readability
+- ❌ Stats 12-14pt (borderline) - INCREASE to 14-16pt
+- ❌ Cramped feature boxes (text touches edges) - ADD 12px+ internal padding
+- ❌ Missing case study callouts (reduces graphical excellence) - ADD mini examples
+- ❌ Sky blue (#4299E1) absent (EventAI palette incomplete) - USE for accents/highlights
+- ❌ Margins 48-64px (adequate but not optimal) - INCREASE to 64-80px
+
+⚠️ **Critical errors to absolutely avoid:**
+- ❌ Cream/beige backgrounds (use PURE white #FFFFFF)
+- ❌ Generic business/tech icons (NOT festival-specific)
+- ❌ Dark backgrounds (reduces clarity)
+- ❌ Missing axis labels
+- ❌ Unclear quadrant positioning
+- ❌ All features equally emphasized (MUST use star/X ratings)
 
 ## ✅ REFERENCE
 
