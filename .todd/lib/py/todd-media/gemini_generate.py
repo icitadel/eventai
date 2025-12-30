@@ -37,8 +37,44 @@ def read_file_or_text(input_str):
     else:
         return input_str
 
-def build_prompt(content, direction, aspect_ratio, variant_num):
-    """Build combined prompt for Gemini"""
+def build_prompt(content, direction, aspect_ratio, variant_num, density='standard'):
+    """Build combined prompt for Gemini with density tier injection"""
+
+    density_instructions = {
+        'concise': """
+🎯 INFORMATION DENSITY: CONCISE TIER
+- Headlines + 3-5 key statistics ONLY (no breakdowns)
+- 15-30 second comprehension time
+- 40%+ white space (maximum breathing room)
+- Minimal labels (just enough to understand)
+- No explanatory text, no sub-categories
+- "At-a-glance" understanding
+- Perfect for: Social media, quick pitches, executive summaries
+""",
+        'standard': """
+🎯 INFORMATION DENSITY: STANDARD TIER (DEFAULT)
+- Key breakdowns with 3-4 components each
+- 30-60 second comprehension time
+- 30% white space target
+- Brief labels/descriptions (category name + value, NO paragraphs)
+- Stacked bars/charts show components with dollar amounts
+- Readable without requiring close study
+- "Quick comprehension with enough detail to be useful"
+- Perfect for: Conference presentations, blog posts, reports, general publication
+""",
+        'detailed': """
+🎯 INFORMATION DENSITY: DETAILED TIER
+- Comprehensive annotations and explanatory text
+- 2-3 minute close reading required
+- 25%+ white space acceptable (information-dense)
+- Each component has 2-3 sentences of explanation
+- Year-by-year progressions, detailed timelines, case study callouts
+- Multiple detail layers (overview → drill-down capability)
+- "Rewards close study, provides deep understanding"
+- Perfect for: Textbooks, MBA case studies, training materials, analyst reports
+"""
+    }
+
     aspect_instructions = {
         'landscape': """
 🚨 CRITICAL FINAL REQUIREMENT - LANDSCAPE ORIENTATION 🚨
@@ -63,6 +99,10 @@ Dimensions should be approximately 2048 x 2048.
 
 ---
 
+{density_instructions.get(density, density_instructions['standard'])}
+
+---
+
 CONTENT:
 
 {content}
@@ -77,11 +117,11 @@ VARIANT #{variant_num}: Generate a unique visual approach for this variant.
 """
     return prompt
 
-async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name):
+async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name, density='standard'):
     """Generate a single infographic in a tab (generation only, download separately)"""
     try:
         # Build prompt
-        prompt_text = build_prompt(content, direction, aspect_ratio, variant_num)
+        prompt_text = build_prompt(content, direction, aspect_ratio, variant_num, density)
         print(f"   [{variant_num}] 📝 Prompt: {len(prompt_text)} chars")
 
         # Fill input (.ql-editor is most reliable)
@@ -173,7 +213,7 @@ async def download_from_tab(variant_num, page, output_dir, base_name):
         print(f"   [{variant_num}] ❌ Download error: {e}")
         return None
 
-async def generate_infographics(content, direction, num_variants, aspect_ratio, output_dir, base_name, start_num, chrome_profile="Default"):
+async def generate_infographics(content, direction, num_variants, aspect_ratio, output_dir, base_name, start_num, chrome_profile="Default", density='standard'):
     """Generate infographics using parallel tabs"""
 
     print("=" * 60)
@@ -184,6 +224,7 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
     print(f"🔢 Variants: {num_variants} (#{start_num}-{start_num + num_variants - 1})")
     print(f"📐 Aspect: {aspect_ratio}")
     print(f"👤 Profile: {chrome_profile}")
+    print(f"🎯 Density: {density}")
     print(f"🚀 Mode: {num_variants} parallel tabs")
 
     playwright = await setup_playwright()
@@ -264,7 +305,7 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
         tasks = []
         for i, page in enumerate(tabs):
             variant_num = start_num + i
-            task = generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name)
+            task = generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name, density)
             tasks.append(task)
 
         # Wait for all generations to complete
@@ -350,6 +391,7 @@ def main():
     parser.add_argument('--name', default='infographic', help='Base filename')
     parser.add_argument('--variants', type=int, default=3, help='Number of variants (1-5)')
     parser.add_argument('--aspect-ratio', choices=['landscape', 'portrait', 'square'], default='landscape', help='Aspect ratio')
+    parser.add_argument('--density', choices=['concise', 'standard', 'detailed'], default='standard', help='Information density tier (default: standard)')
     parser.add_argument('--batch', type=int, default=1, help='Batch number')
     parser.add_argument('--skip-webp', action='store_true', help='Skip WebP conversion')
     parser.add_argument('--resolution', default='1080p', help='WebP resolution')
@@ -382,7 +424,8 @@ def main():
         output_dir=args.output_dir,
         base_name=args.name,
         start_num=start_num,
-        chrome_profile=args.chrome_profile
+        chrome_profile=args.chrome_profile,
+        density=args.density
     ))
 
     if not png_files:

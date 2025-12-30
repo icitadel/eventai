@@ -40,6 +40,103 @@ This command doesn't perform actions—it loads authoritative, research-based vi
 
 When you invoke `/infographics-bestpractices`, the following knowledge areas become available in working memory:
 
+### 0. Information Density Tiers (EventAI Framework)
+
+**CRITICAL: EventAI uses three distinct density tiers. Always default to Standard tier unless explicitly requested otherwise.**
+
+#### The Three-Tier Framework
+
+**1. Concise Tier (Minimal Detail)**
+- **Purpose:** Quick glance comprehension, social media, elevator pitches
+- **Information density:** Headline stats only, minimal explanatory text
+- **Comprehension time:** 15-30 seconds
+- **White space target:** 40%+ composition
+- **Use cases:**
+  - Social media posts (LinkedIn, Twitter)
+  - Conference slide backgrounds
+  - Quick reference cards
+  - Elevator pitch visuals
+  - Executive summary graphics
+
+**Example characteristics:**
+- Title + 3-5 key statistics (large, prominent)
+- Minimal labels (just enough to understand)
+- No detailed breakdowns or sub-categories
+- Maximum visual clarity, minimum text
+- "At-a-glance" understanding
+
+**2. Standard Tier (Balanced Detail) ← DEFAULT**
+- **Purpose:** Conference presentations, blog posts, reports, general publication
+- **Information density:** Key breakdowns visible, balanced detail without overwhelming
+- **Comprehension time:** 30-60 seconds
+- **White space target:** 30% composition
+- **Use cases:**
+  - Conference presentations (InfoComm, PLASA, industry events)
+  - Blog posts and articles (EventAI Curriculum, Medium)
+  - Executive briefings (C-suite, 2-minute pitch)
+  - Sales decks (prospect meetings)
+  - General publication (default choice)
+
+**Example characteristics:**
+- Title + key statistics + breakdown categories
+- Each category shows 3-4 data points or components
+- Brief labels/descriptions (not paragraphs)
+- Stacked bars/charts show components with values
+- Readable without requiring close study
+- "Quick comprehension with enough detail to be useful"
+
+**3. Detailed Tier (Comprehensive Information)**
+- **Purpose:** Textbooks, MBA case studies, deep educational contexts, analyst reports
+- **Information density:** Comprehensive annotations, explanatory text, maximum educational value
+- **Comprehension time:** 2-3 minutes (requires close reading)
+- **White space target:** 25% composition (acceptable)
+- **Use cases:**
+  - Textbook companion visuals (EventAI Curriculum deep-dive chapters)
+  - MBA case study materials (business school coursework)
+  - Detailed analyst reports (Forrester-style white papers)
+  - Training materials (internal onboarding, sales training)
+  - Research presentations (academic conferences)
+
+**Example characteristics:**
+- Title + statistics + breakdowns + explanatory annotations
+- Each component has 2-3 sentences of explanation
+- Year-by-year progressions or detailed timelines
+- Case study callouts with multiple data points
+- Comprehensive legends and footnotes
+- "Rewards close study, provides deep understanding"
+
+#### Default Behavior: Standard Tier
+
+**Unless explicitly requested, ALWAYS target Standard tier:**
+- ✅ "Generate an infographic for VIS-X.X" → Standard tier
+- ✅ "Create a cost-benefit visualization" → Standard tier
+- ✅ "Evaluate this infographic" → Assume Standard tier unless context suggests otherwise
+
+**Only use other tiers when:**
+- 🔷 User explicitly requests "Concise" or "minimal detail" → Concise tier
+- 📘 User explicitly requests "Detailed" or "educational/textbook version" → Detailed tier
+- 📋 Context clearly indicates tier (e.g., "for social media" → Concise, "for MBA course" → Detailed)
+
+#### Evaluation Against Density Tiers
+
+**When evaluating infographics, first identify the intended tier:**
+
+**Concise tier evaluation:**
+- ✅ Success: Headline stats prominent, minimal text, 40%+ white space, instant comprehension
+- ❌ Failure: Too much detail (becomes Standard), insufficient white space, requires reading
+
+**Standard tier evaluation:**
+- ✅ Success: Balanced detail, key breakdowns visible, 30% white space, 30-60 second comprehension
+- ❌ Failure: Too sparse (should be Concise) OR too dense (becomes Detailed)
+
+**Detailed tier evaluation:**
+- ✅ Success: Comprehensive annotations, educational value, rewards close study
+- ❌ Failure: Cognitive overload (too dense even for Detailed), accessibility issues from small text
+
+**CRITICAL:** Do not penalize an infographic for being "too simple" if it's appropriately Concise, or "too detailed" if it's appropriately Detailed. Match evaluation criteria to intended tier.
+
+---
+
 ### 1. Edward Tufte's Principles for Dense Information Display
 
 **Tufte is the authority on data-rich visualization. His principles are essential for information-dense yet clear infographics.**

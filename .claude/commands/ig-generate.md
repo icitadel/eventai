@@ -14,6 +14,37 @@
 
 ---
 
+## Information Density Tiers
+
+**CRITICAL: EventAI uses three density tiers. Default to Standard tier unless explicitly requested.**
+
+### The Three-Tier Framework
+
+**1. Concise Tier** (Minimal Detail)
+- Headlines + 3-5 key stats
+- 15-30 second comprehension
+- 40%+ white space
+- **Use:** Social media, quick pitches
+- **Example:** Title + "13x ROI, 8-9 month payback, $6.87M net benefit" (no breakdowns)
+
+**2. Standard Tier** (Balanced Detail) **← DEFAULT**
+- Key breakdowns with 3-4 components each
+- 30-60 second comprehension
+- 30% white space
+- **Use:** Conference slides, blog posts, reports (most common)
+- **Example:** Title + Investment breakdown (4 components w/ values) + Benefits breakdown (4 components w/ values) + ROI summary
+
+**3. Detailed Tier** (Comprehensive)
+- Explanatory annotations, case studies, year-by-year detail
+- 2-3 minute comprehension
+- 25%+ white space
+- **Use:** Textbooks, MBA cases, training materials
+- **Example:** Everything in Standard + explanatory text for each component + year-by-year progression + case study callout
+
+**Unless user specifies tier, ALWAYS generate Standard tier prompts.**
+
+---
+
 ## Quick Start
 
 ```bash
@@ -24,7 +55,7 @@ gemini-generate \
   --output-dir docs/writing/1-transformation/visuals/barriers \
   --name barriers
 
-# Generates:
+# Generates 3 variants (typically at Standard tier density):
 # - barriers-1.png, barriers-2.png, barriers-3.png
 # - barriers-1.webp, barriers-2.webp, barriers-3.webp
 # - Ready for /ig-evaluate
