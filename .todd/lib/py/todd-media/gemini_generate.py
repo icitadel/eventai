@@ -123,7 +123,7 @@ async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, o
         return None
 
 async def download_from_tab(variant_num, page, output_dir, base_name):
-    """Download generated image from a tab"""
+    """Download generated image from a tab with verification"""
     try:
         print(f"   [{variant_num}] ⬇️  Downloading...")
         download_start = time.time()
@@ -133,8 +133,8 @@ async def download_from_tab(variant_num, page, output_dir, base_name):
         await download_button.wait_for(state='visible', timeout=5000)
         print(f"   [{variant_num}] 📍 Button visible, clicking...")
 
-        # Click and wait for download with longer timeout (60s)
-        async with page.expect_download(timeout=60000) as download_info:
+        # Click and wait for download with longer timeout (90s)
+        async with page.expect_download(timeout=90000) as download_info:
             await download_button.click()
             print(f"   [{variant_num}] 🖱️  Clicked download button")
 
@@ -142,12 +142,32 @@ async def download_from_tab(variant_num, page, output_dir, base_name):
         download_time = time.time() - download_start
         print(f"   [{variant_num}] ✅ Downloaded in {download_time:.1f}s")
 
-        # Save
+        # Save and verify
         output_path = output_dir / f"{base_name}-{variant_num}.png"
         await download.save_as(str(output_path))
-        print(f"   [{variant_num}] 💾 {output_path.name}")
 
-        return output_path
+        # CRITICAL FIX: Poll continuously for 2 minutes until file exists
+        verify_start = time.time()
+        verify_timeout = 120  # 2 minutes
+        poll_interval = 2  # Check every 2 seconds
+
+        while time.time() - verify_start < verify_timeout:
+            if output_path.exists() and output_path.stat().st_size > 0:
+                elapsed = time.time() - verify_start
+                print(f"   [{variant_num}] 💾 Verified: {output_path.name} ({output_path.stat().st_size / 1024 / 1024:.1f}MB) after {elapsed:.1f}s")
+                return output_path
+            else:
+                elapsed = time.time() - verify_start
+                print(f"   [{variant_num}] ⏳ Waiting for file write... ({elapsed:.1f}s / {verify_timeout}s)")
+                await asyncio.sleep(poll_interval)
+
+        # If we get here, timeout occurred
+        print(f"   [{variant_num}] ❌ File verification timeout after {verify_timeout}s")
+        print(f"   [{variant_num}] ❌ Expected: {output_path}")
+        print(f"   [{variant_num}] ❌ Exists: {output_path.exists()}")
+        if output_path.exists():
+            print(f"   [{variant_num}] ❌ Size: {output_path.stat().st_size} bytes")
+        return None
 
     except Exception as e:
         print(f"   [{variant_num}] ❌ Download error: {e}")
@@ -218,13 +238,14 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
         for i, page in enumerate(tabs):
             variant_num = start_num + i
             try:
-                # Click Tools button
-                tools_button = page.get_by_role("button", name="Tools")
+                # CRITICAL FIX: Use .first to get the first Tools button in THIS page context
+                # (avoids strict mode violation from multiple tabs/conversations)
+                tools_button = page.get_by_role("button", name="Tools").first
                 await tools_button.click()
                 await asyncio.sleep(1)
 
-                # Click Create images button
-                create_images_button = page.get_by_role("button", name="Create images")
+                # Click Create images button (also use .first for safety)
+                create_images_button = page.get_by_role("button", name="Create images").first
                 await create_images_button.click()
                 await asyncio.sleep(1)
 
@@ -233,6 +254,7 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
                 print(f"   [{variant_num}] ✅ Image mode enabled")
             except Exception as e:
                 print(f"   [{variant_num}] ⚠️  Image mode activation failed: {e}")
+                print(f"   [{variant_num}] 🔄 Attempting to continue anyway (may already be in image mode)")
                 # Continue anyway - might already be in image mode
 
         # Generate all variants in parallel
@@ -272,11 +294,26 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
         print(f"\n⏱️  Download time: {download_time:.1f}s")
         print(f"⏱️  Total time: {gen_time + download_time:.1f}s")
 
+        # SAFETY: Final verification that all files exist
+        print(f"\n🔍 Final verification of {len(generated_files)} files...")
+        verified_files = []
+        for f in generated_files:
+            if f.exists() and f.stat().st_size > 0:
+                print(f"  ✅ {f.name} ({f.stat().st_size / 1024 / 1024:.1f}MB)")
+                verified_files.append(f)
+            else:
+                print(f"  ❌ {f.name} - File missing or empty!")
+
+        # Extra safety delay before closing browser (ensure all file writes complete)
+        if verified_files:
+            print("\n⏸️  Waiting 2s for filesystem sync...")
+            await asyncio.sleep(2)
+
         # Close browser
         print("\n🔒 Closing browser...")
         await context.close()
 
-        return generated_files
+        return verified_files
 
 def convert_to_webp(png_files, resolution='1080p'):
     """Convert PNGs to WebP using todd-image-convert"""
