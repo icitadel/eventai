@@ -105,7 +105,7 @@ Use this skill when you have a draft section ready for publication and need to:
    - Search project research files
    - Search visual .content.md files
    - Web search for unverified claims
-4. Add source attribution at section ends
+4. 🚨 Add source attribution at DOCUMENT END ONLY (not sectional placement)
 5. Create fact-check report
 
 **Outputs:**
@@ -115,8 +115,9 @@ Use this skill when you have a draft section ready for publication and need to:
 **Quality Standards:**
 - [ ] 90%+ claims verified
 - [ ] All critical corrections applied
-- [ ] Source lists at end of each major section
+- [ ] 🚨 Sources at DOCUMENT END ONLY (not sectional placement)
 - [ ] 30-40% word reduction achieved
+- [ ] NO metadata summary section after sources
 
 ### Step 2: Visual Content Review
 
@@ -226,10 +227,11 @@ gemini-generate \
 
 **Create `{name}.draftN+2-formatted.md`:**
 
-1. **Add image width specifications:**
+1. **🚨 CRITICAL: Update image references to PNG (NOT webp):**
    ```markdown
    ![Alt text](../visuals/{folder}/{name}.png){width=7in}
    ```
+   **Why PNG:** DOCX requires PNG format for high-quality embedding (WebP for web/evaluation only)
 
 2. **Clean source lists:**
    - Remove detailed notes/comments
@@ -252,36 +254,70 @@ pandoc {name}.draftN+2-formatted.md \
 ```
 
 **Image embedding:**
+- 🚨 **PNG format required** (NOT webp - DOCX does not support webp)
 - 7" wide (via `{width=7in}` markdown syntax)
 - All PNG images embedded automatically
-- Checks that DOCX size matches expected (should be ~20MB with 4 images)
+- Checks that DOCX size matches expected (should be ~18-20MB with 4 PNG images)
 
 #### 4c. Apply Justified Text Alignment
 
-**Use python-docx to post-process:**
+**🚨 CRITICAL: Use justify_docx.py utility script (DO NOT DELETE):**
+
+The justify_docx.py script should be kept in the drafts directory for reuse across all sections. If it doesn't exist, create it:
 
 ```python
 #!/usr/bin/env python3
+"""Apply justified text alignment to DOCX file."""
+
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
+import sys
 
-doc = Document('transformation.rcN.docx')
+def justify_document(filepath):
+    """Apply justified alignment to body paragraphs, keep headings left-aligned."""
+    doc = Document(filepath)
 
-for paragraph in doc.paragraphs:
-    # Skip headings (keep left-aligned)
-    if paragraph.style.name.startswith('Heading'):
-        continue
-    # Apply justified alignment to body text
-    paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    modified_count = 0
+    for paragraph in doc.paragraphs:
+        # Skip headings (keep left-aligned)
+        if paragraph.style.name.startswith('Heading'):
+            continue
 
-doc.save('transformation.rcN.docx')
+        # Skip blockquotes and other special styles
+        if paragraph.style.name in ['Quote', 'Block Text', 'Caption']:
+            continue
+
+        # Apply justified alignment to body text
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        modified_count += 1
+
+    doc.save(filepath)
+    print(f"✅ Justified {modified_count} paragraphs in {filepath}")
+
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("Usage: python justify_docx.py <file.docx>")
+        sys.exit(1)
+
+    justify_document(sys.argv[1])
+```
+
+**Usage:**
+```bash
+cd docs/writing/{topic}/drafts
+python3 justify_docx.py {name}.rc1.docx
 ```
 
 **Result:**
 - Body text: Justified (smooth left and right edges)
 - Headings: Left-aligned (standard)
-- Images: 7" wide, embedded
-- File size: ~20MB (confirms images embedded)
+- Images: 7" wide, embedded (PNG format)
+- File size: ~18-20MB (confirms PNG images embedded)
+
+**⚠️ IMPORTANT: Keep utility scripts for reuse across sections!**
+- justify_docx.py should remain in drafts directory
+- Other sections will need this same script
+- DO NOT delete after use
 
 ## Quality Standards
 
@@ -338,9 +374,10 @@ doc.save('transformation.rcN.docx')
 **3. DOCX generation fails:**
 ```
 → Check Pandoc installation
-→ Verify image paths in markdown
-→ Ensure WebP converted to PNG (DOCX requires PNG)
-→ Retry with corrected paths
+→ 🚨 VERIFY IMAGES ARE PNG FORMAT (NOT webp)
+→ Update draft to reference .png files (NOT .webp)
+→ Ensure PNG files exist in visual directories
+→ Retry with corrected image references
 ```
 
 **4. Justified text script fails:**

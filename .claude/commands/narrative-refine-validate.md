@@ -7,7 +7,7 @@ Transform academic/bullet-point drafts into publication-ready narrative content 
 1. **Question Alignment**: Verify content answers its stated question cleanly without sideramps
 2. **Narrative Refinement**: Transform verbose or bullet-point content into concise, flowing narrative
 3. **Claim Validation**: Systematically verify all factual claims against authoritative sources
-4. **Source Attribution**: Add clear source lists at the end of each section
+4. **Source Attribution**: 🚨 CRITICAL: Add ALL sources at the END OF THE DOCUMENT (NOT sectional placement)
 
 ## Validation Priority Structure
 
@@ -98,35 +98,53 @@ Verify every numerical claim, statistic, and factual assertion:
 - [ ] All ROI figures match source documents
 
 ### Pass 3: Source Attribution
-Add clear source lists at the end of each major section:
+
+🚨 **CRITICAL REQUIREMENT: ALL SOURCES AT DOCUMENT END ONLY** 🚨
+
+**Placement Rule (ENFORCED):**
+- ✅ **CORRECT**: Single consolidated source list at the END of the document (after all content)
+- ❌ **WRONG**: Source lists at the end of each section (sectional placement)
+- ❌ **WRONG**: Multiple source blocks throughout the document
 
 **Format:**
 ```markdown
+[All narrative content...]
+
+---
+
 **Sources:**
+
 - [Descriptive Title](https://url.com) (optional context)
 - [Study Name - Organization](https://url.com) (key finding noted)
 - [Report Title](https://url.com) | [Secondary Source](https://url.com)
+[All 10-15 sources listed here in alphabetical or citation order]
 ```
 
-**Placement Rules:**
-- Add sources at the end of each **major section** (not subsections)
-- Place before the next section heading
-- Include 3-6 sources per section (the claims made in that section)
-- Use markdown link format for clickability
-- Add brief context in parentheses when helpful
+**Why Document-End Only:**
+- Professional academic publication standard
+- Cleaner reading flow (no interruptions)
+- Easier source management (single authoritative list)
+- Consistent with textbook/research article format
 
-**Example:**
+**Example Structure:**
 ```markdown
-The technology works because crowd density follows physics regardless of
-venue type. Festival deployments prove it.
+# Question Title
+
+[2,000 words of narrative content...]
+
+[Figure 1, Figure 2, Figure 3...]
+
+## The Bottom Line
+
+[Conclusion paragraph...]
+
+---
 
 **Sources:**
-- [Crowd Connected - 50+ Festivals](https://www.crowdconnected.com/news/...)
-- [Roskilde Festival IBM Partnership](https://asiagrowthpartners.com/...) | [Medium](https://medium.com/@ibmcloud/...)
-- [Latitude Festival Case Study](https://www.crowdconnected.com/case-studies/...)
-- [NEC Corporation Crowd Prediction](https://www.nec.com/en/press/...)
 
-## 2. Next Section
+- [Long, D., & Magerko, B. (2020)...](URL)
+- [UNESCO AI Competency Framework...](URL)
+- [15 total sources listed alphabetically]
 ```
 
 ## Workflow Steps
@@ -221,32 +239,46 @@ venue type. Festival deployments prove it.
 
 ### Step 5: Add Source Attribution
 
-**For each major section**, add sources at the end:
+🚨 **ENFORCED: ALL SOURCES AT DOCUMENT END ONLY** 🚨
+
+**CORRECT Placement:**
 
 ```markdown
-## Section Title
+# Question Title
 
-[Content with verified claims...]
+[All 2,000 words of narrative content...]
+
+[Figure 1: ...]
+*Figure caption...*
+
+[Figure 2: ...]
+*Figure caption...*
+
+## The Bottom Line
+
+[Final conclusion paragraph...]
+
+---
 
 **Sources:**
-- [Source 1 Title](URL) (context if needed)
-- [Source 2 Title](URL) | [Alt Source](URL)
-- [Source 3 Title](URL)
 
-## Next Section
+- [Long, D., & Magerko, B. (2020). What is AI Literacy?](https://doi.org/...)
+- [UNESCO AI Competency Framework (2024)](https://unesdoc.unesco.org/...)
+- [University of Surrey Module Catalog](https://www.surrey.ac.uk/...)
+- [All 10-15 sources listed in alphabetical or citation order]
 ```
 
-**Placement Logic:**
-- Add after Section 1 (if has claims)
-- Add after each major domain discussion (e.g., after Dynamic Pricing subsection)
-- Add after conclusion/bottom line
-- Do NOT add after every paragraph (too frequent)
-- Typically 5-8 source blocks total for a 3,000-word document
+**Requirements:**
+- ✅ **Single consolidated list** at document end (after all content, figures, and conclusion)
+- ✅ **Markdown link format** for all sources (clickable)
+- ✅ **Brief context** in parentheses when helpful
+- ❌ **NEVER** multiple source blocks (sectional placement forbidden)
+- ❌ **NEVER** source lists interspersed throughout narrative
 
 **Output:**
-- Final draft with sources integrated
-- Clean, professional source attribution
-- All sources clickable (markdown links)
+- Final draft with ALL sources at document end only
+- Clean, professional publication-ready format
+- No metadata summary section after sources
 
 ## Output Files
 

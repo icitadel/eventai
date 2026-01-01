@@ -37,10 +37,12 @@ Use this skill when starting a NEW curriculum section from scratch (Questions 1-
 - Document progress in Beads, not just conversation
 
 ### Narrative Quality
+- 🚨 **QUESTION-FOCUSED**: Every section must directly answer its stated question
 - Clean, consistent voice for university students
 - Supplement narrative with visuals (not replace)
 - Follow textbook best practices
 - 30-40% conciseness vs academic style
+- **No sideramps**: All content must serve answering the core question
 
 ### Visual Excellence
 - 3-5 well-spaced infographics (landscape, concise)
