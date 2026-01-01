@@ -23,6 +23,9 @@ Use this skill when you have EXISTING section content that needs revision:
 - Final polish only (use `/section-publish`)
 - Quick edits without visual work
 
+## Related Skills
+/section-create, /section-publish, /textbook-bestpractices, /infographics-bestpractices, /validate
+
 ## How This Differs from Other Skills
 
 | Skill | Starting Point | Use Case |
@@ -596,4 +599,3 @@ Do you have existing content?
 **Skill Created:** December 31, 2025
 **Version:** 1.0
 **Maintained By:** EventAI Content Quality System
-**Related Skills:** /section-create, /section-publish, /textbook-bestpractices, /infographics-bestpractices, /validate

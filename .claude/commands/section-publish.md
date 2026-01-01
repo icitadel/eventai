@@ -21,6 +21,9 @@ Use this skill when you have a draft section ready for publication and need to:
 - Work-in-progress drafts (use individual skills instead)
 - Sections without visual content requirements
 
+## Related Skills
+/narrative-refine-validate, /narrative-add-media, /ig-generate, /ig-evaluate, /infographics-bestpractices
+
 ## Workflow Overview
 
 ```
@@ -515,4 +518,3 @@ All claims verified, visuals evaluated 85%+, ready for distribution.
 **Skill Created:** December 31, 2025
 **Version:** 1.0
 **Maintained By:** EventAI Content Quality System
-**Related Skills:** /narrative-refine-validate, /narrative-add-media, /ig-generate, /ig-evaluate, /infographics-bestpractices

@@ -364,6 +364,28 @@ The choice facing hospitality and event management education is stark: evolve cu
 
 ---
 
+**Sources:**
+
+- [Long, D., & Magerko, B. (2020). What is AI Literacy? Competencies and Design Considerations](https://doi.org/10.1145/3313831.3376727) - CHI 2020, ACM Conference on Human Factors in Computing Systems
+- [UNESCO AI Competency Framework for Teachers (2024)](https://unesdoc.unesco.org/ark:/48223/pf0000387919) - ISBN: 978-92-3-100707-1
+- [Cornell eCornell AI in Hospitality Certificate](https://www.ecornell.com/certificates/hospitality/ai-hospitality/) - 5.5-day program, $3,600 (2024 pricing)
+- [University of Surrey Module Catalog 2024-25](https://www.surrey.ac.uk/undergraduate/courses) - MAN2220, MANM432 module descriptors
+- [University of Surrey DIGMY Research Centre](https://www.surrey.ac.uk/school-hospitality-tourism-management/research/centres/centre-digital-transformation-visitor-economy) - Centre for Digital Transformation in the Visitor Economy
+- [Southern Cross University HOTL3006 Unit Guide](https://www.scu.edu.au/) - Hospitality Information and Technology Systems
+- [Penn State HM 830 Hospitality Data Analytics](https://bulletins.psu.edu/graduate/programs/majors/hospitality-management-mps/) - MPS Graduate Bulletin
+- [Leeds Beckett UKCEM Course Handbook 2024](https://www.leedsbeckett.ac.uk/schools/leeds-beckett-business-school/uk-centre-for-events-management/) - UK Centre for Events Management
+- [UCF Rosen College Hospitality+ Center](https://hospitality.ucf.edu/innovation/) - AI-Enhanced Guest Services Lab research initiative
+- [MPI AI-Enhanced Event Professional Certificate](https://www.mpi.org/education/ai-certificate) - 500+ planners trained, $305-$405, launched November 2023
+- [PCMA Institute Enhancing Events with AI Certificate](https://www.pcma.org/education-training/) - Nick Borelli instructor, $556-$695, 7.5 CMP hours
+- [PCMA Project Spark](https://www.pcma.org/spark/) - 3,000+ users, generative AI platform partnership with Gevme, May 2023
+- [Journal of Hospitality & Tourism Education (2024): The Digital Skills Gap](https://doi.org/10.1080/10963758.2024.2316338) - UK study: 71% AI/robotics skills gaps, 3% use higher education for digital training
+- [Market.us AI in Event Management Report 2024](https://market.us/report/ai-in-event-management-market/) - $1.8B to $14.2B projection by 2033
+- [McKinsey State of AI 2025](https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai) - 42% organizations report zero ROI from AI investments
+- [TechCrunch GSMA MWC Fine Coverage](https://techcrunch.com/2023/05/08/gsma-mwc-aedp-gdpr-dpia-fine/) - €200,000 GDPR fine for Mobile World Congress 2021 facial recognition
+- [Music Fans' Voice Survey via MusicRadar](https://www.musicradar.com/news/dynamic-ticket-pricing-91-percent-fans-oppose) - 91% of UK fans oppose dynamic pricing
+
+---
+
 **Word Count:** ~3,100 words
 **Sources Referenced:** 12+ (University program documentation, MPI/PCMA certificates, JHTE special issue, UNESCO framework, UK skills gap study, GDPR enforcement data)
 **Confidence Markers:** Applied to claims about program content (verified from official catalogs) vs. impact assessments (inferred from industry data)

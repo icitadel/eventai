@@ -115,7 +115,79 @@ You are a visual design critic and content verifier for academic/professional in
 "Which infographic files should I evaluate? (Provide file paths or glob patterns)"
 ```
 
-**Step 2: Locate source material**
+**Step 2: Identify presentation context (CRITICAL)**
+
+**Determine if infographic is standalone or embedded:**
+
+```markdown
+## Context Identification
+
+**File location analysis:**
+- Path: docs/writing/2-education/visuals/academic-integration/academic-integration-3.webp
+- Parent directory: `/writing/` (narrative content) ✅ Embedded context likely
+- Visual directory: `/visuals/` (supporting narrative) ✅ Embedded context
+
+**Prompt file analysis:**
+- Check VIS-X.X-GENERATE-INSTRUCTIONS.md for use case
+- Look for: "textbook", "curriculum", "figure", "embedded" → Embedded
+- Look for: "social media", "standalone", "presentation" → Standalone
+
+**Content location indicators:**
+- In `/docs/writing/*/visuals/` → **Embedded** (supporting textbook/article)
+- In `/docs/social/` or `/docs/marketing/` → **Standalone** (social/marketing use)
+- Referenced as "Figure X.X" in narrative → **Embedded**
+
+**Default for EventAI curriculum:**
+Unless clearly indicated otherwise, visuals in `/docs/writing/*/visuals/` are **EMBEDDED**.
+
+**Identified context: [STANDALONE | EMBEDDED]**
+
+**Evaluation adjustments:**
+- If EMBEDDED: ❌ DO NOT expect title on infographic (would be redundant)
+- If EMBEDDED: ❌ DO NOT expect context statements (provided by narrative)
+- If EMBEDDED: ✅ EXPECT minimal explanatory text (labels and data only)
+- If STANDALONE: ✅ EXPECT title, context, self-contained design
+```
+
+**Context-Specific Evaluation Criteria:**
+
+**EMBEDDED Infographics (Textbook, Articles, Curriculum):**
+```markdown
+✅ Expected elements:
+- Data visualization (primary focus)
+- Labels and values (what is shown)
+- Legend if needed (understanding the visual)
+- Source citation (can be minimal if in caption)
+- Clean, focused design
+
+❌ NOT expected (would be redundant):
+- Title on the infographic itself (title is in figure caption or surrounding text)
+- Context statements ("What this shows:", "Key takeaway:")
+- Explanatory paragraphs (interpretation is in narrative)
+- Self-contained design (relies on surrounding text)
+
+⚠️ CRITICAL: DO NOT penalize embedded infographics for:
+- "Missing title" (CORRECT to omit - title is in text/caption)
+- "Needs more context" (CORRECT - context in narrative)
+- "Too minimal" (CORRECT - should focus on data only)
+```
+
+**STANDALONE Infographics (Social, Presentations, Marketing):**
+```markdown
+✅ Expected elements:
+- Clear title (part of visual design)
+- Subtitle or context statement
+- Complete labels and legends
+- Source citations (visible on infographic)
+- Self-contained design (understandable without external text)
+
+❌ Penalize if missing:
+- Title or clear main message
+- Context (what is this about?)
+- Self-contained explanation
+```
+
+**Step 3: Locate source material**
 ```
 # Check for VIS-*.source.md in same directory
 # If not found, ask:
@@ -124,11 +196,12 @@ You are a visual design critic and content verifier for academic/professional in
  - Or confirm evaluation should proceed without data verification"
 ```
 
-**Step 3: Load best practices**
+**Step 4: Load best practices**
 ```
 # Automatically load:
 - docs/lemmy/style-guide/eventai-visual-identity.md
 - docs/lemmy/research/infographics-best-practices.md
+- Apply context-aware evaluation (standalone vs. embedded)
 
 # If user provides overrides:
 "Using custom evaluation criteria: [list provided criteria]"
@@ -169,15 +242,32 @@ Issues: [List any problems]
 
 ```markdown
 ## Layout & Composition
+
+**Context-aware evaluation:**
+
+**If EMBEDDED (textbook/article context):**
 - [ ] Minimum 30% white space
-- [ ] Clear visual hierarchy (title → data → supporting)
+- [ ] Clear visual hierarchy (data → supporting labels → source)
+- [ ] ❌ Title on infographic (should NOT be present - redundant with caption)
 - [ ] Left-aligned text (or justified alignment with purpose)
 - [ ] Generous margins (48-64px minimum)
 - [ ] Elements aligned to grid
 - [ ] Breathing room between sections (24-48px)
+- [ ] Minimal explanatory text (labels only, not paragraphs)
+
+**If STANDALONE (social/presentation context):**
+- [ ] Minimum 30% white space
+- [ ] Clear visual hierarchy (title → data → supporting → source)
+- [ ] ✅ Title on infographic (clear, prominent)
+- [ ] Subtitle or context statement (what is this about?)
+- [ ] Left-aligned text (or justified alignment with purpose)
+- [ ] Generous margins (48-64px minimum)
+- [ ] Elements aligned to grid
+- [ ] Breathing room between sections (24-48px)
+- [ ] Self-contained design (understandable without external text)
 
 Score: _/10
-Issues: [List any concerns]
+Issues: [List any concerns - NOTE context when flagging title presence/absence]
 ```
 
 ```markdown
@@ -346,6 +436,13 @@ Rationale: [Brief explanation of why this variant is strongest]
 
 ```markdown
 # Infographic Evaluation Report: [Infographic Name]
+
+**⚠️ CONTEXT CHECK PERFORMED ⚠️**
+**Presentation Context:** [STANDALONE | EMBEDDED]
+- EMBEDDED: Infographic is part of textbook/article, surrounding text provides title and context
+- STANDALONE: Infographic stands alone (social media, presentation), must be self-contained
+
+**Context-based evaluation adjustments applied:** [Yes/No]
 
 **Evaluation Date:** [Date]
 **Evaluator:** Claude Sonnet 4.5
@@ -641,6 +738,42 @@ Minor refinements suggested (see action items), but ready for use as-is if neede
 
 ## Usage Instructions
 
+### CRITICAL: Context Identification Required ⚠️
+
+**ALWAYS identify presentation context BEFORE evaluation:**
+
+```bash
+# Step 0: Determine context
+# Check file location and intended use
+
+EMBEDDED context indicators:
+- Location: docs/writing/*/visuals/
+- Use: Textbook, article, curriculum
+- Referenced as: "Figure X.X" in narrative
+- Expect: NO title on infographic (title in caption/text)
+
+STANDALONE context indicators:
+- Location: docs/social/, docs/marketing/
+- Use: Social media, presentations, marketing
+- Referenced as: Independent visual
+- Expect: Title on infographic (self-contained)
+
+# For EventAI curriculum: Default to EMBEDDED unless explicitly standalone
+```
+
+**Evaluation adjustment example:**
+```bash
+# EMBEDDED context (most EventAI curriculum visuals)
+/ig-evaluate docs/writing/2-education/visuals/academic-integration/*.webp
+→ Evaluates as embedded (NO title expected on infographic)
+→ Title presence would be penalized (redundant with caption)
+
+# STANDALONE context (social media, presentations)
+/ig-evaluate docs/social/linkedin-posts/*.webp
+→ Evaluates as standalone (title REQUIRED on infographic)
+→ Missing title would be penalized
+```
+
 ### CRITICAL: Image Format Requirements ⚠️
 
 **Always convert PNG to webp before evaluation:**
@@ -672,7 +805,7 @@ todd-image-convert docs/writing/*/visuals/*/*.png --resolution 1080p --output-fo
 # 2. Search for VIS-*.source.md in same directory
 # 3. Load EventAI style guide and best practices
 # 4. Generate comprehensive evaluation report
-# 5. Write evaluation to [directory]/VIS-X.X-EVALUATION-REPORT.md
+# 5. Write evaluation to [directory]/[name].eval.md
 ```
 
 ### Evaluation with Explicit Source Material
@@ -695,8 +828,8 @@ todd-image-convert docs/writing/*/visuals/*/*.png --resolution 1080p --output-fo
 # 2. Create comparison matrix
 # 3. Recommend best variant
 # 4. Explain why winner was selected
-# 5. Write comprehensive report to VIS-X.X-EVALUATION-REPORT.md
-# 6. Update VIS-X.X-GENERATE-INSTRUCTIONS.md with learnings
+# 5. Write comprehensive report to [name].eval.md
+# 6. Update [name]-GENERATE-INSTRUCTIONS.md with learnings
 ```
 
 ### Custom Evaluation Criteria
@@ -769,7 +902,7 @@ Use this checklist to ensure comprehensive evaluation:
 - [ ] Scorecards completed
 - [ ] Recommendations prioritized (critical/high/medium/low)
 - [ ] Action items clearly stated
-- [ ] **Report written to file** (VIS-X.X-EVALUATION-REPORT.md)
+- [ ] **Report written to file** (`[name].eval.md` in infographic directory)
 - [ ] **GENERATE-INSTRUCTIONS updated** with findings to prevent recurring issues
 
 ---
@@ -815,6 +948,47 @@ Use this checklist to ensure comprehensive evaluation:
 ---
 
 ## Common Evaluation Patterns
+
+### Pattern 0: Context Misidentification (CRITICAL)
+
+**Problem:** Penalizing embedded infographic for missing title, or standalone for having one
+
+**Detection:**
+```
+File: docs/writing/2-education/visuals/academic-integration/academic-integration-3.webp
+Location: /writing/*/visuals/ → EMBEDDED context
+Title on infographic: None
+Evaluator flags: "Missing title" ❌ WRONG!
+```
+
+**Correct Evaluation:**
+```
+Context Identification: EMBEDDED (textbook visual)
+Title presence: None (CORRECT ✅)
+Rationale: Title is in figure caption/surrounding text. Having title on infographic would be redundant and break narrative flow.
+
+Layout Score: 9/10 ✅
+Strengths: 
+- Correctly omits title (follows embedded context best practices)
+- Clean, data-focused design
+- Integrates seamlessly with narrative text
+
+⚠️ CRITICAL: This is CORRECT design for embedded context. 
+   DO NOT penalize for missing title - it SHOULD be absent.
+```
+
+**Wrong Evaluation:**
+```
+❌ "Missing title - needs clear heading" ← INCORRECT for embedded context
+❌ "Needs context statement" ← INCORRECT - context is in narrative
+❌ "Too minimal, needs more explanation" ← INCORRECT - narrative provides explanation
+```
+
+**Prevention:**
+1. ALWAYS identify context (standalone vs. embedded) FIRST
+2. Check file location (/writing/*/visuals/ = embedded)
+3. Apply context-appropriate evaluation criteria
+4. Document context identification in report
 
 ### Pattern 1: Color Palette Deviation
 
@@ -916,7 +1090,7 @@ Priority: 🟡 High (significantly impacts effectiveness)
 - Detailed findings (strengths and weaknesses)
 - Scorecards for each evaluation category
 - Prioritized action items (critical/high/medium/low)
-- **Report file created:** `VIS-X.X-EVALUATION-REPORT.md` in infographic directory
+- **Report file created:** `[name].eval.md` in infographic directory
 
 ✅ **Comparative analysis (if multiple variants):**
 - Each variant scored individually
@@ -944,6 +1118,26 @@ Priority: 🟡 High (significantly impacts effectiveness)
 ---
 
 ## Anti-Patterns (What NOT to Do)
+
+❌ **Don't skip context identification:**
+```
+Bad: Evaluate all infographics as standalone, penalize embedded ones for "missing title"
+Good: Identify context FIRST (standalone vs. embedded), apply appropriate criteria
+```
+
+**CRITICAL Example:**
+```
+❌ WRONG:
+File: docs/writing/2-education/visuals/literacy-comparison/literacy-comparison-1.webp
+Issue flagged: "Missing title - needs clear heading"
+Problem: This is EMBEDDED context (textbook visual). Title SHOULD be absent!
+
+✅ CORRECT:
+File: docs/writing/2-education/visuals/literacy-comparison/literacy-comparison-1.webp
+Context: EMBEDDED (textbook curriculum)
+Title status: Correctly absent (title is in figure caption)
+Evaluation: 9/10 - Proper embedded infographic design
+```
 
 ❌ **Don't skip source material verification:**
 ```
@@ -1045,13 +1239,13 @@ todd-image-convert *.png --resolution 1080p --output-format webp
 
 # This command will:
 # - Analyze all variants against EventAI style guide
-# - Verify data accuracy against VIS-X.X-source.md
-# - Create VIS-X.X-EVALUATION-REPORT.md with findings
-# - Update VIS-X.X-GENERATE-INSTRUCTIONS.md with improvements
+# - Verify data accuracy against [name].source.md (or [name].content.md)
+# - Create [name].eval.md with findings
+# - Update [name].instructions.md with improvements
 # - Recommend winning variant
 
 # 4. Review evaluation report
-cat VIS-X.X-EVALUATION-REPORT.md
+cat [name].eval.md
 
 # 5. Select winner and optionally regenerate if critical issues found
 # - If score < 80%: Regenerate with improved prompt

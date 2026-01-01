@@ -18,6 +18,9 @@ Use this skill when starting a NEW curriculum section from scratch (Questions 1-
 - Quick edits or corrections
 - Sections without visual requirements
 
+## Related Skills 
+/textbook-bestpractices, /infographics-bestpractices, /narrative-refine-validate, /validate, /section-publish
+
 ## Critical Success Factors
 
 ### 🔴 MOST IMPORTANT: Data Accuracy
@@ -1005,4 +1008,3 @@ All claims verified, visuals evaluated, ready for distribution.
 **Skill Created:** December 31, 2025
 **Version:** 1.0
 **Maintained By:** EventAI Content Quality System
-**Related Skills:** /textbook-bestpractices, /infographics-bestpractices, /narrative-refine-validate, /validate, /section-publish

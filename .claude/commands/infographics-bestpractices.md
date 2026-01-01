@@ -137,6 +137,143 @@ When you invoke `/infographics-bestpractices`, the following knowledge areas bec
 
 ---
 
+### 0.5. Context-Aware Design: Standalone vs. Embedded Infographics
+
+**CRITICAL: Infographics serve different purposes depending on their presentation context. Evaluation criteria must match intended use.**
+
+#### The Two Context Types
+
+**1. Standalone Infographics**
+- **Use cases:** Social media posts, conference slides, reports (as separate pages), marketing materials, email newsletters
+- **Characteristics:** Self-contained, can be understood without surrounding text
+- **Required elements:**
+  - ✅ Title (clear, prominent)
+  - ✅ Subtitle or context statement (what is this about?)
+  - ✅ Complete labels and legends
+  - ✅ Source citations
+  - ✅ All context necessary to understand the data
+- **Rationale:** Viewer may encounter infographic without any supporting text
+
+**2. Embedded Infographics (In-Narrative Media)**
+- **Use cases:** Textbook visuals, article illustrations, blog post graphics, academic papers, curriculum materials
+- **Characteristics:** Integrated within text flow, referenced by surrounding paragraphs
+- **Required elements:**
+  - ❌ **NO title on the infographic itself** (title is in the narrative text or figure caption)
+  - ❌ **NO subtitle/context statement** (context provided by surrounding paragraphs)
+  - ✅ Labels and data only (what's shown, not why we're showing it)
+  - ✅ Legend if needed (for understanding the visual)
+  - ✅ Source citations (credibility, but can be in caption)
+- **Rationale:** Surrounding text provides title, context, and interpretation
+
+#### Why This Distinction Matters
+
+**Problem: Redundancy and flow disruption**
+```
+[Narrative text discussing AI adoption trends...]
+
+**Figure 2.1: AI Adoption Timeline 2025-2035**  ← Title in text
+
+[Infographic with "AI ADOPTION TIMELINE 2025-2035" as title]  ← REDUNDANT!
+
+[Narrative continues discussing what the timeline shows...]
+```
+
+**Solution: Context-appropriate design**
+```
+[Narrative text discussing AI adoption trends...]
+
+**Figure 2.1: AI Adoption Timeline 2025-2035**  ← Title in text
+
+[Infographic with data visualization only, no title]  ← Clean, integrated
+
+[Narrative continues interpreting the data...]
+```
+
+#### Design Principles by Context
+
+**Standalone Infographics:**
+- Design as if infographic could be shared without article
+- Include title as visual element (part of composition hierarchy)
+- Add context statements ("What this shows:", "Key takeaway:")
+- Complete legends, not relying on external explanation
+- Footer with source, date, creator
+
+**Embedded Infographics:**
+- Design as visual data layer within text
+- NO title on the infographic (would duplicate figure caption)
+- NO explanatory text beyond labels (interpretation is in narrative)
+- Minimal text overall (let the narrative do the explaining)
+- Focus on visual clarity of data relationships
+- Think "illustration" not "standalone document"
+
+#### Evaluation Criteria Adjustments
+
+**When evaluating standalone infographics:**
+- ✅ Expect clear title as part of design
+- ✅ Expect context statements or introductory text
+- ✅ Penalize if missing self-contained context
+- ✅ Full composition hierarchy (title → data → details → source)
+
+**When evaluating embedded infographics:**
+- ❌ **DO NOT penalize** for missing title (should not have one!)
+- ❌ **DO NOT penalize** for missing context statements (provided by text)
+- ✅ Expect minimal explanatory text (just labels and data)
+- ✅ Simplified composition hierarchy (data → supporting labels → source)
+- ✅ Penalize if title IS present (redundant with figure caption)
+
+#### How to Identify Context
+
+**Embedded infographic indicators:**
+- Located within a document with surrounding text (e.g., `/docs/writing/*/drafts/*.md`)
+- Referenced as "Figure X.X" or similar in narrative
+- Part of a numbered sequence (Figure 2.1, 2.2, etc.)
+- Stored in `/visuals/` directory alongside narrative content
+- Prompt file indicates "for textbook" or "curriculum integration"
+
+**Standalone infographic indicators:**
+- Designed for social media, presentations, marketing
+- Prompt includes "self-contained" or "standalone"
+- Includes "share on LinkedIn/Twitter" in use case
+- Stored in `/social/` or `/marketing/` directories
+- Would make sense viewed in isolation (e.g., Pinterest pin)
+
+#### EventAI Curriculum Specifics
+
+**For EventAI textbook/curriculum visuals:**
+- **Default context: Embedded** (unless explicitly noted otherwise)
+- Infographics support narrative sections
+- Figure captions provide titles and context
+- Visuals illustrate concepts discussed in text
+- Clean, data-focused design without redundant titling
+
+**Example evaluation adjustment:**
+```
+Infographic: academic-integration-3.webp
+Location: docs/writing/2-education/visuals/academic-integration/
+Context: Embedded (textbook curriculum)
+
+✅ Correct: No title on infographic (title in figure caption)
+✅ Correct: Minimal explanatory text (narrative provides context)
+✅ Correct: Focus on data visualization clarity
+
+❌ Wrong: "Missing title" penalty (title should NOT be present!)
+❌ Wrong: "Needs more context" (context is in surrounding text)
+```
+
+#### Default Assumptions
+
+**Unless context clearly indicates otherwise:**
+- EventAI curriculum visuals → **Embedded**
+- Social media posts → **Standalone**
+- Conference slides → **Standalone**
+- Blog post graphics → **Embedded**
+- Marketing materials → **Standalone**
+- Academic paper figures → **Embedded**
+
+**When in doubt:** Check the prompt file (`VIS-X.X-GENERATE-INSTRUCTIONS.md`) or ask about intended use.
+
+---
+
 ### 1. Edward Tufte's Principles for Dense Information Display
 
 **Tufte is the authority on data-rich visualization. His principles are essential for information-dense yet clear infographics.**

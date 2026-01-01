@@ -42,14 +42,29 @@ def build_prompt(content, direction, aspect_ratio, variant_num, density='standar
 
     density_instructions = {
         'concise': """
-🎯 INFORMATION DENSITY: CONCISE TIER
-- Headlines + 3-5 key statistics ONLY (no breakdowns)
-- 15-30 second comprehension time
-- 40%+ white space (maximum breathing room)
-- Minimal labels (just enough to understand)
-- No explanatory text, no sub-categories
-- "At-a-glance" understanding
-- Perfect for: Social media, quick pitches, executive summaries
+🚨 CRITICAL: CONCISE TIER - MAXIMUM SIMPLICITY ENFORCED 🚨
+
+ABSOLUTE REQUIREMENTS:
+- HEADLINES + 3-5 KEY STATISTICS ONLY (NO detailed breakdowns, NO sub-categories)
+- 40%+ WHITE SPACE MANDATORY (maximum breathing room, generous margins)
+- MINIMAL LABELS (just enough to understand - NO explanatory paragraphs)
+- 15-30 SECOND GLANCE COMPREHENSION (not deep study)
+- "At-a-glance" understanding is THE GOAL
+
+STRICTLY FORBIDDEN:
+❌ NO explanatory text blocks or annotations
+❌ NO detailed component breakdowns
+❌ NO sub-categories or nested information
+❌ NO paragraph-length descriptions
+❌ NO more than 5 key data points visible
+
+EXAMPLE ACCEPTABLE DENSITY:
+✅ Title: "71% Skills Gap"
+✅ 3-5 headline stats: "3/100 programs", "71% lack skills", "42% zero ROI"
+✅ Simple visual metaphor (cycle diagram, comparison arrows)
+✅ Generous white space (40%+)
+
+This is CONCISE media - quick social sharing, NOT educational deep-dive.
 """,
         'standard': """
 🎯 INFORMATION DENSITY: STANDARD TIER (DEFAULT)
@@ -93,7 +108,16 @@ Dimensions should be approximately 2048 x 2048.
 """
     }
 
-    prompt = f"""Create an infographic with the following specifications:
+    # Extract title from direction (first line starting with #)
+    title = ""
+    for line in direction.split('\n'):
+        if line.strip().startswith('#'):
+            title = line.strip().lstrip('#').strip()
+            break
+
+    prompt = f"""{title}
+
+Create an infographic with the following specifications:
 
 {direction}
 
@@ -120,6 +144,10 @@ VARIANT #{variant_num}: Generate a unique visual approach for this variant.
 async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name, density='standard'):
     """Generate a single infographic in a tab (generation only, download separately)"""
     try:
+        # Capture starting URL (base Gemini URL before generation)
+        starting_url = page.url
+        print(f"   [{variant_num}] 🔗 Starting URL: {starting_url}")
+
         # Build prompt
         prompt_text = build_prompt(content, direction, aspect_ratio, variant_num, density)
         print(f"   [{variant_num}] 📝 Prompt: {len(prompt_text)} chars")
@@ -135,6 +163,24 @@ async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, o
         # Submit
         print(f"   [{variant_num}] ⏳ Submitting...")
         await textbox.press('Enter')
+
+        # Wait for URL change (indicates new conversation created)
+        print(f"   [{variant_num}] 🔍 Waiting for conversation URL...")
+        url_change_start = time.time()
+        conversation_url = starting_url
+
+        # Poll for URL change for up to 10 seconds
+        while time.time() - url_change_start < 10:
+            await asyncio.sleep(0.5)
+            current_url = page.url
+            if current_url != starting_url:
+                conversation_url = current_url
+                elapsed = time.time() - url_change_start
+                print(f"   [{variant_num}] 🔗 Conversation URL: {conversation_url} ({elapsed:.1f}s)")
+                break
+
+        if conversation_url == starting_url:
+            print(f"   [{variant_num}] ⚠️  URL unchanged after 10s (may reuse cached conversation)")
 
         # Wait for image generation (10-15s typical, 180s max for complex infographics)
         print(f"   [{variant_num}] 🖼️  Generating...")
@@ -155,8 +201,8 @@ async def generate_in_tab(page, content, direction, aspect_ratio, variant_num, o
             print(f"   [{variant_num}] ❌ Timeout (180s)")
             return None
 
-        # Return the page for later download
-        return (variant_num, page)
+        # Return the page and conversation URL for later download
+        return (variant_num, page, conversation_url)
 
     except Exception as e:
         print(f"   [{variant_num}] ❌ Error: {e}")
@@ -240,7 +286,8 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
         context = await p.chromium.launch_persistent_context(
             user_data_dir=profile_dir,
             headless=False,
-            channel="chrome"
+            channel="chrome",
+            args=["--isolated"]
         )
 
         # Create tabs for each variant
@@ -313,13 +360,42 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
         gen_time = time.time() - gen_start
         print(f"\n⏱️  Generation time: {gen_time:.1f}s")
 
-        # Filter successful generations
-        successful = [(num, pg) for result in gen_results if result is not None for num, pg in [result]]
+        # Filter successful generations and extract conversation URLs
+        successful = []
+        conversation_urls = {}  # variant_num -> conversation_url
+
+        for result in gen_results:
+            if result is not None:
+                variant_num, pg, conv_url = result
+                successful.append((variant_num, pg))
+                conversation_urls[variant_num] = conv_url
 
         if not successful:
             print("\n❌ No images generated successfully")
             await context.close()
             return []
+
+        # Detect duplicate conversation URLs (indicates cached/reused generations)
+        print(f"\n🔍 Checking for duplicate conversation URLs...")
+        url_to_variants = {}  # conversation_url -> [variant_nums]
+        for variant_num, conv_url in conversation_urls.items():
+            if conv_url not in url_to_variants:
+                url_to_variants[conv_url] = []
+            url_to_variants[conv_url].append(variant_num)
+
+        duplicates_found = False
+        for conv_url, variant_nums in url_to_variants.items():
+            if len(variant_nums) > 1:
+                duplicates_found = True
+                print(f"  ⚠️  DUPLICATE: Variants {variant_nums} share URL: {conv_url}")
+                print(f"      → These variants likely generated IDENTICAL images (cached)")
+            else:
+                print(f"  ✅ Variant {variant_nums[0]}: Unique URL")
+
+        if duplicates_found:
+            print(f"\n⚠️  WARNING: Duplicate conversation URLs detected!")
+            print(f"  Some variants likely produced identical images due to caching.")
+            print(f"  Consider regenerating affected variants or using different prompts.")
 
         # Download sequentially (avoid Chrome simultaneous download limit)
         print(f"\n⬇️  Downloading {len(successful)} images sequentially...")

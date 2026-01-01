@@ -14,6 +14,61 @@
 
 ---
 
+## Context-Aware Generation (CRITICAL)
+
+**ALWAYS identify whether the infographic is standalone or embedded before generating prompts.**
+
+### Standalone vs. Embedded Context
+
+**EMBEDDED (DEFAULT for EventAI curriculum):**
+- **Location:** `/docs/writing/*/visuals/` (textbook/article content)
+- **Usage:** Figure within narrative, referenced as "Figure X.X"
+- **Title:** ❌ NO title on infographic (title is in figure caption or surrounding text)
+- **Context:** ❌ NO context statements (provided by narrative paragraphs)
+- **Design:** Clean, data-focused, minimal explanatory text (labels only)
+
+**STANDALONE:**
+- **Location:** `/docs/social/`, `/docs/marketing/`, presentations
+- **Usage:** Independent visual (social media post, slide, standalone document)
+- **Title:** ✅ Title REQUIRED on infographic (clear, prominent)
+- **Context:** ✅ Context statement needed (subtitle, "What this shows:")
+- **Design:** Self-contained, can be understood without surrounding text
+
+### Prompt Adjustments by Context
+
+**For EMBEDDED infographics (MOST EventAI CURRICULUM):**
+```markdown
+❌ OMIT from prompt:
+- "Add a clear title to the infographic"
+- "Include context statement explaining what this shows"
+- "Self-contained design with full context"
+
+✅ INCLUDE in prompt:
+- "Data visualization only, no title (title will be in figure caption)"
+- "Minimal text: labels and values only, no explanatory paragraphs"
+- "Clean, focused design that integrates with surrounding narrative"
+- "Assume viewer has read surrounding text for context"
+```
+
+**For STANDALONE infographics:**
+```markdown
+✅ INCLUDE in prompt:
+- "Clear, prominent title at top of infographic"
+- "Subtitle or context statement explaining significance"
+- "Self-contained design understandable without external text"
+- "Complete context so viewer needs no supporting material"
+```
+
+### Default Assumption
+
+**Unless location/use case clearly indicates standalone:**
+→ Default to EMBEDDED context (no title on infographic)
+
+**EventAI curriculum visuals in `/docs/writing/*/visuals/`:**
+→ Always EMBEDDED (title in caption, not on visual)
+
+---
+
 ## Information Density Tiers
 
 **CRITICAL: EventAI uses three density tiers. Default to Standard tier unless explicitly requested.**
@@ -536,6 +591,128 @@ CRITICAL REQUIREMENTS:
 - Maximum 2 font families: clean sans-serif for body
 ```
 → **Result:** 89% score (first generation near target!)
+
+---
+
+## Practical Examples: Embedded vs. Standalone
+
+### Example 1: EMBEDDED Infographic (EventAI Curriculum)
+
+**Context:**
+- Location: `docs/writing/2-education/visuals/academic-integration/`
+- Usage: Figure 2.2 in textbook section on "Academic Integration Barriers"
+- Surrounding text provides title, context, and interpretation
+
+**Correct Prompt (NO TITLE):**
+```markdown
+Create an information-dense data visualization showing academic integration barriers.
+
+VISUAL CONTENT ONLY (NO TITLE - title is in figure caption):
+- Three barrier categories with percentage breakdowns
+- Each category shows 3-4 specific obstacles with values
+- Clean, focused design with labels and data only
+- Minimal explanatory text (surrounding narrative provides context)
+
+EventAI Style:
+- Deep purple (#6B46C1), electric coral (#FF6B6B), sky blue (#4299E1)
+- 30%+ white space, clean composition
+- Festival context where appropriate
+- Professional foundation + playful accents
+- NO decorative borders or unnecessary embellishments
+
+Technical:
+- High-resolution, print-ready quality
+- Maximum data-ink ratio (minimal cruft)
+```
+
+**Narrative Integration:**
+```markdown
+## Academic Integration Barriers
+
+Traditional academic institutions face three primary barriers when 
+integrating AI into curricula: structural obstacles (42%), cultural 
+resistance (35%), and resource constraints (23%).
+
+**Figure 2.2: Academic Integration Barriers**
+
+[INFOGRAPHIC HERE - NO TITLE ON IMAGE]
+
+As Figure 2.2 illustrates, structural obstacles represent the largest 
+impediment, comprising curriculum rigidity (18%), accreditation delays 
+(12%), and departmental silos (12%)...
+```
+
+---
+
+### Example 2: STANDALONE Infographic (Social Media)
+
+**Context:**
+- Location: `docs/social/linkedin-posts/`
+- Usage: LinkedIn post graphic (standalone, no surrounding text)
+- Must be self-contained and understandable alone
+
+**Correct Prompt (WITH TITLE):**
+```markdown
+Create a self-contained infographic titled "Academic Integration Barriers" 
+showing why universities struggle to adopt AI in curricula.
+
+MUST INCLUDE:
+- Clear, prominent title: "Academic Integration Barriers"
+- Subtitle: "Why Universities Struggle with AI Curriculum Integration"
+- Context statement: "42% cite structural obstacles as primary barrier"
+
+Three barrier categories with breakdowns:
+- Structural Obstacles (42%)
+- Cultural Resistance (35%)
+- Resource Constraints (23%)
+
+EventAI Style:
+- Deep purple (#6B46C1), electric coral (#FF6B6B), sky blue (#4299E1)
+- Professional + whimsy balance
+- Festival context (academic setting with event metaphors)
+- Self-contained design (understandable without article)
+
+Include:
+- Source citation at bottom
+- EventAI branding (subtle)
+```
+
+**Social Media Post:**
+```markdown
+[INFOGRAPHIC WITH TITLE/SUBTITLE/CONTEXT]
+
+Universities face three primary barriers to AI curriculum integration.
+
+Structural obstacles (42%) lead the way, followed by cultural resistance 
+(35%) and resource constraints (23%).
+
+Learn more: [link to full article]
+```
+
+---
+
+### Example 3: When to Regenerate Due to Context Mismatch
+
+**Problem:** Generated embedded infographic incorrectly includes title
+
+```markdown
+[Narrative text...]
+
+**Figure 2.2: Academic Integration Barriers**
+
+[INFOGRAPHIC WITH "ACADEMIC INTEGRATION BARRIERS" TITLE]  ← WRONG!
+
+[More narrative...]
+```
+
+**Issue:** Title appears twice (redundant), breaks narrative flow
+
+**Solution:** Regenerate with corrected prompt (NO TITLE):
+```bash
+# Update prompt.md to explicitly state NO TITLE
+# Add: "Data visualization only, no title (title in caption)"
+# Regenerate using gemini-generate
+```
 
 ---
 
