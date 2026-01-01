@@ -37,6 +37,46 @@ def read_file_or_text(input_str):
     else:
         return input_str
 
+def get_next_variant_number(output_dir, base_name):
+    """
+    Scan output directory for existing variants and return the next available number.
+
+    Looks for files matching {base_name}-{number}.png or {base_name}-{number}.webp,
+    extracts the numbers, finds the maximum, and returns max + 1.
+
+    Args:
+        output_dir: Path to output directory
+        base_name: Base filename (e.g., 'consent-spectrum')
+
+    Returns:
+        int: Next available variant number (starting from 1 if no variants exist)
+
+    Examples:
+        >>> # If folder has: consent-spectrum-1.png, consent-spectrum-3.png, consent-spectrum-7.webp
+        >>> get_next_variant_number(Path('.'), 'consent-spectrum')
+        8  # Returns max(1, 3, 7) + 1
+    """
+    import re
+
+    output_path = Path(output_dir)
+    if not output_path.exists():
+        return 1
+
+    # Pattern to match: {base_name}-{number}.{ext}
+    pattern = re.compile(rf'^{re.escape(base_name)}-(\d+)\.(png|webp)$')
+
+    existing_numbers = []
+    for file in output_path.iterdir():
+        if file.is_file():
+            match = pattern.match(file.name)
+            if match:
+                existing_numbers.append(int(match.group(1)))
+
+    if not existing_numbers:
+        return 1
+
+    return max(existing_numbers) + 1
+
 def build_prompt(content, direction, aspect_ratio, variant_num, density='standard'):
     """Build combined prompt for Gemini with density tier injection"""
 
@@ -1035,10 +1075,9 @@ def main():
     parser.add_argument('--prompt', help='Prompt file or text (required for generation)')
     parser.add_argument('--output-dir', type=Path, default=Path.cwd(), help='Output directory')
     parser.add_argument('--name', default='infographic', help='Base filename')
-    parser.add_argument('--variants', type=int, default=1, help='Number of variants (1-5, default: 1)')
+    parser.add_argument('--variants', type=int, default=1, help='Number of variants to generate (auto-detects starting number)')
     parser.add_argument('--aspect-ratio', choices=['landscape', 'portrait', 'square'], default='landscape', help='Aspect ratio')
     parser.add_argument('--density', choices=['concise', 'standard', 'detailed'], default='standard', help='Information density tier (default: standard)')
-    parser.add_argument('--batch', type=int, default=1, help='Batch number')
     parser.add_argument('--skip-webp', action='store_true', help='Skip WebP conversion')
     parser.add_argument('--resolution', default='1080p', help='WebP resolution')
     parser.add_argument('--chrome-profile', default='Default', help='Chrome profile')
@@ -1210,8 +1249,10 @@ def main():
     else:
         print(f"  ✅ Prompt matches {args.density} tier expectations")
 
-    # Calculate starting variant number
-    start_num = (args.batch - 1) * args.variants + 1
+    # Auto-detect next available variant number
+    start_num = get_next_variant_number(args.output_dir, args.name)
+    print(f"\n🔍 Auto-detected next variant number: {start_num}")
+    print(f"   (scanned {args.output_dir} for existing {args.name}-*.png/webp files)")
 
     # Generate
     png_files = asyncio.run(generate_infographics(
