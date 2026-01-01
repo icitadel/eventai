@@ -1,196 +1,37 @@
 # Consent Architecture Spectrum
 
-Horizontal spectrum: Coercive to Voluntary consent designs for festival biometric systems
+Horizontal spectrum showing coercive to voluntary consent designs for festival biometric systems. Left-to-right progression from non-compliant (red) to problematic (orange) to compliant (green).
 
-🚨 CRITICAL TEXT SIZING (MUST MEET):
-- Body text: 16-18pt MINIMUM (NOT 12-14pt)
-- Zone labels/headers: 24-28pt
-- Title: 32-36pt
-- Bottom GDPR principles: 14-16pt
-- NO TEXT BELOW 14pt except micro-labels
+## Data Points
 
-🚨 CRITICAL WHITE SPACE (MUST MEET):
-- 35-40% white space of total composition (NOT 25-30%)
-- 12-16px internal padding inside colored zone boxes (NOT minimal)
-- 56-64px margins all sides
-- Generous breathing room between examples (16-24px vertical spacing)
+**Coercive (Left, Red):**
+- Mandatory facial recognition - no alternatives
+- Bundled consent - accept all or entry denied
+- Pre-checked boxes - silence assumed as consent
+- Hidden in terms - paragraph 43 of 50-page doc
 
-🚨 CRITICAL FESTIVAL CONTEXT (ADD VISUAL ELEMENTS):
-- Small RFID wristband icon in biometric entry examples
-- Simplified stage/venue icon in festival entry scenarios
-- Festival-goer silhouettes (NOT generic business people)
-- Entry gate context where applicable
+**Problematic (Middle, Orange):**
+- Default opt-in - biometric on unless disabled
+- Soft wall penalties - manual ID takes 2 hours vs. 3 min facial
+- Confusing interfaces - 15 toggles, unclear language
 
-🚨 CRITICAL REQUIREMENTS: Pure white background #FFFFFF, left-to-right progression (coercive → voluntary), three distinct color zones, real examples, GDPR principles embedded
+**Voluntary (Right, Green):**
+- Clear opt-in - YES/NO equal prominence
+- Genuine alternatives - facial (instant) OR paper ID (5 min) OR manual check (free)
+- Granular controls - security/analytics/marketing separate
+- Plain language - "We scan your face at entry. Not saved. Not for marketing."
+- Easy withdrawal - disable in 30 seconds
 
-## STRUCTURE
+## Style
 
-Horizontal spectrum bar: Left (coercive red) → Middle (problematic orange) → Right (voluntary green)
-Three sections with examples, icons, user agency, legal status
-Top: Spectrum gradient bar
-Bottom: Principle callouts (Article 7, Article 9 requirements)
+- Colors: Red (#FF6B6B), Orange (#ED8936), Green (#48BB78), White background (#FFFFFF)
+- White space: 40%+ composition, generous margins and internal padding
+- Typography: 16pt minimum body text, clean sans-serif
+- Context: Embedded (textbook curriculum), festival entry/biometric scenarios
+- Accessibility: Large ❌ ⚠️ ✅ icons for each zone, compliance labels ("NON-COMPLIANT", "GRAY AREA", "COMPLIANT")
 
-## SPECTRUM SECTIONS (Left to Right)
+## Structure
 
-### COERCIVE (Left, Red #FF6B6B) - Non-Compliant
-Examples (each with icon + title + description):
-1. Mandatory Facial Recognition
-   "Facial ID required. No alternatives."
-   Icon: Prohibition symbol, single path
-   User choice: Zero
-   Legal: PROHIBITED (Article 9 violation)
+Three horizontal color zones with 3-4 examples per zone. Each example shows icon + title + brief description. Bottom section lists GDPR Article 7 (Freely Given Consent) and Article 9 (Special Category - Biometric) principles.
 
-2. Bundled Consent
-   "Accept liability + biometrics + marketing + analytics OR deny entry"
-   Icon: Package/bundle with lock
-   User choice: All or nothing
-   Legal: VIOLATES Article 7 (not granular)
-
-3. Pre-Checked Boxes
-   "☑ Yes, use my face for security" (already checked)
-   Icon: Checked checkbox, no cursor
-   User choice: Must uncheck
-   Legal: ILLEGAL (silence ≠ consent)
-
-4. Hidden in Terms
-   "Biometric policy in paragraph 43(d) of 50-page document"
-   Icon: Scroll, small text, magnifying glass
-   User choice: Not practically available
-   Legal: VIOLATES Article 9 (not informed)
-
-### PROBLEMATIC (Middle, Orange #ED8936) - Gray Area
-Examples:
-1. Default Opt-In
-   "Biometric on by default. Disable in settings."
-   Icon: Toggle switch (on), settings icon
-   User choice: Yes unless user finds disable
-   Legal: LIKELY VIOLATES Article 7
-
-2. Soft Wall Penalties
-   "Facial recognition (3 min) OR ID check (2 hours)"
-   Icon: Two paths, one wide/fast, one narrow/slow
-   User choice: Technically available, practically coercive
-   Legal: VIOLATES autonomy
-
-3. Confusing Interface
-   "15 toggles, unclear language, contradictory options"
-   Icon: Question marks, tangled paths
-   User choice: Confused consent
-   Legal: VIOLATES Article 9 (not clear/understood)
-
-### VOLUNTARY (Right, Green #48BB78) - Compliant
-Examples:
-1. Clear Opt-In
-   "Use facial recognition? YES / NO"
-   Icon: Two equal buttons, clear choice
-   User choice: Affirmative action required
-   Legal: COMPLIANT (Article 7)
-
-2. Genuine Alternatives
-   "Facial ID (instant) OR Paper ID (5 min) OR Manual check (free)"
-   Icon: Three equal paths, no hierarchy
-   User choice: All options equally viable
-   Legal: COMPLIANT (Article 7)
-
-3. Granular Controls
-   "Security: Yes/No. Analytics: Yes/No. Marketing: Yes/No"
-   Icon: Separate toggle switches
-   User choice: Separate consent per purpose
-   Legal: COMPLIANT (Article 9)
-
-4. Plain Language
-   "We scan your face at entry. Not saved. Not for marketing."
-   Icon: Clear text, checkmarks
-   User choice: User understands implications
-   Legal: COMPLIANT (Article 9)
-
-5. Easy Withdrawal
-   "Turn off biometrics anytime (settings, 30 seconds)"
-   Icon: One-click toggle, unlocked
-   User choice: Can change mind without friction
-   Legal: COMPLIANT (Article 7)
-
-## COLOR ZONES (Gradient)
-
-Left (Coercive): Red #FF6B6B (restrictive, oppressive feel)
-  Icons: Locks, prohibition, single path
-  Visual: Dark, closed, no alternatives
-
-Middle (Problematic): Amber #ED8936 (transitional, warning feel)
-  Icons: Question marks, warnings, unclear paths
-  Visual: Unclear choice, friction required
-
-Right (Voluntary): Green #48BB78 (open, accessible feel)
-  Icons: Checkmarks, multiple open paths, unlock
-  Visual: Bright, expansive, choice visible
-
-## PRINCIPLES BOX (Bottom)
-
-Article 7 (Freely Given Consent):
-✅ NOT coerced (choice available without penalty)
-✅ NOT conditional (consent independent of other services)
-✅ Affirmative (active choice, not silence)
-✅ Easily withdrawn (can change mind)
-
-Article 9 (Special Category - Biometric):
-✅ EXPLICIT (higher bar than standard consent)
-✅ Clear language (easily understood, plain language)
-✅ Separate (granular per purpose)
-✅ Alternative available (no penalty for refusal)
-
-User Agency Gradient:
-RED: No choice (prohibited)
-ORANGE: Choice + friction (problematic)
-GREEN: Clear equal choices (compliant)
-
-## STYLE
-
-Background: Pure white #FFFFFF
-Spectrum gradient: Red → Orange → Green (left to right)
-Section backgrounds: Distinct color zones (coercive red, problematic orange, voluntary green)
-Text: White on dark (red/orange), dark slate #2D3748 on light (green)
-Typography: Inter/Roboto bold titles (24-28pt), Source Sans body (16-18pt MINIMUM - NOT 12-14pt)
-Icons: Prohibition/lock (coercive), warning/question (problematic), checkmark/open (voluntary)
-  → Include RFID wristband icons, stage/venue icons, festival-goer silhouettes
-Borders: Midnight slate #2D3748, 2-3px, rounded 8-12px
-Internal padding: 12-16px inside colored zone boxes (generous, NOT cramped)
-Layout: Semi-flat, horizontal flow, generous spacing between examples (16-24px vertical)
-White space: 35-40% breathing room (NOT 25-30% - aim for premium, spacious feel)
-
-## ❌ AVOID (CRITICAL - WILL FAIL EVALUATION IF PRESENT)
-
-- ❌ Text below 14pt (CRITICAL - evaluation showed 10-12pt text = FAIL)
-- ❌ White space <30% (CRITICAL - cramped layouts scored 6/10, need 35-40%)
-- ❌ Minimal internal padding in colored boxes (CRITICAL - causes cramped feel)
-- ❌ Solid colored backgrounds behind text (reduces readability/contrast)
-- ❌ Generic biometric/security imagery without festival context
-- ❌ Missing festival visual elements (no wristbands, stages, festival-goers)
-- ❌ Cream/beige backgrounds (must be pure white #FFFFFF)
-- ❌ Vertical layout (must be horizontal left-to-right)
-- ❌ Unclear spectrum progression
-- ❌ Missing GDPR Article 7 or Article 9 principles
-
-## ✅ REFERENCE
-
-Horizontal spectrum (left=coercive, center=problematic, right=voluntary), color gradient, real consent design patterns, GDPR Article 7 and 9 principles, festival entry/consent scenarios
-
----
-
-## GDPR PRINCIPLES (Verify in visual)
-
-**Article 7 - Conditions for Consent:**
-- Freely given: Not coerced, conditional, or contingent
-- Specific: For specified purposes, not bundled
-- Informed: User knows what they're consenting to
-- Unambiguous: Affirmative action, not silence
-
-**Article 9 - Special Category:**
-- Explicit consent required (higher bar)
-- Clear and easily understood (plain language)
-- Separate per purpose (not bundled)
-- Alternative available without penalty
-
-**Real Festival Examples** (Embed):
-- ❌ Coercive: "Mandatory facial ID, no alternatives"
-- ⚠️ Problematic: "Facial ID (instant) OR manual ID (2 hours)"
-- ✅ Compliant: "Facial ID (instant) OR manual ID (5 min) OR manual check (free). All equally fast."
+Festival context: Entry gates, RFID wristbands, festival-goer silhouettes.

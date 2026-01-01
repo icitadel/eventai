@@ -100,6 +100,141 @@
 
 ---
 
+## Tier-Specific Prompt Generation Guidelines
+
+**CRITICAL: Prompt complexity must match intended density tier. Over-specified prompts create bloat.**
+
+### Concise Tier Prompts (Target: 2000-3000 chars)
+
+**Philosophy:** Essential requirements only. Trust the AI, don't over-specify.
+
+**Required Elements:**
+1. **Visual description** (1-2 sentences): What to show
+2. **Key data points** (3-5 bullets): Specific stats/values to include
+3. **Color palette** (1 line): EventAI hex codes only
+4. **White space target** (1 line): "40%+ white space"
+5. **Context** (1 line): Standalone vs. embedded, festival context
+
+**Optional Elements (use sparingly):**
+- Typography guidance (ONLY if critical, e.g., "16pt minimum body text")
+- Accessibility notes (ONLY if non-standard, e.g., color-blind considerations)
+
+**AVOID in Concise prompts:**
+- ❌ Exhaustive "CRITICAL" sections with 10+ requirements
+- ❌ Detailed AVOID lists (trust AI to avoid obviously bad practices)
+- ❌ Redundant specifications (e.g., "NOT X" when you've stated "Y")
+- ❌ Multiple emoji flags (🚨) - use sparingly if at all
+- ❌ Detailed example structures with line-by-line specifications
+- ❌ Comprehensive style guides embedded in prompt
+
+**Concise Prompt Template:**
+```markdown
+# [Visual Name]
+
+[1-2 sentence description of what to visualize]
+
+## Data Points
+- [Key stat 1]
+- [Key stat 2]
+- [Key stat 3]
+
+## Style
+- Colors: [hex codes]
+- White space: 40%+ composition
+- Context: [embedded/standalone], [festival context note]
+- [Any critical accessibility requirements]
+
+## Structure
+[2-3 sentences describing layout/organization]
+```
+
+**Example Concise Prompt (2,500 chars):**
+```markdown
+# Consent Architecture Spectrum
+
+Horizontal spectrum showing coercive to voluntary consent designs for festival biometric systems.
+
+## Data Points
+- Coercive (left): Mandatory facial recognition, bundled consent, pre-checked boxes, hidden terms
+- Problematic (middle): Default opt-in, soft penalties, confusing interfaces
+- Voluntary (right): Clear opt-in, genuine alternatives, granular controls, plain language
+
+## Style
+- Colors: Red (#FF6B6B), Orange (#ED8936), Green (#48BB78), White background (#FFFFFF)
+- White space: 40%+ composition, generous margins and padding
+- Context: Embedded (textbook), festival entry/biometric scenarios
+- Accessibility: Large icons (❌ ⚠️ ✅) for each zone, zone labels visible
+
+## Structure
+Left-to-right progression with three color zones. Each zone shows 3-4 examples with icons. Bottom includes GDPR Article 7 and 9 principles.
+```
+
+---
+
+### Standard Tier Prompts (Target: 4000-6000 chars)
+
+**Philosophy:** Key requirements clearly specified, with selective detail where needed.
+
+**Required Elements:**
+1. Visual description with purpose statement
+2. Data structure (sections, categories, breakdowns)
+3. Full color palette with application notes
+4. Typography guidelines (sizes for key elements)
+5. White space and layout requirements
+6. Context and accessibility basics
+7. AVOID list (top 5-7 critical items only)
+
+**Optional Elements:**
+- Detailed examples for complex visualizations
+- Specific icon/imagery requirements
+- Print vs. web considerations
+
+**Standard Prompt Complexity:**
+- 4-6 major sections
+- 15-25 total bullet points
+- 1-2 CRITICAL flags (not 5+)
+- Focused AVOID list (5-7 items, not 15+)
+
+---
+
+### Detailed Tier Prompts (Target: 7000-10000 chars)
+
+**Philosophy:** Comprehensive specification for complex educational visuals.
+
+**Required Elements:**
+- All Standard elements plus:
+- Detailed examples with line-by-line specs
+- Comprehensive style guide sections
+- Extensive AVOID list with reasoning
+- Multiple CRITICAL sections if needed
+- Annotation and labeling guidelines
+- Print production specifications
+
+**Use Detailed tier ONLY for:**
+- Complex multi-layer infographics
+- Educational materials requiring precision
+- High-stakes publication visuals
+
+---
+
+## Prompt Complexity Metrics
+
+**Target Ranges:**
+| Tier | Char Count | Sections | Bullets | CRITICAL Flags | AVOID Items |
+|------|-----------|----------|---------|----------------|-------------|
+| Concise | 2000-3000 | 3-4 | 8-12 | 0-1 | 0-3 |
+| Standard | 4000-6000 | 4-6 | 15-25 | 1-2 | 5-7 |
+| Detailed | 7000-10000 | 6-10 | 30-50 | 2-4 | 10-15 |
+
+**Over-Specification Warning:**
+If your prompt exceeds these ranges, you're likely over-specifying. Simplify by:
+1. Removing redundant requirements
+2. Trusting AI capabilities (don't specify obvious things)
+3. Consolidating related requirements
+4. Moving detailed specs to separate style guide document
+
+---
+
 ## Quick Start
 
 ```bash

@@ -486,6 +486,83 @@ def convert_to_webp(png_files, resolution='1080p'):
         print(f"  ⚠️  Conversion failed: {e}")
         return []
 
+def analyze_prompt_complexity(prompt_text, density_tier='standard'):
+    """
+    Analyze prompt complexity and check against density tier expectations.
+
+    Returns: dict with metrics and warnings
+    """
+    import re
+
+    # Count metrics
+    char_count = len(prompt_text)
+    sections = len(re.findall(r'^##\s+', prompt_text, re.MULTILINE))
+    bullets = len(re.findall(r'^\s*[-•]\s+', prompt_text, re.MULTILINE))
+    critical_flags = len(re.findall(r'🚨|CRITICAL', prompt_text, re.IGNORECASE))
+    avoid_items = len(re.findall(r'^\s*[-•]\s*❌', prompt_text, re.MULTILINE))
+
+    # Expected ranges per tier
+    tier_expectations = {
+        'concise': {
+            'char_range': (2000, 3000),
+            'sections_range': (3, 4),
+            'bullets_range': (8, 12),
+            'critical_range': (0, 1),
+            'avoid_range': (0, 3)
+        },
+        'standard': {
+            'char_range': (4000, 6000),
+            'sections_range': (4, 6),
+            'bullets_range': (15, 25),
+            'critical_range': (1, 2),
+            'avoid_range': (5, 7)
+        },
+        'detailed': {
+            'char_range': (7000, 10000),
+            'sections_range': (6, 10),
+            'bullets_range': (30, 50),
+            'critical_range': (2, 4),
+            'avoid_range': (10, 15)
+        }
+    }
+
+    expected = tier_expectations.get(density_tier, tier_expectations['standard'])
+
+    # Check for mismatches
+    warnings = []
+    char_min, char_max = expected['char_range']
+    if char_count < char_min:
+        warnings.append(f"⚠️  Prompt too sparse: {char_count} chars (expected {char_min}-{char_max} for {density_tier})")
+    elif char_count > char_max:
+        warnings.append(f"⚠️  Prompt too verbose: {char_count} chars (expected {char_min}-{char_max} for {density_tier})")
+
+    sec_min, sec_max = expected['sections_range']
+    if sections < sec_min or sections > sec_max:
+        warnings.append(f"⚠️  Section count mismatch: {sections} sections (expected {sec_min}-{sec_max} for {density_tier})")
+
+    bul_min, bul_max = expected['bullets_range']
+    if bullets < bul_min or bullets > bul_max:
+        warnings.append(f"⚠️  Bullet count mismatch: {bullets} bullets (expected {bul_min}-{bul_max} for {density_tier})")
+
+    crit_min, crit_max = expected['critical_range']
+    if critical_flags > crit_max:
+        warnings.append(f"⚠️  Too many CRITICAL flags: {critical_flags} (expected {crit_min}-{crit_max} for {density_tier})")
+
+    avoid_min, avoid_max = expected['avoid_range']
+    if avoid_items > avoid_max:
+        warnings.append(f"⚠️  AVOID list too long: {avoid_items} items (expected {avoid_min}-{avoid_max} for {density_tier})")
+
+    return {
+        'char_count': char_count,
+        'sections': sections,
+        'bullets': bullets,
+        'critical_flags': critical_flags,
+        'avoid_items': avoid_items,
+        'warnings': warnings,
+        'tier': density_tier,
+        'tier_match': len(warnings) == 0
+    }
+
 def main():
     parser = argparse.ArgumentParser(
         description="Generate infographics using Gemini with parallel tabs",
@@ -518,6 +595,24 @@ def main():
     direction = read_file_or_text(args.prompt)
     print(f"  ✅ Content: {len(content)} chars")
     print(f"  ✅ Prompt: {len(direction)} chars")
+
+    # Analyze prompt complexity
+    analysis = analyze_prompt_complexity(direction, args.density)
+    print(f"\n📊 Prompt Complexity Analysis ({args.density} tier):")
+    print(f"  Characters: {analysis['char_count']}")
+    print(f"  Sections: {analysis['sections']}")
+    print(f"  Bullets: {analysis['bullets']}")
+    print(f"  CRITICAL flags: {analysis['critical_flags']}")
+    print(f"  AVOID items: {analysis['avoid_items']}")
+
+    if analysis['warnings']:
+        print(f"\n⚠️  Complexity Warnings ({len(analysis['warnings'])}):")
+        for warning in analysis['warnings']:
+            print(f"  {warning}")
+        print(f"\n💡 Tip: Simplify prompt to match {args.density} tier expectations")
+        print(f"    See: .claude/commands/ig-generate.md (Tier-Specific Prompt Generation Guidelines)")
+    else:
+        print(f"  ✅ Prompt matches {args.density} tier expectations")
 
     # Calculate starting variant number
     start_num = (args.batch - 1) * args.variants + 1
