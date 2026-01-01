@@ -316,7 +316,13 @@ bd close {apply-corrections-task-id} --reason="Applied corrections → draft8, 9
 
 ### Step 4: Update Visual Content Files
 
-**For each visual, update .content.md:**
+**For each visual:**
+
+1. **Update .content.md with corrected data**
+2. **Validate/regenerate .prompt.md using /ig-generate-prompt**
+3. **Run CLI validation to verify tier compliance**
+
+**4.1: Update Content Files**
 
 ```bash
 # Example: timeline.content.md
@@ -339,22 +345,83 @@ bd close {apply-corrections-task-id} --reason="Applied corrections → draft8, 9
 - 2025 Baseline: 50-55% major, ~5% small  # ✓ CORRECTED
 ```
 
-**Update .prompt.md with improvements:**
+**4.2: Validate or Regenerate Prompts with Text Pattern Enforcement**
 
+**🔴 CRITICAL: Check existing prompt for text pattern violations:**
+
+```bash
+# Validate existing prompt
+gemini-generate --validate-prompt {visual-name}.prompt.md --density concise
+
+# Example output:
+# ❌ INVALID: CONCISE TIER
+# ⚠️  Text Pattern Issues:
+#   ❌ Drilldown pattern: 'Mandatory facial recognition - no alternatives' (should be label only)
+#   ❌ Too many words: 'Bundled consent - accept all or entry denied' (8 words, max 5)
+```
+
+**If text pattern violations found, regenerate prompt:**
+
+```bash
+# Option A: Use /ig-generate-prompt to create tier-appropriate prompt
+/ig-generate-prompt consent-spectrum concise --output={visual-name}.prompt.md
+
+# Option B: Manual fix following tier guidelines:
+# - Concise: 3-5 words MAX per bullet, NO drilldown pattern (topic - detail)
+# - Standard: 10-15 words MAX, one level of detail allowed
+# - Detailed: Multi-level explanations expected
+```
+
+**Example fix (Concise tier):**
+
+**Before (WRONG - drilldown pattern):**
 ```markdown
-# Before
-Create a STANDARD-tier timeline infographic...
+## Data Points
 
-# After (improved based on evaluation feedback)
-# AI Adoption Timeline: Festivals 2025-2035  # ← Title first (Gemini indexing)
+**Coercive (Left, Red):**
+- Mandatory facial recognition - no alternatives
+- Bundled consent - accept all or entry denied
+- Pre-checked boxes - silence assumed as consent
+- Hidden in terms - paragraph 43 of 50-page doc
+```
 
-Create a STANDARD-tier timeline infographic showing AI adoption in festivals from 2025 to 2035 across three distinct phases.
+**After (CORRECT - labels only, 3-5 words):**
+```markdown
+## Data Points
+
+**Coercive (Left, Red):**
+- Mandatory facial recognition
+- Bundled consent
+- Pre-checked boxes
+- Hidden in terms
+```
+
+**Why this matters:** The `[topic - detail]` pattern signals NotebookLM to add explanatory text on the infographic, which:
+- Creates visual clutter (drilldown text)
+- Reduces white space (AI adds paragraphs)
+- Inflates tier (Concise → Standard)
+
+**Concise tier philosophy:** Trust the AI. "Mandatory facial recognition" is enough - the AI understands the context. Don't hand-hold with explanations.
+
+**4.3: CLI Validation (Required)**
+
+```bash
+# Validate updated prompt
+gemini-generate --validate-prompt {visual-name}.prompt.md --density concise
+
+# Expected output:
+# ✅ VALID: CONCISE TIER
+# Concepts: 12 (expected: 5-16)
+# Depth: 1 levels (expected: 1-2)
+# Complexity: 12
+# No text pattern issues
 ```
 
 **Update Beads:**
 ```bash
 bd close {update-content-task-id} --reason="Updated .content.md with corrected data"
-bd close {update-prompt-task-id} --reason="Updated .prompt.md with title-first format"
+bd close {validate-prompt-task-id} --reason="Validated .prompt.md - fixed text patterns"
+bd close {update-prompt-task-id} --reason="Updated .prompt.md - Concise tier compliant"
 ```
 
 ### Step 5: Regenerate Visuals

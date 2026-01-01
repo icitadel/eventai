@@ -486,53 +486,205 @@ def convert_to_webp(png_files, resolution='1080p'):
         print(f"  ⚠️  Conversion failed: {e}")
         return []
 
+def categorize_section(heading_text, heading_level):
+    """
+    Categorize a section heading as content or meta.
+    
+    Rules:
+    - # H1 (title) → ALWAYS exclude
+    - ## Style → ALWAYS exclude
+    - ## Structure → ALWAYS exclude
+    - Everything else → Include as content (default)
+    
+    Args:
+        heading_text: The heading text (e.g., "Data Points", "Style")
+        heading_level: 1 for #, 2 for ##, etc.
+    
+    Returns:
+        'title', 'content', or 'meta'
+    """
+    heading_stripped = heading_text.strip()
+    heading_lower = heading_stripped.lower()
+    
+    # H1 title - always exclude
+    if heading_level == 1:
+        return 'title'
+    
+    # Explicit meta sections (always exclude)
+    if heading_lower in ['style', 'structure']:
+        return 'meta'
+    
+    # Default: treat as content
+    return 'content'
+
 def analyze_prompt_structure(prompt_text):
     """
     Extract structural metrics from Markdown prompt: concepts and hierarchy depth.
-
-    Concepts = sections + top-level bullets
+    
+    IMPORTANT: Only counts concepts from CONTENT sections (excludes title, Style, Structure).
+    
+    Concepts = content sections + top-level bullets in content sections
     Depth = max(heading depth, list nesting depth)
-
-    Returns: dict with concepts, depth, complexity, and details
+    
+    Returns: dict with concepts, depth, complexity, section breakdown, and details
     """
     import re
-
-    # Count headings and get max depth
-    headings = re.findall(r'^(#{1,6})\s', prompt_text, re.MULTILINE)
-    max_heading_depth = max(len(h) for h in headings) if headings else 0
-    heading_count = len([h for h in headings if len(h) == 2])  # ## sections
-
-    # Count top-level bullets (not indented)
+    
+    # Parse document structure
     lines = prompt_text.split('\n')
-    top_level_bullets = 0
+    
+    # Track current section and its category
+    current_section = None
+    current_section_type = None
+    
+    # Metrics
+    title = None
+    content_sections = []
+    meta_sections = []
+    content_bullets = 0
+    all_bullets = 0
+    max_heading_depth = 0
     max_list_depth = 0
-
+    
     for line in lines:
+        # Check for heading
+        heading_match = re.match(r'^(#{1,6})\s+(.+)$', line)
+        if heading_match:
+            hashes, heading_text = heading_match.groups()
+            heading_level = len(hashes)
+            max_heading_depth = max(max_heading_depth, heading_level)
+            
+            section_type = categorize_section(heading_text, heading_level)
+            
+            # Track title separately (never counts)
+            if section_type == 'title':
+                title = heading_text
+                current_section = None
+                current_section_type = None
+                continue
+            
+            # Only track ## level 2 sections (top-level content sections)
+            if heading_level == 2:
+                current_section = heading_text
+                current_section_type = section_type
+                
+                if section_type == 'content':
+                    content_sections.append(heading_text)
+                else:  # meta
+                    meta_sections.append(heading_text)
+            continue
+        
+        # Check for bullet points
         stripped = line.lstrip()
         if stripped.startswith(('-', '*', '•')):
             # Calculate indent level (each 2 spaces = 1 level)
             indent = len(line) - len(stripped)
             depth_level = (indent // 2) + 1
             max_list_depth = max(max_list_depth, depth_level)
-
-            if indent == 0:  # Top-level bullet
-                top_level_bullets += 1
-
-    # Concept count: sections + top-level bullets
-    concepts = heading_count + top_level_bullets
-
+            
+            # Only count top-level bullets
+            if indent == 0:
+                all_bullets += 1
+                # Only count if in content section
+                if current_section_type == 'content':
+                    content_bullets += 1
+    
+    # Concept count: ONLY content sections + bullets in content sections
+    concepts = len(content_sections) + content_bullets
+    
     # Hierarchy depth: max of heading depth or list depth
     depth = max(max_heading_depth, max_list_depth)
-
+    
     return {
         'concepts': concepts,
         'depth': depth,
         'complexity': concepts * depth,
-        'headings': heading_count,
-        'bullets': top_level_bullets,
+        'title': title,
+        'content_sections': content_sections,
+        'content_bullets': content_bullets,
+        'meta_sections': meta_sections,
+        'total_sections': len(content_sections) + len(meta_sections),
+        'total_bullets': all_bullets,
         'max_heading_depth': max_heading_depth,
-        'max_list_depth': max_list_depth
+        'max_list_depth': max_list_depth,
+        # Legacy fields for compatibility
+        'headings': len(content_sections),  # Only content sections
+        'bullets': content_bullets  # Only content bullets
     }
+
+def validate_text_patterns(prompt_text, tier):
+    """
+    Validate text patterns per tier (3-5 words for Concise, etc.).
+
+    Critical: Tier density comes from TEXT PER CONCEPT, not concept count.
+    - Concise: 3-5 words max, no drilldown (topic - detail)
+    - Standard: 10-15 words max, one level of detail allowed
+    - Detailed: Multi-level explanations expected
+
+    Returns: list of issues (empty if all patterns correct)
+    """
+    import re
+
+    issues = []
+
+    # Extract content bullets (not from Style or Structure sections)
+    current_section_type = None
+    content_bullets = []
+
+    for line in prompt_text.split('\n'):
+        # Track section type
+        heading_match = re.match(r'^(#{1,6})\s+(.+)$', line)
+        if heading_match:
+            heading_level = len(heading_match.group(1))
+            heading_text = heading_match.group(2).strip()
+
+            if heading_level == 2:
+                section_type = categorize_section(heading_text, heading_level)
+                current_section_type = section_type
+
+        # Extract bullets from content sections only
+        bullet_match = re.match(r'^\s*[-•]\s+(.+)$', line)
+        if bullet_match and current_section_type == 'content':
+            bullet_text = bullet_match.group(1).strip()
+            # Remove bold markers for word counting
+            bullet_text = re.sub(r'\*\*(.+?)\*\*', r'\1', bullet_text)
+            content_bullets.append(bullet_text)
+
+    # Tier-specific validation
+    if tier == 'concise':
+        for bullet in content_bullets:
+            # Check for drilldown pattern (topic - detail or topic: detail)
+            if ' - ' in bullet or ': ' in bullet:
+                issues.append(f"❌ Drilldown pattern in Concise tier: '{bullet[:50]}...' (should be label only)")
+
+            # Check word count (3-5 words max)
+            words = bullet.split()
+            if len(words) > 5:
+                issues.append(f"❌ Too many words in Concise tier: '{bullet[:50]}...' ({len(words)} words, max 5)")
+
+            # Check for multi-sentence
+            if '. ' in bullet and not bullet.endswith('.'):
+                issues.append(f"❌ Multi-sentence in Concise tier: '{bullet[:50]}...' (should be single label)")
+
+    elif tier == 'standard':
+        for bullet in content_bullets:
+            # Check word count (10-15 words max)
+            words = bullet.split()
+            if len(words) > 15:
+                issues.append(f"⚠️  Too many words in Standard tier: '{bullet[:50]}...' ({len(words)} words, max 15)")
+
+            # Check for multi-sentence (more than one period not at end)
+            periods = bullet.count('. ')
+            if periods > 1:
+                issues.append(f"❌ Multi-sentence in Standard tier: '{bullet[:50]}...' (max 1 sentence)")
+
+    elif tier == 'detailed':
+        # Check for nested bullets (should have multi-level structure)
+        has_nested = re.search(r'^\s{2,}-', prompt_text, re.MULTILINE)
+        if not has_nested:
+            issues.append("⚠️  No nested bullets in Detailed tier (should have multi-level structure)")
+
+    return issues
 
 def validate_prompt_against_tier(prompt_path, tier='concise'):
     """
@@ -551,27 +703,30 @@ def validate_prompt_against_tier(prompt_path, tier='concise'):
     # Structural analysis
     metrics = analyze_prompt_structure(prompt_text)
 
-    # Tier expectations
+    # Text pattern validation (NEW: checks text per concept)
+    text_issues = validate_text_patterns(prompt_text, tier)
+
+    # Tier expectations (adjusted based on real-world prompts)
     tier_specs = {
         'concise': {
-            'concepts': (5, 8),
+            'concepts': (5, 16),
             'depth': (1, 2),
-            'description': 'Few concepts (5-8), shallow depth (1-2 levels)'
+            'description': 'Few to moderate concepts (5-16), shallow depth (1-2 levels)'
         },
         'standard_breadth': {
-            'concepts': (10, 15),
+            'concepts': (15, 25),
             'depth': (1, 2),
-            'description': 'Many concepts (10-15) at shallow depth (1-2 levels) - BREADTH'
+            'description': 'Many concepts (15-25) at shallow depth (1-2 levels) - BREADTH'
         },
         'standard_depth': {
-            'concepts': (5, 8),
+            'concepts': (8, 15),
             'depth': (3, 3),
-            'description': 'Few concepts (5-8) at medium depth (3 levels) - DEPTH'
+            'description': 'Moderate concepts (8-15) at medium depth (3 levels) - DEPTH'
         },
         'detailed': {
-            'concepts': (20, 30),
+            'concepts': (25, 40),
             'depth': (4, 10),
-            'description': 'Many concepts (20-30+) AND deep detail (4+ levels) - BOTH'
+            'description': 'Many concepts (25-40+) AND deep detail (4+ levels) - BOTH'
         }
     }
 
@@ -603,11 +758,12 @@ def validate_prompt_against_tier(prompt_path, tier='concise'):
         expected = spec
 
     return {
-        'valid': valid,
+        'valid': valid and len(text_issues) == 0,  # Must pass both structure AND text patterns
         'tier': tier,
         'variant': variant,
         'metrics': metrics,
         'expected': expected,
+        'text_issues': text_issues,  # NEW: text pattern validation results
         'prompt_path': prompt_path
     }
 
@@ -905,9 +1061,28 @@ def main():
             expected = result['expected']
             
             print(f"\n📈 Structural Metrics:")
-            print(f"  Concepts: {metrics['concepts']} (expected: {expected['concepts'][0]}-{expected['concepts'][1]})")
-            print(f"    - Sections (## headings): {metrics['headings']}")
-            print(f"    - Top-level bullets: {metrics['bullets']}")
+            # Show title (excluded from count)
+            if metrics.get('title'):
+                print(f"\n  Title: \"{metrics['title']}\" (excluded from count)")
+            
+            print(f"\n  Concepts: {metrics['concepts']} (expected: {expected['concepts'][0]}-{expected['concepts'][1]})")
+            print(f"    Breakdown:")
+            
+            # Content sections (counted)
+            if metrics.get('content_sections'):
+                print(f"      ✅ Content sections: {len(metrics['content_sections'])} (counted)")
+                for section in metrics['content_sections']:
+                    print(f"         • {section}")
+            
+            # Content bullets (counted)
+            if metrics.get('content_bullets', 0) > 0:
+                print(f"      ✅ Content bullets: {metrics['content_bullets']} (counted)")
+            
+            # Meta sections (ignored)
+            if metrics.get('meta_sections'):
+                print(f"      ⏭️  Meta sections: {len(metrics['meta_sections'])} (ignored)")
+                for section in metrics['meta_sections']:
+                    print(f"         • {section}")
             print(f"  Depth: {metrics['depth']} levels (expected: {expected['depth'][0]}-{expected['depth'][1]})")
             print(f"    - Max heading depth: {metrics['max_heading_depth']}")
             print(f"    - Max list nesting: {metrics['max_list_depth']}")
@@ -920,18 +1095,33 @@ def main():
                 elif result['variant'] == 'depth':
                     print(f"   Strategy: Deep (few concepts, deep detail)")
             
+            # Text pattern issues (always show if present, even if structural metrics pass)
+            if result['text_issues']:
+                print(f"\n⚠️  Text Pattern Issues:")
+                for issue in result['text_issues']:
+                    print(f"  {issue}")
+
+            # Structural issues
             if not result['valid']:
-                print(f"\n⚠️  Issues:")
+                structural_issues = []
                 if metrics['concepts'] < expected['concepts'][0]:
-                    print(f"  - Too few concepts: {metrics['concepts']} < {expected['concepts'][0]}")
+                    structural_issues.append(f"  - Too few concepts: {metrics['concepts']} < {expected['concepts'][0]}")
                 elif metrics['concepts'] > expected['concepts'][1]:
-                    print(f"  - Too many concepts: {metrics['concepts']} > {expected['concepts'][1]}")
-                
+                    structural_issues.append(f"  - Too many concepts: {metrics['concepts']} > {expected['concepts'][1]}")
+
                 if metrics['depth'] < expected['depth'][0]:
-                    print(f"  - Too shallow: {metrics['depth']} < {expected['depth'][0]} levels")
+                    structural_issues.append(f"  - Too shallow: {metrics['depth']} < {expected['depth'][0]} levels")
                 elif metrics['depth'] > expected['depth'][1]:
-                    print(f"  - Too deep: {metrics['depth']} > {expected['depth'][1]} levels")
-            
+                    structural_issues.append(f"  - Too deep: {metrics['depth']} > {expected['depth'][1]} levels")
+
+                if structural_issues and not result['text_issues']:
+                    print(f"\n⚠️  Structural Issues:")
+                elif structural_issues and result['text_issues']:
+                    print(f"\n⚠️  Structural Issues:")
+
+                for issue in structural_issues:
+                    print(issue)
+
             sys.exit(0 if result['valid'] else 1)
         
         elif args.validate_image:

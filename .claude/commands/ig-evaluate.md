@@ -207,6 +207,55 @@ Unless clearly indicated otherwise, visuals in `/docs/writing/*/visuals/` are **
 "Using custom evaluation criteria: [list provided criteria]"
 ```
 
+**Step 5: Validate Source Prompt (if available)**
+
+**🔴 CRITICAL: Check prompt file for text pattern violations before evaluating infographic.**
+
+```bash
+# Locate prompt file
+prompt_file=docs/writing/{topic}/visuals/{name}/{name}.prompt.md
+
+# Run CLI validation
+gemini-generate --validate-prompt $prompt_file --density {tier}
+```
+
+**Why this matters:**
+- If the source prompt has text pattern violations (e.g., drilldown patterns in Concise tier), the infographic will inherit those issues
+- Text pattern problems in the prompt → visual clutter on the infographic
+- Validates prompt BEFORE judging infographic quality
+
+**Prompt validation results feed into infographic evaluation:**
+
+```markdown
+## Prompt Validation Results
+
+**File:** consent-spectrum.prompt.md
+**Declared tier:** Concise
+
+**CLI Validation:**
+- Structural metrics: ✅ PASS (16 concepts, 2 depth)
+- Text patterns: ❌ FAIL (12 drilldown violations)
+
+**Text Pattern Issues:**
+- ❌ Drilldown pattern: "Mandatory facial recognition - no alternatives" (should be label only)
+- ❌ Too many words: "Bundled consent - accept all or entry denied" (8 words, max 5 for Concise)
+
+**Impact on Infographic:**
+- Expect explanatory text on infographic (AI generated drilldown content)
+- Likely reduced white space (text blocks added)
+- May inflate tier (Concise prompt → Standard infographic)
+
+**Recommendation:** Fix prompt text patterns first, then regenerate infographic
+```
+
+**If prompt validation fails:**
+1. Document issues in evaluation report
+2. Note that infographic inherited prompt problems
+3. Recommend prompt revision + regeneration
+4. Do NOT penalize infographic for prompt-sourced issues (separate concern)
+
+---
+
 ### Phase 2: Visual Analysis
 
 **Step 1: EventAI Style Compliance**
