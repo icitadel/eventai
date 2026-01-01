@@ -51,6 +51,9 @@ Consider the festival applications. When a vendor proposes AI-driven dynamic pri
 
 The gap is fundamental: while functional AI literacy teaches *how to use* ChatGPT to write a festival schedule, critical AI literacy asks *whether AI-generated schedules prioritize sponsor visibility over attendee experience*.
 
+![Functional vs. Critical AI Literacy](../visuals/literacy-comparison/literacy-comparison-1.webp)
+*Figure 1: Functional AI literacy focuses on tool usage and "how/what" questions, while critical AI literacy addresses ethical evaluation through "why/who" questions and frameworks for assessing bias and power dynamics.*
+
 ---
 
 ## The Academic Void: Where Three Programs Stand Alone
@@ -66,6 +69,9 @@ Penn State's Master of Professional Studies in Hospitality Management offers HM 
 For event management programs specifically, the gap widens to a void. Leeds Beckett University's UK Centre for Events Management—one of the largest dedicated programs globally—includes "websites and event technologies such as e-ticketing, QR codes, and RFID" but offers no AI, machine learning, or data analytics modules. Technology is "embedded" but not explicitly AI-focused. UCF Rosen College lists an HFT 3443 Event Technology course, but no documented AI content exists. While their Hospitality+ Center for Innovation announced an "AI-Enhanced Guest Services Lab," this remains research-level infrastructure, not integrated into degree requirements.
 
 The implication is unavoidable: students graduating with event management degrees in 2025 receive zero systematic AI education specific to their discipline. They may take general university AI literacy courses—like the University of Florida's institution-wide requirement—but event-specific applications, ethical dilemmas, and industry case studies are absent.
+
+![Academic AI Integration Gap](../visuals/academic-integration/academic-integration-4.webp)
+*Figure 2: Only three hospitality programs (University of Surrey, Southern Cross University, Penn State) across major universities explicitly integrate AI into curricula, while zero dedicated event management programs offer AI literacy courses.*
 
 ---
 
@@ -115,6 +121,9 @@ A semester-long course could address this gap. The first four weeks would cover 
 
 Weeks nine through twelve would tackle ethical dilemmas and decision-making: algorithmic bias using the NIST facial recognition study, documented wrongful arrests, and audit methodologies; power and values with case studies like dynamic pricing backlash; and a student project conducting ethical assessment of a proposed AI system, such as evaluating a facial recognition vendor proposal using regulatory, technical, and values-based criteria. The final three weeks would incorporate industry perspectives and future trends through guest lectures from festival tech directors, privacy advocates, and AI vendors; a debate on questions like "Should festivals use facial recognition even with opt-in consent?"; and a final paper developing an AI deployment policy for a fictional festival that balances operational goals with ethical constraints.
 
+![Proposed AI Literacy Curriculum](../visuals/curriculum-structure/curriculum-structure-3.webp)
+*Figure 3: A 15-week semester-long curriculum progression building from technical fundamentals (Weeks 1-4) through critical evaluation frameworks (Weeks 5-8) and ethical decision-making (Weeks 9-12) to industry integration and policy development (Weeks 13-15).*
+
 ---
 
 ## The 71% Skills Gap and Who Bears the Cost
@@ -122,6 +131,9 @@ Weeks nine through twelve would tackle ethical dilemmas and decision-making: alg
 A 2024 UK study found that 71% of hospitality organizations report AI/robotics skills gaps, yet only 3% use higher education for digital training. This creates a vicious cycle. Industry says: "Universities don't teach relevant AI skills, so we train in-house or hire external consultants." Universities respond: "Industry changes so fast we can't keep curricula current, and our faculty lack AI expertise." The consequence falls on graduates: entry-level festival professionals lack both functional skills for operating AI tools and critical frameworks for evaluating ethical implications, forcing them to learn on the job—often from vendors with incentives to oversell capabilities and downplay risks.
 
 The societal consequence extends beyond individual careers. AI systems are deployed at festivals without adequate oversight because decision-makers lack training to recognize when deployment is inappropriate, non-compliant, or harmful. The documented failures suggest that skills gaps have real consequences: €200,000 in GDPR fines for events deploying biometric systems without adequate data protection impact assessments, wrongful arrests via facial recognition, and 42% of organizations reporting zero ROI on AI investments—often because tools were deployed without understanding limitations or fit.
+
+![Skills Gap Vicious Cycle](../visuals/skills-gap-cycle/skills-gap-cycle-3.webp)
+*Figure 4: The vicious cycle reinforcing AI skills gaps in event management education. Universities can't keep up with industry changes, so organizations train in-house. Graduates lack critical literacy, forcing reliance on vendor-led training that perpetuates the gap.*
 
 ---
 
