@@ -486,6 +486,307 @@ def convert_to_webp(png_files, resolution='1080p'):
         print(f"  ⚠️  Conversion failed: {e}")
         return []
 
+def analyze_prompt_structure(prompt_text):
+    """
+    Extract structural metrics from Markdown prompt: concepts and hierarchy depth.
+
+    Concepts = sections + top-level bullets
+    Depth = max(heading depth, list nesting depth)
+
+    Returns: dict with concepts, depth, complexity, and details
+    """
+    import re
+
+    # Count headings and get max depth
+    headings = re.findall(r'^(#{1,6})\s', prompt_text, re.MULTILINE)
+    max_heading_depth = max(len(h) for h in headings) if headings else 0
+    heading_count = len([h for h in headings if len(h) == 2])  # ## sections
+
+    # Count top-level bullets (not indented)
+    lines = prompt_text.split('\n')
+    top_level_bullets = 0
+    max_list_depth = 0
+
+    for line in lines:
+        stripped = line.lstrip()
+        if stripped.startswith(('-', '*', '•')):
+            # Calculate indent level (each 2 spaces = 1 level)
+            indent = len(line) - len(stripped)
+            depth_level = (indent // 2) + 1
+            max_list_depth = max(max_list_depth, depth_level)
+
+            if indent == 0:  # Top-level bullet
+                top_level_bullets += 1
+
+    # Concept count: sections + top-level bullets
+    concepts = heading_count + top_level_bullets
+
+    # Hierarchy depth: max of heading depth or list depth
+    depth = max(max_heading_depth, max_list_depth)
+
+    return {
+        'concepts': concepts,
+        'depth': depth,
+        'complexity': concepts * depth,
+        'headings': heading_count,
+        'bullets': top_level_bullets,
+        'max_heading_depth': max_heading_depth,
+        'max_list_depth': max_list_depth
+    }
+
+def validate_prompt_against_tier(prompt_path, tier='concise'):
+    """
+    Analyze prompt structure and validate against density tier.
+
+    Args:
+        prompt_path: Path to prompt.md file
+        tier: 'concise', 'standard', or 'detailed'
+
+    Returns:
+        dict with validation results and metrics
+    """
+    with open(prompt_path, 'r', encoding='utf-8') as f:
+        prompt_text = f.read()
+
+    # Structural analysis
+    metrics = analyze_prompt_structure(prompt_text)
+
+    # Tier expectations
+    tier_specs = {
+        'concise': {
+            'concepts': (5, 8),
+            'depth': (1, 2),
+            'description': 'Few concepts (5-8), shallow depth (1-2 levels)'
+        },
+        'standard_breadth': {
+            'concepts': (10, 15),
+            'depth': (1, 2),
+            'description': 'Many concepts (10-15) at shallow depth (1-2 levels) - BREADTH'
+        },
+        'standard_depth': {
+            'concepts': (5, 8),
+            'depth': (3, 3),
+            'description': 'Few concepts (5-8) at medium depth (3 levels) - DEPTH'
+        },
+        'detailed': {
+            'concepts': (20, 30),
+            'depth': (4, 10),
+            'description': 'Many concepts (20-30+) AND deep detail (4+ levels) - BOTH'
+        }
+    }
+
+    # Validate
+    if tier == 'standard':
+        # Check if it matches breadth OR depth variant
+        spec_breadth = tier_specs['standard_breadth']
+        spec_depth = tier_specs['standard_depth']
+
+        matches_breadth = (
+            spec_breadth['concepts'][0] <= metrics['concepts'] <= spec_breadth['concepts'][1] and
+            spec_breadth['depth'][0] <= metrics['depth'] <= spec_breadth['depth'][1]
+        )
+        matches_depth = (
+            spec_depth['concepts'][0] <= metrics['concepts'] <= spec_depth['concepts'][1] and
+            metrics['depth'] == spec_depth['depth'][0]
+        )
+
+        valid = matches_breadth or matches_depth
+        variant = 'breadth' if matches_breadth else 'depth' if matches_depth else 'neither'
+        expected = spec_breadth if matches_breadth else spec_depth if matches_depth else spec_breadth
+    else:
+        spec = tier_specs.get(tier, tier_specs['concise'])
+        valid = (
+            spec['concepts'][0] <= metrics['concepts'] <= spec['concepts'][1] and
+            spec['depth'][0] <= metrics['depth'] <= spec['depth'][1]
+        )
+        variant = None
+        expected = spec
+
+    return {
+        'valid': valid,
+        'tier': tier,
+        'variant': variant,
+        'metrics': metrics,
+        'expected': expected,
+        'prompt_path': prompt_path
+    }
+
+def analyze_infographic_structure(image_path):
+    """
+    Analyze infographic via OCR to extract concepts and hierarchy depth.
+
+    Uses Tesseract OCR to extract text with bounding boxes, then:
+    - Clusters font sizes (from bbox heights) into hierarchy levels
+    - Counts large text blocks as concepts
+
+    Returns: dict with concepts, depth, complexity, and text blocks
+
+    NOTE: Requires tesseract-ocr installed (brew install tesseract on macOS)
+    """
+    try:
+        from PIL import Image
+        import pytesseract
+        import numpy as np
+        from sklearn.cluster import KMeans
+    except ImportError:
+        print("ERROR: Required libraries not installed")
+        print("Install with: pip install pillow pytesseract scikit-learn")
+        print("Also install tesseract: brew install tesseract (macOS) or apt-get install tesseract-ocr (Linux)")
+        return {
+            'concepts': 0,
+            'depth': 0,
+            'complexity': 0,
+            'text_blocks': [],
+            'error': 'Missing dependencies'
+        }
+
+    # Run OCR with bounding boxes
+    image = Image.open(image_path)
+    ocr_data = pytesseract.image_to_data(image, output_type=pytesseract.Output.DICT)
+
+    # Extract text blocks with sizes (bbox height = font size proxy)
+    text_blocks = []
+    for i in range(len(ocr_data['text'])):
+        text = ocr_data['text'][i].strip()
+        if text and len(text) > 2:  # Skip single chars
+            height = ocr_data['height'][i]
+            text_blocks.append({
+                'text': text,
+                'size': height,
+                'x': ocr_data['left'][i],
+                'y': ocr_data['top'][i],
+                'width': ocr_data['width'][i],
+                'height': height
+            })
+
+    if not text_blocks:
+        return {
+            'concepts': 0,
+            'depth': 0,
+            'complexity': 0,
+            'text_blocks': [],
+            'error': 'No text detected in image'
+        }
+
+    # Cluster font sizes into hierarchy levels (k-means)
+    sizes = np.array([b['size'] for b in text_blocks]).reshape(-1, 1)
+    n_clusters = min(4, len(set(sizes.flatten())))  # Max 4 levels, or fewer if not enough variety
+
+    if n_clusters > 1:
+        kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+        labels = kmeans.fit_predict(sizes)
+
+        # Sort clusters by size (largest = level 1, smallest = level n)
+        cluster_sizes = sorted([(i, kmeans.cluster_centers_[i][0]) for i in range(n_clusters)],
+                              key=lambda x: x[1], reverse=True)
+
+        # Assign hierarchy levels to text blocks
+        for i, block in enumerate(text_blocks):
+            cluster_id = labels[i]
+            # Find level (1 = largest, n = smallest)
+            level = next(idx + 1 for idx, (cid, _) in enumerate(cluster_sizes) if cid == cluster_id)
+            block['level'] = level
+
+        # Count concepts (large text blocks = level 1 or 2)
+        concepts = sum(1 for b in text_blocks if b.get('level', 99) <= 2)
+        depth = n_clusters
+    else:
+        # All same size - flat hierarchy
+        for block in text_blocks:
+            block['level'] = 1
+        concepts = len(text_blocks)
+        depth = 1
+
+    return {
+        'concepts': concepts,
+        'depth': depth,
+        'complexity': concepts * depth,
+        'text_blocks': text_blocks,
+        'n_clusters': n_clusters
+    }
+
+def validate_image_against_tier(image_path, tier='concise'):
+    """
+    Analyze infographic via OCR and validate against density tier.
+
+    Args:
+        image_path: Path to image file (.png, .webp, .jpg)
+        tier: 'concise', 'standard', or 'detailed'
+
+    Returns:
+        dict with validation results and metrics
+    """
+    # OCR extraction with layout
+    metrics = analyze_infographic_structure(image_path)
+
+    if 'error' in metrics:
+        return {
+            'valid': False,
+            'tier': tier,
+            'variant': None,
+            'metrics': metrics,
+            'error': metrics['error']
+        }
+
+    # Use same tier specs as prompts
+    tier_specs = {
+        'concise': {
+            'concepts': (5, 8),
+            'depth': (1, 2),
+            'description': 'Few concepts (5-8), shallow depth (1-2 levels)'
+        },
+        'standard_breadth': {
+            'concepts': (10, 15),
+            'depth': (1, 2),
+            'description': 'Many concepts (10-15) at shallow depth (1-2 levels) - BREADTH'
+        },
+        'standard_depth': {
+            'concepts': (5, 8),
+            'depth': (3, 3),
+            'description': 'Few concepts (5-8) at medium depth (3 levels) - DEPTH'
+        },
+        'detailed': {
+            'concepts': (20, 30),
+            'depth': (4, 10),
+            'description': 'Many concepts (20-30+) AND deep detail (4+ levels) - BOTH'
+        }
+    }
+
+    # Validate (same logic as prompts)
+    if tier == 'standard':
+        spec_breadth = tier_specs['standard_breadth']
+        spec_depth = tier_specs['standard_depth']
+
+        matches_breadth = (
+            spec_breadth['concepts'][0] <= metrics['concepts'] <= spec_breadth['concepts'][1] and
+            spec_breadth['depth'][0] <= metrics['depth'] <= spec_breadth['depth'][1]
+        )
+        matches_depth = (
+            spec_depth['concepts'][0] <= metrics['concepts'] <= spec_depth['concepts'][1] and
+            metrics['depth'] == spec_depth['depth'][0]
+        )
+
+        valid = matches_breadth or matches_depth
+        variant = 'breadth' if matches_breadth else 'depth' if matches_depth else 'neither'
+        expected = spec_breadth if matches_breadth else spec_depth if matches_depth else spec_breadth
+    else:
+        spec = tier_specs.get(tier, tier_specs['concise'])
+        valid = (
+            spec['concepts'][0] <= metrics['concepts'] <= spec['concepts'][1] and
+            spec['depth'][0] <= metrics['depth'] <= spec['depth'][1]
+        )
+        variant = None
+        expected = spec
+
+    return {
+        'valid': valid,
+        'tier': tier,
+        'variant': variant,
+        'metrics': metrics,
+        'expected': expected,
+        'image_path': image_path
+    }
+
 def analyze_prompt_complexity(prompt_text, density_tier='standard'):
     """
     Analyze prompt complexity and check against density tier expectations.
@@ -565,23 +866,124 @@ def analyze_prompt_complexity(prompt_text, density_tier='standard'):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate infographics using Gemini with parallel tabs",
+        description="Generate infographics using Gemini with parallel tabs, or validate prompts/images against density tiers",
         formatter_class=argparse.RawDescriptionHelpFormatter
     )
 
-    parser.add_argument('--content', required=True, help='Content file or text')
-    parser.add_argument('--prompt', required=True, help='Prompt file or text')
+    # Generation mode arguments
+    parser.add_argument('--content', help='Content file or text (required for generation)')
+    parser.add_argument('--prompt', help='Prompt file or text (required for generation)')
     parser.add_argument('--output-dir', type=Path, default=Path.cwd(), help='Output directory')
     parser.add_argument('--name', default='infographic', help='Base filename')
-    parser.add_argument('--variants', type=int, default=3, help='Number of variants (1-5)')
+    parser.add_argument('--variants', type=int, default=1, help='Number of variants (1-5, default: 1)')
     parser.add_argument('--aspect-ratio', choices=['landscape', 'portrait', 'square'], default='landscape', help='Aspect ratio')
     parser.add_argument('--density', choices=['concise', 'standard', 'detailed'], default='standard', help='Information density tier (default: standard)')
     parser.add_argument('--batch', type=int, default=1, help='Batch number')
     parser.add_argument('--skip-webp', action='store_true', help='Skip WebP conversion')
     parser.add_argument('--resolution', default='1080p', help='WebP resolution')
     parser.add_argument('--chrome-profile', default='Default', help='Chrome profile')
+    
+    # Validation mode arguments
+    parser.add_argument('--validate-prompt', type=Path, help='Validate prompt file against tier')
+    parser.add_argument('--validate-image', type=Path, help='Validate infographic image against tier')
 
     args = parser.parse_args()
+
+    # Validation mode
+    if args.validate_prompt or args.validate_image:
+        if args.validate_prompt:
+            print(f"📊 Validating prompt: {args.validate_prompt}")
+            print(f"🎯 Target tier: {args.density}\n")
+            
+            result = validate_prompt_against_tier(args.validate_prompt, args.density)
+            
+            print("=" * 60)
+            print(f"{'✅ VALID' if result['valid'] else '❌ INVALID'}: {args.density.upper()} TIER")
+            print("=" * 60)
+            
+            metrics = result['metrics']
+            expected = result['expected']
+            
+            print(f"\n📈 Structural Metrics:")
+            print(f"  Concepts: {metrics['concepts']} (expected: {expected['concepts'][0]}-{expected['concepts'][1]})")
+            print(f"    - Sections (## headings): {metrics['headings']}")
+            print(f"    - Top-level bullets: {metrics['bullets']}")
+            print(f"  Depth: {metrics['depth']} levels (expected: {expected['depth'][0]}-{expected['depth'][1]})")
+            print(f"    - Max heading depth: {metrics['max_heading_depth']}")
+            print(f"    - Max list nesting: {metrics['max_list_depth']}")
+            print(f"  Complexity: {metrics['complexity']} (concepts × depth)")
+            
+            if args.density == 'standard' and result['valid']:
+                print(f"\n💡 Standard tier variant: {result['variant']}")
+                if result['variant'] == 'breadth':
+                    print(f"   Strategy: Wide (many concepts, shallow depth)")
+                elif result['variant'] == 'depth':
+                    print(f"   Strategy: Deep (few concepts, deep detail)")
+            
+            if not result['valid']:
+                print(f"\n⚠️  Issues:")
+                if metrics['concepts'] < expected['concepts'][0]:
+                    print(f"  - Too few concepts: {metrics['concepts']} < {expected['concepts'][0]}")
+                elif metrics['concepts'] > expected['concepts'][1]:
+                    print(f"  - Too many concepts: {metrics['concepts']} > {expected['concepts'][1]}")
+                
+                if metrics['depth'] < expected['depth'][0]:
+                    print(f"  - Too shallow: {metrics['depth']} < {expected['depth'][0]} levels")
+                elif metrics['depth'] > expected['depth'][1]:
+                    print(f"  - Too deep: {metrics['depth']} > {expected['depth'][1]} levels")
+            
+            sys.exit(0 if result['valid'] else 1)
+        
+        elif args.validate_image:
+            print(f"🖼️  Validating infographic: {args.validate_image}")
+            print(f"🎯 Target tier: {args.density}\n")
+            
+            try:
+                result = validate_image_against_tier(args.validate_image, args.density)
+                
+                print("=" * 60)
+                print(f"{'✅ VALID' if result['valid'] else '❌ INVALID'}: {args.density.upper()} TIER")
+                print("=" * 60)
+                
+                metrics = result['metrics']
+                expected = result['expected']
+                
+                print(f"\n📈 OCR-Based Metrics:")
+                print(f"  Concepts: {metrics['concepts']} (expected: {expected['concepts'][0]}-{expected['concepts'][1]})")
+                print(f"  Depth: {metrics['depth']} hierarchy levels (expected: {expected['depth'][0]}-{expected['depth'][1]})")
+                print(f"  Complexity: {metrics['complexity']} (concepts × depth)")
+                print(f"  Text blocks extracted: {len(metrics.get('text_blocks', []))}")
+                
+                if args.density == 'standard' and result['valid']:
+                    print(f"\n💡 Standard tier variant: {result['variant']}")
+                    if result['variant'] == 'breadth':
+                        print(f"   Strategy: Wide (many concepts, shallow depth)")
+                    elif result['variant'] == 'depth':
+                        print(f"   Strategy: Deep (few concepts, deep detail)")
+                
+                if not result['valid']:
+                    print(f"\n⚠️  Issues:")
+                    if metrics['concepts'] < expected['concepts'][0]:
+                        print(f"  - Too few concepts: {metrics['concepts']} < {expected['concepts'][0]}")
+                    elif metrics['concepts'] > expected['concepts'][1]:
+                        print(f"  - Too many concepts: {metrics['concepts']} > {expected['concepts'][1]}")
+                    
+                    if metrics['depth'] < expected['depth'][0]:
+                        print(f"  - Too shallow: {metrics['depth']} < {expected['depth'][0]} levels")
+                    elif metrics['depth'] > expected['depth'][1]:
+                        print(f"  - Too deep: {metrics['depth']} > {expected['depth'][1]} levels")
+                
+                sys.exit(0 if result['valid'] else 1)
+            
+            except Exception as e:
+                print(f"❌ Error during image validation: {e}")
+                import traceback
+                traceback.print_exc()
+                sys.exit(1)
+
+    # Generation mode - require content and prompt
+    if not args.content or not args.prompt:
+        parser.error("--content and --prompt are required for generation mode")
 
     if args.variants < 1 or args.variants > 5:
         print("ERROR: Variants must be 1-5")
