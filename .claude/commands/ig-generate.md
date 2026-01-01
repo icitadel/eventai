@@ -102,15 +102,21 @@
 
 ## Tier-Specific Prompt Generation Guidelines
 
-**CRITICAL: Prompt complexity must match intended density tier. Over-specified prompts create bloat.**
+**CRITICAL: Complexity = Concept Count × Information Hierarchy Depth**
 
-### Concise Tier Prompts (Target: 2000-3000 chars)
+### Concise Tier Prompts (Target: 5-8 concepts, 1-2 levels deep)
 
-**Philosophy:** Essential requirements only. Trust the AI, don't over-specify.
+**Philosophy:** Few concepts, shallow depth. Labels without extensive explanations.
+
+**Tier Definition:**
+- **Concept count:** 5-8 distinct ideas/requirements
+- **Hierarchy depth:** 1-2 levels (label, maybe brief descriptor)
+- **Example:** "DEFAULT OPT-IN" (label only) = 1 level ✅
+- **Too deep:** "DEFAULT OPT-IN - biometric on unless disabled" = 2 levels, pushing Standard ⚠️
 
 **Required Elements:**
 1. **Visual description** (1-2 sentences): What to show
-2. **Key data points** (3-5 bullets): Specific stats/values to include
+2. **Key data points** (5-8 labels): Simple labels, minimal explanatory text
 3. **Color palette** (1 line): EventAI hex codes only
 4. **White space target** (1 line): "40%+ white space"
 5. **Context** (1 line): Standalone vs. embedded, festival context
@@ -120,11 +126,11 @@
 - Accessibility notes (ONLY if non-standard, e.g., color-blind considerations)
 
 **AVOID in Concise prompts:**
+- ❌ Multi-level explanations (label + descriptor + detail = too deep)
 - ❌ Exhaustive "CRITICAL" sections with 10+ requirements
 - ❌ Detailed AVOID lists (trust AI to avoid obviously bad practices)
 - ❌ Redundant specifications (e.g., "NOT X" when you've stated "Y")
 - ❌ Multiple emoji flags (🚨) - use sparingly if at all
-- ❌ Detailed example structures with line-by-line specifications
 - ❌ Comprehensive style guides embedded in prompt
 
 **Concise Prompt Template:**
@@ -171,9 +177,14 @@ Left-to-right progression with three color zones. Each zone shows 3-4 examples w
 
 ---
 
-### Standard Tier Prompts (Target: 4000-6000 chars)
+### Standard Tier Prompts (Expand ONE dimension: breadth OR depth)
 
-**Philosophy:** Key requirements clearly specified, with selective detail where needed.
+**Philosophy:** Go wide OR go deep, but NOT BOTH.
+
+**Tier Definition:**
+- **Option A (Breadth):** 10-15 concepts at 1-2 levels deep (many labels, minimal explanations)
+- **Option B (Depth):** 5-8 concepts at 3 levels deep (fewer labels, more detail per concept)
+- **Complexity:** Medium (expand ONE dimension, not both)
 
 **Required Elements:**
 1. Visual description with purpose statement
@@ -184,28 +195,32 @@ Left-to-right progression with three color zones. Each zone shows 3-4 examples w
 6. Context and accessibility basics
 7. AVOID list (top 5-7 critical items only)
 
-**Optional Elements:**
-- Detailed examples for complex visualizations
-- Specific icon/imagery requirements
-- Print vs. web considerations
-
 **Standard Prompt Complexity:**
+- Choose breadth (many concepts, shallow) OR depth (few concepts, detailed)
 - 4-6 major sections
 - 15-25 total bullet points
 - 1-2 CRITICAL flags (not 5+)
 - Focused AVOID list (5-7 items, not 15+)
 
+**Example (Breadth):** 12 consent patterns, each with label + brief descriptor (2 levels)
+**Example (Depth):** 6 consent patterns, each with label + descriptor + regulatory implications (3 levels)
+
 ---
 
-### Detailed Tier Prompts (Target: 7000-10000 chars)
+### Detailed Tier Prompts (Both breadth AND depth)
 
-**Philosophy:** Comprehensive specification for complex educational visuals.
+**Philosophy:** Comprehensive specification - many concepts with deep detail.
+
+**Tier Definition:**
+- **Concept count:** 20-30+ distinct ideas/requirements
+- **Hierarchy depth:** 4+ levels per concept (label + descriptor + detail + examples/reasoning)
+- **Complexity:** High (BOTH dimensions expanded)
 
 **Required Elements:**
 - All Standard elements plus:
 - Detailed examples with line-by-line specs
 - Comprehensive style guide sections
-- Extensive AVOID list with reasoning
+- Extensive AVOID list with reasoning (10-15+ items)
 - Multiple CRITICAL sections if needed
 - Annotation and labeling guidelines
 - Print production specifications

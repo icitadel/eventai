@@ -16,15 +16,25 @@
 ## 🚨 CRITICAL: What We're Really Measuring
 
 **Primary Metrics (The Goal):**
-1. **Concept Count:** How many distinct requirements/specifications does the prompt introduce?
-2. **Detail Level:** Does it trust the AI (Concise) or specify everything (Detailed)?
-3. **Philosophy Match:** Does the approach align with tier intent?
+1. **Concept Count:** How many distinct ideas/requirements does the infographic present?
+2. **Information Hierarchy Depth:** How many levels deep does each concept go?
+3. **Complexity = Concept Count × Hierarchy Depth**
+
+**Tier Definitions:**
+- **Concise:** Few concepts (5-8), shallow depth (1-2 levels)
+  - Example: "DEFAULT OPT-IN" (label only) ✅
+  - Too deep: "DEFAULT OPT-IN - biometric on unless disabled" (2 levels, pushing Standard) ⚠️
+
+- **Standard:** EITHER more concepts (10-15) OR deeper detail (3 levels) — **NOT BOTH**
+  - Option A: Many concepts at 1-2 levels (breadth)
+  - Option B: Few concepts at 3 levels (depth)
+
+- **Detailed:** Many concepts (20-30+) AND deep detail (4+ levels) — **BOTH**
 
 **Proxy Metrics (Indicators, Not Goals):**
 - Character count, sections, bullets, CRITICAL flags, AVOID items
 - These are **correlation indicators**, not the actual target
-- You can write a complicated prompt in few characters, or a simple prompt in many characters
-- **Focus on concepts and detail level, not text volume**
+- **Focus on concept count and hierarchy depth, not text volume**
 
 ---
 
@@ -65,49 +75,50 @@ gemini-generate \
 
 ### Step 2: AI Agentic Analysis
 
-Read the prompt file and perform **semantic analysis** focusing on concept count and detail level:
+Read the prompt file and perform **semantic analysis** focusing on concept count and hierarchy depth:
 
 **Analyze for Concise tier:**
 
-*Primary Analysis (Concepts & Detail):*
-- **Concept count:** Count distinct requirements/specifications (target: 5-8 core concepts)
-- **Detail level:** Does it trust AI or specify everything? (Concise = trust AI)
-- **Philosophy:** Essential-only approach, no redundancy
+*Primary Analysis:*
+- **Concept count:** 5-8 distinct ideas/requirements
+- **Hierarchy depth:** 1-2 levels per concept (label, maybe brief descriptor)
+- **Complexity:** Low (few concepts × shallow depth)
+- **Example:** "DEFAULT OPT-IN" (label only) = 1 level ✅
+- **Too deep:** "DEFAULT OPT-IN - biometric on unless disabled" = 2 levels, pushing Standard ⚠️
 
 *Checklist (Supporting Indicators):*
 - ✅ Essential requirements only (no exhaustive specifications)
-- ✅ Trusts AI capabilities (not over-specified)
-- ✅ 3-5 key data points maximum
-- ✅ Simple structure description (2-3 sentences)
+- ✅ Labels without extensive explanatory text
 - ✅ Minimal AVOID list or none
-- ❌ No detailed example structures
+- ❌ No multi-level explanations (label + descriptor + detail)
 - ❌ No comprehensive style guide embedded
 - ❌ No redundant "NOT X" specifications
 
 **Analyze for Standard tier:**
 
-*Primary Analysis (Concepts & Detail):*
-- **Concept count:** 10-15 core concepts with selective detail
-- **Detail level:** Balanced - specifies key elements, trusts AI for rest
-- **Philosophy:** Clear requirements without exhaustive specs
+*Primary Analysis:*
+- **Concept count:** EITHER 10-15 (breadth) OR 5-8 (depth) — NOT BOTH
+- **Hierarchy depth:** EITHER 1-2 levels (if many concepts) OR 3 levels (if few concepts) — NOT BOTH
+- **Complexity:** Medium (expand ONE dimension: breadth OR depth)
+- **Option A (Breadth):** Many concepts (10-15) at shallow depth (1-2 levels)
+- **Option B (Depth):** Few concepts (5-8) at medium depth (3 levels: label + descriptor + detail)
 
 *Checklist (Supporting Indicators):*
-- ✅ Key requirements clearly specified
-- ✅ Selective detail where needed
+- ✅ Selective detail where needed (not exhaustive)
 - ✅ Focused AVOID list (5-7 top items)
-- ✅ Typography guidelines for key elements
-- ❌ Not exhaustive line-by-line specs
-- ❌ Not minimal (requires structure guidance)
+- ❌ NOT both many concepts AND deep detail (that's Detailed tier)
+- ❌ NOT minimal like Concise
 
 **Analyze for Detailed tier:**
 
-*Primary Analysis (Concepts & Detail):*
-- **Concept count:** 20-30+ concepts with comprehensive detail
-- **Detail level:** Exhaustive - specifies everything, minimal AI interpretation
-- **Philosophy:** Leave nothing to chance, full specification
+*Primary Analysis:*
+- **Concept count:** 20-30+ distinct ideas/requirements
+- **Hierarchy depth:** 4+ levels per concept (label + descriptor + detail + examples/reasoning)
+- **Complexity:** High (many concepts × deep detail = BOTH dimensions)
+- **Example:** Multi-level explanations with examples, edge cases, and reasoning
 
 *Checklist (Supporting Indicators):*
-- ✅ Comprehensive specification
+- ✅ Comprehensive specification (both breadth AND depth)
 - ✅ Detailed examples with line-by-line specs
 - ✅ Extensive AVOID list with reasoning
 - ✅ Multiple CRITICAL sections if needed
