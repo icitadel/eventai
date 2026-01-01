@@ -653,14 +653,18 @@ def validate_text_patterns(prompt_text, tier):
     # Tier-specific validation
     if tier == 'concise':
         for bullet in content_bullets:
-            # Check for drilldown pattern (topic - detail or topic: detail)
-            if ' - ' in bullet or ': ' in bullet:
-                issues.append(f"❌ Drilldown pattern in Concise tier: '{bullet[:50]}...' (should be label only)")
-
-            # Check word count (3-5 words max)
+            # Check word count FIRST (3-5 words max total)
             words = bullet.split()
             if len(words) > 5:
                 issues.append(f"❌ Too many words in Concise tier: '{bullet[:50]}...' ({len(words)} words, max 5)")
+
+                # If over 5 words AND has drilldown pattern, check descriptor length
+                if ' - ' in bullet:
+                    parts = bullet.split(' - ', 1)
+                    if len(parts) == 2:
+                        descriptor_words = parts[1].split()
+                        if len(descriptor_words) > 3:
+                            issues.append(f"⚠️  Long descriptor in drilldown: '{parts[1][:30]}...' ({len(descriptor_words)} words, prefer ≤3 for brief drilldown)")
 
             # Check for multi-sentence
             if '. ' in bullet and not bullet.endswith('.'):
@@ -724,9 +728,9 @@ def validate_prompt_against_tier(prompt_path, tier='concise'):
             'description': 'Moderate concepts (8-15) at medium depth (3 levels) - DEPTH'
         },
         'detailed': {
-            'concepts': (25, 40),
+            'concepts': (25, 999),  # 25+ concepts, no practical upper limit
             'depth': (4, 10),
-            'description': 'Many concepts (25-40+) AND deep detail (4+ levels) - BOTH'
+            'description': 'Many concepts (25+) AND deep detail (4+ levels) - BOTH'
         }
     }
 

@@ -4,37 +4,43 @@ Comparison of three consent architectures for biometric systems at festivals.
 
 ## Consent Model 1: Coercive (Non-Compliant)
 
-**Definition:** Mandatory biometric enrollment with no alternatives
+### Definition
+Mandatory biometric enrollment with no alternatives
 
-**Implementation:**
+### Implementation
 - Facial recognition required at all entry points
 - No manual ID check option available
 - Attendees who refuse cannot enter
 
-**Legal Status:** Violates GDPR Article 7 (freely given consent) and Article 9 (special category data)
+### Legal Status
+Violates GDPR Article 7 (freely given consent) and Article 9 (special category data)
 
 ## Consent Model 2: Soft Wall (Problematic)
 
-**Definition:** Default opt-in with nominal alternatives
+### Definition
+Default opt-in with nominal alternatives
 
-**Implementation:**
+### Implementation
 - Biometric enrollment enabled by default
 - Manual ID check requires 45-minute wait vs. 2-minute facial scan
 - Opt-out hidden in account settings (3 menus deep)
 
-**Legal Status:** Gray area - technically provides choice, but choice not genuinely "free" under GDPR Article 7 interpretation
+### Legal Status
+Gray area - technically provides choice, but choice not genuinely "free" under GDPR Article 7 interpretation
 
 ## Consent Model 3: Genuine Choice (Compliant)
 
-**Definition:** Explicit opt-in with equal alternatives
+### Definition
+Explicit opt-in with equal alternatives
 
-**Implementation:**
+### Implementation
 - Clear YES/NO choice at registration (equal prominence)
 - Facial recognition: Instant entry (advertised benefit)
 - RFID wristband: 3-minute entry (comparable speed)
 - Manual ID: 5-minute entry (acceptable alternative)
 
-**Legal Status:** Compliant with GDPR Article 7 (freely given) and Article 9 (explicit consent for biometric data)
+### Legal Status
+Compliant with GDPR Article 7 (freely given) and Article 9 (explicit consent for biometric data)
 
 ## Style
 

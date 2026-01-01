@@ -22,29 +22,35 @@
 
 **Pattern:**
 ```markdown
-✅ CORRECT (label only):
-- Mandatory facial recognition
-- Bundled consent
-- Pre-checked boxes
+✅ CORRECT (label-only or brief label-value):
+- Mandatory facial recognition (3 words)
+- Bundled consent (2 words)
+- Tickets: $750,000 (2 words - label-value OK)
+- Default opt-in (2 words)
 
-❌ WRONG (topic - detail):
-- Mandatory facial recognition - no alternatives
-- Bundled consent - accept all or entry denied
-- Pre-checked boxes - silence assumed as consent
+✅ ACCEPTABLE (brief drilldown, ≤5 words total):
+- Facial recognition → instant (3 words total)
+- Opt-in required (2 words)
+
+❌ WRONG (topic - long detail, >5 words total):
+- Mandatory facial recognition - no alternatives (5 words, but explanatory)
+- Bundled consent - accept all or entry denied (8 words)
+- Pre-checked boxes - silence assumed as consent (7 words)
+- Soft wall penalties - manual ID takes 2 hours vs. 3 min (13 words)
 ```
 
-**Why:** The `[topic - detail]` pattern signals to the AI "add explanatory text", which:
+**Why long drilldown is problematic:** The `[topic - long detail]` pattern signals to the AI "add explanatory text", which:
 1. Creates drilldown text on infographic (clutters design)
 2. Reduces white space (AI adds paragraphs)
 3. Inflates tier (Concise → Standard)
 
-**Concise tier philosophy:** Trust the AI. "Mandatory facial recognition" is enough - the AI understands what this means in context. Don't hand-hold with explanations.
+**Concise tier philosophy:** Trust the AI. "Mandatory facial recognition" or "Tickets: $750,000" is enough - the AI understands context. Don't hand-hold with multi-word explanations.
 
 **Text limits:**
-- Bullet text: 3-5 words MAX
-- No colons, dashes, or explanatory phrases
-- No parentheticals or qualifiers
-- Just the core concept label
+- **Total bullet: 3-5 words MAX** (including label + value/descriptor)
+- Label-value pairs OK if ≤5 words total ("Tickets: $750,000" = 2 words ✅)
+- Brief drilldown OK if ≤5 words total ("Topic → brief" = 3 words ✅)
+- Long drilldown NOT OK if >5 words total ("Topic - long explanation" = 6+ words ❌)
 
 ### Standard Tier: Brief Descriptors (1 sentence max)
 
@@ -98,7 +104,7 @@
 | **Concise** | 5-16 | 1-2 | < 50 | 3-5 words MAX |
 | **Standard (Breadth)** | 15-25 | 1-2 | 50-100 | 10-15 words MAX |
 | **Standard (Depth)** | 8-15 | 3 | 50-100 | 1 sentence MAX |
-| **Detailed** | 25-40 | 4+ | 100+ | Multi-level explanations |
+| **Detailed** | 25+ | 4+ | 100+ | Multi-level explanations |
 
 **Key insight:** Complexity = Concepts × Depth. A Concise tier prompt can have 16 concepts if each is shallow (1-2 levels). The text pattern determines depth, not just the bullet count.
 
@@ -251,31 +257,40 @@ def validate_concise_text_patterns(prompt_text):
     Enforce 3-5 word MAX per bullet in Concise tier.
 
     Rules:
-    - No dashes (topic - detail pattern)
-    - No colons (topic: detail pattern)
-    - No parentheticals
-    - No sentences (no periods mid-bullet)
-    - 3-5 words only
+    - Total bullet: 3-5 words MAX
+    - Label-value pairs OK if ≤5 words ("Tickets: $750,000" = 2 words ✅)
+    - Brief drilldown OK if ≤5 words ("Topic → brief" = 3 words ✅)
+    - Long drilldown NOT OK if >5 words ("Topic - long explanation" ❌)
     """
     content_bullets = extract_content_bullets(prompt_text)
 
     issues = []
     for bullet in content_bullets:
-        # Check for topic - detail pattern
-        if ' - ' in bullet or ': ' in bullet:
-            issues.append(f"❌ Drilldown pattern detected: '{bullet}' (should be label only)")
-
-        # Check word count
+        # Check word count FIRST (3-5 words max total)
         words = bullet.split()
         if len(words) > 5:
             issues.append(f"❌ Too many words: '{bullet}' ({len(words)} words, max 5)")
 
-        # Check for sentences
+            # If over 5 words AND has drilldown pattern, check descriptor length
+            if ' - ' in bullet:
+                parts = bullet.split(' - ', 1)
+                if len(parts) == 2:
+                    descriptor_words = parts[1].split()
+                    if len(descriptor_words) > 3:
+                        issues.append(f"⚠️  Long descriptor: '{parts[1]}' ({len(descriptor_words)} words, prefer ≤3)")
+
+        # Check for multi-sentence
         if '. ' in bullet and not bullet.endswith('.'):
             issues.append(f"❌ Multi-sentence bullet: '{bullet}' (should be single label)")
 
     return issues
 ```
+
+**Key insight:** The validation only flags drilldown patterns if the TOTAL exceeds 5 words. This means:
+- "Tickets: $750,000" (2 words) → ✅ PASS (no drilldown check needed)
+- "Default opt-in" (2 words) → ✅ PASS
+- "Topic → brief" (3 words) → ✅ PASS
+- "Topic - long explanation here" (5 words) → ❌ FAIL (word count) + ⚠️ WARNING (long descriptor)
 
 ### Standard Tier Enforcement
 

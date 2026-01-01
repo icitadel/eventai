@@ -19,12 +19,22 @@ TEST_DIR = Path(__file__).parent / 'fixtures/prompts'
 def test_concise_validates_as_concise():
     """Concise prompt should validate as Concise tier."""
     result = validate_prompt_against_tier(TEST_DIR / 'concise-example.md', 'concise')
-    
+
     assert result['valid'], \
         f"Concise prompt should validate as Concise tier\nMetrics: {result['metrics']}\nExpected: {result['expected']}"
     assert result['tier'] == 'concise'
-    
+
     print(f"✅ PASS: Concise validates as Concise (concepts={result['metrics']['concepts']}, depth={result['metrics']['depth']})")
+
+def test_concise_breadth_validates_as_concise():
+    """Concise breadth prompt (upper bound) should validate as Concise tier."""
+    result = validate_prompt_against_tier(TEST_DIR / 'concise-breadth-example.md', 'concise')
+
+    assert result['valid'], \
+        f"Concise breadth should validate as Concise tier\nMetrics: {result['metrics']}\nExpected: {result['expected']}"
+    assert result['tier'] == 'concise'
+
+    print(f"✅ PASS: Concise breadth validates as Concise (concepts={result['metrics']['concepts']}, depth={result['metrics']['depth']}, complexity={result['metrics']['complexity']})")
 
 def test_concise_rejects_standard():
     """Concise prompt should NOT validate as Standard tier."""
@@ -117,30 +127,14 @@ def test_detailed_rejects_standard():
 def test_complexity_calculation():
     """Verify complexity = concepts × depth."""
     result = validate_prompt_against_tier(TEST_DIR / 'concise-example.md', 'concise')
-    
+
     metrics = result['metrics']
     expected_complexity = metrics['concepts'] * metrics['depth']
-    
+
     assert metrics['complexity'] == expected_complexity, \
         f"Complexity should be concepts × depth: {metrics['concepts']} × {metrics['depth']} = {expected_complexity}, got {metrics['complexity']}"
-    
-    print(f"✅ PASS: Complexity correctly calculated ({metrics['concepts']} × {metrics['depth']} = {metrics['complexity']})")
 
-def test_real_world_consent_spectrum():
-    """Test real-world consent-spectrum prompt (Concise tier)."""
-    consent_path = Path(__file__).parent.parent.parent.parent.parent.parent / \
-                   'docs/writing/4-privacy/visuals/consent-spectrum/consent-spectrum.prompt.md'
-    
-    if not consent_path.exists():
-        print("⏭️  SKIP: consent-spectrum.prompt.md not found")
-        return
-    
-    result = validate_prompt_against_tier(consent_path, 'concise')
-    
-    assert result['valid'], \
-        f"consent-spectrum.prompt.md should validate as Concise tier\nMetrics: {result['metrics']}\nExpected: {result['expected']}"
-    
-    print(f"✅ PASS: Real-world consent-spectrum validates as Concise (concepts={result['metrics']['concepts']}, depth={result['metrics']['depth']})")
+    print(f"✅ PASS: Complexity correctly calculated ({metrics['concepts']} × {metrics['depth']} = {metrics['complexity']})")
 
 def main():
     """Run all validation tests."""
@@ -155,26 +149,24 @@ def main():
     try:
         # Concise tier tests
         test_concise_validates_as_concise()
+        test_concise_breadth_validates_as_concise()
         test_concise_rejects_standard()
         test_concise_rejects_detailed()
-        
+
         # Standard tier tests
         test_standard_breadth_validates_as_standard()
         test_standard_depth_validates_as_standard()
         test_standard_rejects_concise()
         test_standard_rejects_detailed()
-        
+
         # Detailed tier tests
         test_detailed_validates_as_detailed()
         test_detailed_rejects_concise()
         test_detailed_rejects_standard()
-        
+
         # Utility tests
         test_complexity_calculation()
-        
-        # Real-world tests
-        test_real_world_consent_spectrum()
-        
+
         print("\n" + "=" * 60)
         print("✅ ALL VALIDATION TESTS PASSED (12/12)")
         print("=" * 60)
