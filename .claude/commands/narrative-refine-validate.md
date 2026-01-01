@@ -4,9 +4,24 @@
 
 Transform academic/bullet-point drafts into publication-ready narrative content with verified claims and proper source attribution. This skill combines three critical processes into a single integrated workflow:
 
-1. **Narrative Refinement**: Transform verbose or bullet-point content into concise, flowing narrative
-2. **Claim Validation**: Systematically verify all factual claims against authoritative sources
-3. **Source Attribution**: Add clear source lists at the end of each section
+1. **Question Alignment**: Verify content answers its stated question cleanly without sideramps
+2. **Narrative Refinement**: Transform verbose or bullet-point content into concise, flowing narrative
+3. **Claim Validation**: Systematically verify all factual claims against authoritative sources
+4. **Source Attribution**: Add clear source lists at the end of each section
+
+## Validation Priority Structure
+
+**Priority 1: QUESTION ALIGNMENT (PRIMARY)**
+- Does the content cleanly and thoroughly answer the question being asked?
+- Is the narrative scope appropriate to the question's scope?
+- Are there sideramps (tangents) that divert from answering the core question?
+- Does every section support answering the question, or explain mechanics unrelated to it?
+
+**Priority 2: DATA ACCURACY & SOURCES (SECONDARY)**
+- All factual claims correctly stated and properly sourced
+- Identical claims use identical data across all occurrences
+- All sources cited in text appear in source catalogs
+- No orphan claims (statistics without attribution)
 
 ## When to Use This Skill
 

@@ -10,6 +10,22 @@
 
 ---
 
+## Validation Priority Structure
+
+**Priority 1: QUESTION ALIGNMENT (PRIMARY)**
+- Does the content cleanly and thoroughly answer the question being asked?
+- Is the narrative scope appropriate to the question's scope?
+- Are there sideramps (tangents) that divert from answering the core question?
+- Does every section support answering the question, or explain mechanics unrelated to it?
+
+**Priority 2: DATA ACCURACY & SOURCES (SECONDARY)**
+- All factual claims correctly stated and properly sourced
+- Identical claims use identical data across all occurrences
+- All sources cited in text appear in source catalogs
+- No orphan claims (statistics without attribution)
+
+---
+
 ## Validation Framework
 
 ### Phase 1: Structural Analysis
@@ -101,6 +117,14 @@ For each visual:
 ---
 
 ## Validation Execution
+
+**CRITICAL SEQUENCE**:
+- **FIRST**: Verify the content answers its stated question cleanly without sideramps (Priority 1)
+- **THEN**: Validate data accuracy, sources, and attribution (Priority 2)
+
+Content that fails question alignment should be flagged immediately, even if data is accurate. Technically correct content that doesn't answer its question is a validation failure.
+
+---
 
 ### Step 0: Gather All Source Materials
 **CRITICAL**: Don't validate against just one file. Find ALL related materials:
