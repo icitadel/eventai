@@ -87,7 +87,7 @@ def test_standard_prompts():
     result = run_validation('prompt', TEST_DIR / 'prompts/standard-breadth-example.md', 'concise')
     assert not result['valid'], f"Standard prompt should NOT validate as Concise\n{result['stdout']}"
     assert '❌ INVALID' in result['stdout'], "Output should contain validation failure"
-    assert '⚠️  Issues:' in result['stdout'], "Output should explain why validation failed"
+    assert ('⚠️  Text Pattern Issues:' in result['stdout'] or '⚠️  Structural Issues:' in result['stdout']), "Output should explain why validation failed"
     print("✅ PASS: standard-breadth-example.md correctly rejects Concise tier")
 
 def test_detailed_prompts():

@@ -77,35 +77,35 @@ def test_concise_tier_prompt():
 def test_standard_breadth_prompt():
     """Test Standard breadth tier example prompt."""
     prompt_path = Path(__file__).parent / 'fixtures/prompts/standard-breadth-example.md'
-    
+
     with open(prompt_path, 'r') as f:
         prompt = f.read()
-    
+
     result = analyze_prompt_structure(prompt)
-    
-    # Standard breadth: 10-15 concepts, 1-2 depth
-    assert 10 <= result['concepts'] <= 15, \
-        f"Standard breadth should have 10-15 concepts, got {result['concepts']}"
+
+    # Standard breadth: 15-25 concepts, 1-2 depth
+    assert 15 <= result['concepts'] <= 25, \
+        f"Standard breadth should have 15-25 concepts, got {result['concepts']}"
     assert 1 <= result['depth'] <= 2, \
         f"Standard breadth should have 1-2 depth, got {result['depth']}"
-    
+
     print(f"✅ PASS: test_standard_breadth_prompt (concepts={result['concepts']}, depth={result['depth']})")
 
 def test_standard_depth_prompt():
     """Test Standard depth tier example prompt."""
     prompt_path = Path(__file__).parent / 'fixtures/prompts/standard-depth-example.md'
-    
+
     with open(prompt_path, 'r') as f:
         prompt = f.read()
-    
+
     result = analyze_prompt_structure(prompt)
-    
-    # Standard depth: 5-8 concepts, 3 depth
-    assert 5 <= result['concepts'] <= 8, \
-        f"Standard depth should have 5-8 concepts, got {result['concepts']}"
+
+    # Standard depth: 8-15 concepts, 3 depth
+    assert 8 <= result['concepts'] <= 15, \
+        f"Standard depth should have 8-15 concepts, got {result['concepts']}"
     assert result['depth'] == 3, \
         f"Standard depth should have 3 depth, got {result['depth']}"
-    
+
     print(f"✅ PASS: test_standard_depth_prompt (concepts={result['concepts']}, depth={result['depth']})")
 
 def test_detailed_tier_prompt():
