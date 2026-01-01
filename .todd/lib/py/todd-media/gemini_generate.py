@@ -260,7 +260,7 @@ async def download_from_tab(variant_num, page, output_dir, base_name):
         return None
 
 async def generate_infographics(content, direction, num_variants, aspect_ratio, output_dir, base_name, start_num, chrome_profile="Default", density='standard'):
-    """Generate infographics using parallel tabs"""
+    """Generate infographics using sequential submission for unique URLs, then parallel generation"""
 
     print("=" * 60)
     print("🎨 GEMINI INFOGRAPHIC GENERATOR (Nano Banana)")
@@ -271,7 +271,7 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
     print(f"📐 Aspect: {aspect_ratio}")
     print(f"👤 Profile: {chrome_profile}")
     print(f"🎯 Density: {density}")
-    print(f"🚀 Mode: {num_variants} parallel tabs")
+    print(f"🚀 Mode: Sequential submission → Parallel generation")
 
     playwright = await setup_playwright()
 
@@ -290,21 +290,20 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
             args=["--isolated"]
         )
 
-        # Create tabs for each variant
-        print(f"\n📑 Creating {num_variants} tabs...")
-        tabs = []
+        # SEQUENTIAL SUBMISSION: Submit each variant one at a time to ensure unique URLs
+        print(f"\n🔄 Submitting {num_variants} variants sequentially (ensures unique conversations)...")
+        submitted_tabs = []  # [(variant_num, page, conversation_url), ...]
+
         for i in range(num_variants):
-            page = await context.new_page()
-            await page.goto('https://gemini.google.com/app')
-            tabs.append(page)
-
-        # Wait for all tabs to load
-        print("⏸️  Waiting for tabs to load...")
-        for i, page in enumerate(tabs):
             variant_num = start_num + i
-            load_start = time.time()
 
-            # Smart wait for input
+            # Create NEW tab
+            print(f"\n   [{variant_num}] 📑 Opening new tab...")
+            page = await context.new_page()
+            await page.goto('https://gemini.google.com/')
+
+            # Wait for input to load
+            load_start = time.time()
             found = False
             while time.time() - load_start < 30:
                 try:
@@ -321,59 +320,91 @@ async def generate_infographics(content, direction, num_variants, aspect_ratio, 
                 await context.close()
                 return []
 
-        # Enable image generation mode on all tabs
-        print("\n🖼️  Enabling image generation mode...")
-        for i, page in enumerate(tabs):
-            variant_num = start_num + i
+            # Enable image generation mode
+            print(f"   [{variant_num}] 🖼️  Enabling image mode...")
             try:
-                # CRITICAL FIX: Use .first to get the first Tools button in THIS page context
-                # (avoids strict mode violation from multiple tabs/conversations)
                 tools_button = page.get_by_role("button", name="Tools").first
                 await tools_button.click()
                 await asyncio.sleep(1)
 
-                # Click Create images button (also use .first for safety)
                 create_images_button = page.get_by_role("button", name="Create images").first
                 await create_images_button.click()
                 await asyncio.sleep(1)
 
-                # Verify image mode is active - look for the deselect button
                 await page.wait_for_selector('button:has-text("Deselect Image")', timeout=5000)
                 print(f"   [{variant_num}] ✅ Image mode enabled")
             except Exception as e:
                 print(f"   [{variant_num}] ⚠️  Image mode activation failed: {e}")
-                print(f"   [{variant_num}] 🔄 Attempting to continue anyway (may already be in image mode)")
-                # Continue anyway - might already be in image mode
+                print(f"   [{variant_num}] 🔄 Continuing anyway (may already be in image mode)")
 
-        # Generate all variants in parallel
-        print(f"\n🎨 Generating {num_variants} variants in parallel...")
+            # Build and submit prompt
+            starting_url = page.url
+            prompt_text = build_prompt(content, direction, aspect_ratio, variant_num, density)
+            print(f"   [{variant_num}] 📝 Submitting prompt ({len(prompt_text)} chars)...")
+
+            textbox = page.locator('.ql-editor').first
+            await textbox.click()
+            await textbox.fill(prompt_text)
+            await asyncio.sleep(0.5)
+            await textbox.press('Enter')
+
+            # CRITICAL: Wait for URL to change (indicates new conversation created)
+            print(f"   [{variant_num}] ⏳ Waiting for conversation URL...")
+            url_change_start = time.time()
+            conversation_url = starting_url
+
+            while time.time() - url_change_start < 15:  # Wait up to 15s for URL change
+                await asyncio.sleep(0.5)
+                current_url = page.url
+                if current_url != starting_url:
+                    conversation_url = current_url
+                    elapsed = time.time() - url_change_start
+                    print(f"   [{variant_num}] ✅ Conversation URL: {conversation_url} ({elapsed:.1f}s)")
+                    break
+
+            if conversation_url == starting_url:
+                print(f"   [{variant_num}] ⚠️  URL unchanged after 15s - may not have created new conversation!")
+
+            # Record this tab for parallel generation monitoring
+            submitted_tabs.append((variant_num, page, conversation_url))
+            print(f"   [{variant_num}] ✅ Submitted - now generating in parallel...")
+
+        # NOW: All variants are submitted with unique URLs, generating in parallel
+        print(f"\n⏱️  All {num_variants} variants submitted - now monitoring parallel generation...")
         gen_start = time.time()
 
-        tasks = []
-        for i, page in enumerate(tabs):
-            variant_num = start_num + i
-            task = generate_in_tab(page, content, direction, aspect_ratio, variant_num, output_dir, base_name, density)
-            tasks.append(task)
-
-        # Wait for all generations to complete
-        gen_results = await asyncio.gather(*tasks)
-        gen_time = time.time() - gen_start
-        print(f"\n⏱️  Generation time: {gen_time:.1f}s")
-
-        # Filter successful generations and extract conversation URLs
+        # Monitor all tabs for generation completion (wait for download button)
         successful = []
-        conversation_urls = {}  # variant_num -> conversation_url
+        conversation_urls = {}
 
-        for result in gen_results:
-            if result is not None:
-                variant_num, pg, conv_url = result
-                successful.append((variant_num, pg))
+        for variant_num, page, conv_url in submitted_tabs:
+            print(f"\n   [{variant_num}] ⏳ Waiting for generation to complete...")
+            wait_start = time.time()
+
+            download_button_found = False
+            while time.time() - wait_start < 180:  # 180s max (3 minutes)
+                try:
+                    await page.wait_for_selector('[data-test-id="download-generated-image-button"]', timeout=60000)
+                    download_button_found = True
+                    gen_time = time.time() - wait_start
+                    print(f"   [{variant_num}] ✅ Generated in {gen_time:.1f}s")
+                    break
+                except:
+                    await asyncio.sleep(60)  # Poll every 60s
+
+            if download_button_found:
+                successful.append((variant_num, page))
                 conversation_urls[variant_num] = conv_url
+            else:
+                print(f"   [{variant_num}] ❌ Timeout (180s)")
 
         if not successful:
             print("\n❌ No images generated successfully")
             await context.close()
             return []
+
+        gen_time = time.time() - gen_start
+        print(f"\n⏱️  Generation time: {gen_time:.1f}s")
 
         # Detect duplicate conversation URLs (indicates cached/reused generations)
         print(f"\n🔍 Checking for duplicate conversation URLs...")
