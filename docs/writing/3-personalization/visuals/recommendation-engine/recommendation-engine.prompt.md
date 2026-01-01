@@ -1,87 +1,151 @@
-# STOP - Read These Constraints First
+# AI Recommendation Engine Impact
 
-🚨 **CRITICAL**: This is a CONCISE tier infographic. If you create a data flow diagram, you FAILED.
+🎯 **TARGET**: Enhanced visual density with festival theming - 35% white space, show data flow + impact
 
-## What CONCISE Means (Non-Negotiable Rules)
+## CRITICAL FESTIVAL THEMING
 
-❌ **DO NOT CREATE:**
-- Data flow diagrams
-- Input/processing/output sections
-- Multiple boxes or nodes
-- Detailed breakdowns
-- Lists of data sources
-- Processing layer explanations
-- Multiple recommendation types
-- Small text (<16pt)
-- Titles (this is embedded in textbook)
-
-✅ **YOU MUST CREATE:**
-- Simple left→center→right flow (3 elements ONLY)
-- ONE large impact statistic
-- MINIMUM 45% white space
-- MAXIMUM 5 visual elements total
+**Background atmosphere (REQUIRED):**
+- Illustrated festival crowd in background
+- Festival stage and tent structures
+- Outdoor festival environment
+- Warm, vibrant atmosphere
 
 ---
 
-# The Infographic (Ultra-Simple)
+## Layout Structure
 
-## Layout
+**Top section (30%)**: DATA FLOW
+- Left (25%): INPUT SOURCES
+  - Icon cluster (stacked vertically):
+    - Music note (listening history)
+    - Crowd icon (past attendance)
+    - Calendar (real-time availability)
+  - Label: "5 data sources" (14pt gray)
+  - Small list: "Spotify, friends, trends" (12pt)
 
-**Pure white background** (#FFFFFF)
+- Center (25%): AI ENGINE
+  - Large circle: "AI" (60pt bold, white text on purple #6B46C1)
+  - Label below: "Recommendation engine" (14pt)
+  - Small annotation: "Deep learning" (12pt gray)
 
-**Left 25% of canvas:**
-- Icon cluster: Music note + crowd + calendar (small, stacked vertically)
-- Label below: "5 data sources" (14pt gray)
-- NO details, NO list of sources
+- Right (25%): OUTPUT
+  - Icon: Festival ticket/card
+  - Label: "Personalized picks" (14pt)
+  - Small text: "Event matching" (12pt)
 
-**Center 40% of canvas:**
-- Large circle with "AI" text (60pt bold, white on purple #6B46C1 circle)
-- Label below circle: "Recommendation engine" (14pt gray)
-- NO processing details, NO nodes
+- Arrows: Purple (#6B46C1), left→center→right (3px, clean)
 
-**Right 25% of canvas:**
-- Icon: Festival card/ticket (simple outline)
-- Label below: "Personalized picks" (14pt gray)
-
-**Simple arrows:**
-- Left → Center: purple arrow
-- Center → Right: purple arrow
-- NO labels on arrows, NO complex flow
-
-**Bottom 40% of canvas (hero stat):**
-- Large number: **"40-41%"** (120pt bold, coral #FF6B6B)
-- Context below: "of festival tickets sold" (24pt regular)
-- Subtext: "driven by AI recommendations" (16pt gray)
-
-**White space:** 45%+ of canvas should be EMPTY
-
----
-
-## Style Rules
-
-- Background: Pure white #FFFFFF
-- Typography: Inter bold for numbers, Inter regular for labels
-- Icons: Simple outlines only, 2px stroke
-- NO data source breakdowns
-- NO processing layer details
-- NO title
-- NO detailed text
-- NO complex diagrams
+**Bottom section (70%)**: IMPACT STAT
+- Large hero number: "40-41%" (120pt bold, coral #FF6B6B)
+- Context line 1: "of festival tickets sold" (28pt regular)
+- Context line 2: "driven by AI recommendations" (18pt gray)
+- Supporting stats box (light purple tint):
+  - "10M monthly users" (14pt)
+  - "10,000+ venues" (14pt)
+  - "DICE platform 2023" (12pt gray)
 
 ---
 
-## Final Check Before Submitting
+## Visual Elements & Icons
 
-Ask yourself:
-1. Did you create input/output sections? → If YES, you failed
-2. Did you list data sources? → If YES, you failed
-3. Did you show processing details? → If YES, you failed
-4. Can someone understand this in 15 seconds? → If NO, you failed
-5. Is there massive white space? → If NO, you failed
+**Input icons (small, stacked):**
+- Music note (Spotify integration)
+- Crowd (social connections)
+- Calendar (event timing)
+- Each 32-40px, purple outlines
 
-The ONLY acceptable design:
-[icons + label] → [AI circle + label] → [icon + label]
-[LARGE 40-41% stat at bottom]
-[Lots of white space]
+**AI circle:**
+- Large purple circle (#6B46C1)
+- White "AI" text (60pt bold)
+- Subtle glow/emphasis effect
 
-Anything more complex = FAILURE.
+**Output icon:**
+- Festival ticket or card
+- Coral #FF6B6B accent
+- 40-50px
+
+**Festival theming:**
+- Background: Illustrated diverse crowd
+- Festival stages/tents visible
+- Wristbands on attendees
+- Outdoor festival atmosphere
+
+---
+
+## Typography
+
+- Hero stat: Inter Bold, 120pt
+- Context line 1: Inter Regular, 28pt
+- Context line 2: Source Sans Pro Regular, 18pt
+- Labels: Inter Regular, 14pt
+- Small text: Source Sans Pro Regular, 12pt
+- AI circle: Inter Bold, 60pt
+
+---
+
+## Style Requirements
+
+**Background:** Pure white #FFFFFF with festival layer
+
+**Color palette:**
+- Purple #6B46C1 (AI circle, arrows, input icons)
+- Coral #FF6B6B (hero stat, output accent)
+- Sky blue #4299E1 (optional supporting accents)
+- Slate gray #2D3748 (labels)
+- Light gray #E2E8F0 (small text)
+
+**White space:** Target 35%
+
+**Flow arrows:**
+- 3px solid purple
+- Clean, minimal (not decorative)
+- Show clear left→center→right flow
+
+**Supporting stats box:**
+- Light purple tint background (#6B46C1 at 8%)
+- Bottom right corner placement
+
+---
+
+## Festival Context Integration (REQUIRED)
+
+✅ **MUST INCLUDE:**
+- Illustrated festival crowd
+- Festival stages/tents
+- Outdoor venue feel
+- Wristbands visible
+- Vibrant atmosphere
+
+❌ **NEVER:**
+- Corporate data center imagery
+- Generic business people
+- Abstract tech backgrounds
+
+---
+
+## Content Density Guidelines
+
+✅ **INCLUDE:**
+- Data flow (input → AI → output)
+- 5 data sources mention
+- Hero stat: 40-41%
+- Context: "of festival tickets sold"
+- Supporting stats: 10M users, 10K+ venues
+- Festival theming elements
+
+❌ **AVOID:**
+- Detailed list of all 5 data sources
+- Technical AI architecture details
+- Complex flowchart nodes
+
+**Target comprehension:** 30-45 seconds
+
+---
+
+## Final Check
+
+1. Festival theming visible? → YES
+2. Clear data flow (input→AI→output)? → YES
+3. Hero stat prominent (40-41%)? → YES
+4. Supporting context included? → YES
+5. 35% white space? → YES
