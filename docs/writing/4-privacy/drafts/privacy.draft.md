@@ -370,7 +370,7 @@ Festivals can implement AI crowd density monitoring (fluid dynamics, surge predi
 
 **Cleveland Browns Wicket Deployment:**
 - **50%+ of season ticket holders enrolled**
-- **15%+ of game-day attendees** use facial entry
+- **16% of game-day attendees** use facial entry
 - **2-second entry time** vs. traditional scanning
 - **$8,000 saved per lane** in staffing costs
 - **0% opt-out rate** after enrollment (those who try it, keep it)
@@ -531,10 +531,26 @@ The €200,000 fines, artist boycotts, and regulatory denials send a clear messa
 
 ---
 
-**Word Count:** ~4,200 words
-**Sources Referenced:** 25+ (GDPR enforcement, Danish DPA decisions, NIST research, wrongful arrest documentation, BIPA settlements, artist campaigns)
-**Confidence Markers:** HIGH on regulatory requirements (verified legal documents); MEDIUM on vendor adoption rates (mixed self-reported and verified data)
-**Gaps Acknowledged:** Festival-specific DPIA templates unavailable; long-term biometric breach impact studies incomplete
-**Pedagogical Elements:** 7 documented risks framework; Proportionality test case study; Responsible vs. Irresponsible comparison; Pre-deployment checklist
+**Sources:**
 
-**Status:** DRAFT COMPLETE - Ready for QC review (P2.4.3)
+- [ACLU: The problem with using face recognition on fans at a Taylor Swift concert](https://www.aclu.org/news/privacy-technology/problem-using-face-recognition-fans-taylor-swift)
+- [ACLU: Williams v. City of Detroit - Face recognition false arrest](https://www.aclu.org/cases/williams-v-city-of-detroit-face-recognition-false-arrest)
+- [Big Brother Watch: Stop facial recognition campaign report](https://bigbrotherwatch.org.uk/campaigns/stop-facial-recognition/report/)
+- [Büchi, M., Festic, N., & Latzer, M. (2022). The chilling effects of digital dataveillance. Big Data & Society](https://journals.sagepub.com/doi/10.1177/20539517211065368)
+- [CBS News: Madison Square Garden faces scrutiny over facial recognition technology](https://www.cbsnews.com/news/madison-square-garden-face-recognition-illegal-new-york-attorney-general-letitia-james/)
+- [Center for Democracy and Technology: EU AI Act brief - Privacy and surveillance](https://cdt.org/insights/eu-ai-act-brief-pt-2-privacy-surveillance/)
+- [Danish Data Protection Authority: Decision 2024-51-0012 on FC Copenhagen facial recognition](https://gdprhub.eu/index.php?title=Datatilsynet_(Denmark)_-_2024-51-0012)
+- [ECNL: Hungary's new biometric surveillance laws violate AI Act](https://ecnl.org/news/hungarys-new-biometric-surveillance-laws-violate-ai-act)
+- [Electronic Frontier Foundation: About Face - EFF's work on face recognition](https://www.eff.org/aboutface)
+- [European Parliament: EU AI Act - First regulation on artificial intelligence](https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence)
+- [Fight for the Future: Ban facial recognition from festivals](https://festivals.banfacialrecognition.com/)
+- [GDPR Article 9: Processing of special categories of personal data](https://gdpr-info.eu/art-9-gdpr/)
+- [National Academies of Sciences: Facial recognition technology - Current capabilities, future prospects, and governance](https://nap.nationalacademies.org/read/27397/chapter/5)
+- [National Institute of Standards and Technology (2019): Face Recognition Vendor Test Part 3 - Demographic Effects](https://nvlpubs.nist.gov/nistpubs/ir/2019/NIST.IR.8280.pdf)
+- [New York Attorney General: Attorney General James seeks information from Madison Square Garden regarding use of facial recognition technology](https://ag.ny.gov/press-release/2023/attorney-general-james-seeks-information-madison-square-garden-regarding-use)
+- [New York State Bar Association: Privacy vs. security - The legal implications of using facial recognition technology at entertainment venues](https://nysba.org/privacy-vs-security-the-legal-implications-of-using-facial-recognition-technology-at-entertainment-venues/)
+- [NPR: Facial recognition technology at MSG has sparked new concerns](https://www.npr.org/2023/01/21/1150289272/facial-recognition-technology-madison-square-garden-law-new-york)
+- [Pew Research Center (2022): Public more likely to see facial recognition use by police as good rather than bad for society](https://www.pewresearch.org/internet/2022/03/17/public-more-likely-to-see-facial-recognition-use-by-police-as-good-rather-than-bad-for-society/)
+- [Privacy International: Blank space - Why Taylor Swift doing facial recognition is a bad idea](https://privacyinternational.org/news-analysis/2547/blank-space-why-taylor-swift-doing-facial-recognition-bad-idea)
+- [Rolling Stone: Taylor Swift used facial recognition at concert to identify stalkers](https://www.rollingstone.com/music/music-news/taylor-swift-facial-recognition-concerts-768741/)
+- [UNESCO: Recommendation on the Ethics of Artificial Intelligence](https://www.unesco.org/en/articles/recommendation-ethics-artificial-intelligence)
