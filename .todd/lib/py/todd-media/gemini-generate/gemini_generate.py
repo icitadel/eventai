@@ -905,6 +905,242 @@ def analyze_infographic_structure(image_path):
         'n_clusters': n_clusters
     }
 
+def calculate_whitespace_percentage(image_path, threshold=240):
+    """
+    Calculate percentage of whitespace in image using pixel-based analysis.
+
+    Whitespace is defined as pixels with grayscale value >= threshold.
+    This captures white and near-white backgrounds while excluding content.
+
+    Args:
+        image_path: Path to image file (.png, .webp, .jpg)
+        threshold: Grayscale value (0-255) to consider "whitespace"
+                  Default 240 = light gray or white
+
+    Returns:
+        dict with whitespace percentage and analysis
+
+    Example:
+        >>> result = calculate_whitespace_percentage('infographic.webp')
+        >>> print(result['percentage'])  # e.g., 42.5
+    """
+    try:
+        from PIL import Image
+        import numpy as np
+    except ImportError:
+        return {
+            'percentage': 0.0,
+            'error': 'Missing dependencies (PIL, numpy)'
+        }
+
+    try:
+        # Load and convert to grayscale
+        image = Image.open(image_path).convert('L')
+        pixels = np.array(image)
+
+        # Check if image appears to be dark background (inverted)
+        mean_brightness = np.mean(pixels)
+        if mean_brightness < 128:
+            # Invert for dark backgrounds
+            pixels = 255 - pixels
+            inverted = True
+        else:
+            inverted = False
+
+        # Count white/light pixels
+        white_pixels = np.sum(pixels >= threshold)
+        total_pixels = pixels.size
+
+        percentage = (white_pixels / total_pixels) * 100
+
+        return {
+            'percentage': round(float(percentage), 1),
+            'threshold': threshold,
+            'inverted': inverted,
+            'mean_brightness': round(float(mean_brightness), 1),
+            'image_size': (image.width, image.height),
+            'total_pixels': int(total_pixels),
+            'white_pixels': int(white_pixels)
+        }
+    except Exception as e:
+        return {
+            'percentage': 0.0,
+            'error': f'Failed to analyze image: {str(e)}'
+        }
+
+def validate_image_text_density(image_path, tier):
+    """
+    Validate word counts per text block based on hierarchy level and tier.
+
+    Uses OCR to extract text blocks and validates that text density
+    matches tier requirements (concise: ≤5 words, standard: ≤15 words, etc.)
+
+    Args:
+        image_path: Path to image file
+        tier: 'concise', 'standard', or 'detailed'
+
+    Returns:
+        dict with validation results and violations
+
+    Example:
+        >>> result = validate_image_text_density('image.webp', 'concise')
+        >>> print(result['valid'])  # True if all blocks meet limits
+        >>> print(len(result['violations']))  # Number of violations
+    """
+    # Get OCR results with text blocks
+    metrics = analyze_infographic_structure(image_path)
+
+    if 'error' in metrics:
+        return {
+            'valid': False,
+            'tier': tier,
+            'violations': [],
+            'error': metrics['error']
+        }
+
+    violations = []
+
+    # Tier-specific word count limits for levels 1-2 (headlines/primary stats)
+    word_limits = {
+        'concise': 5,      # Strict: headlines only
+        'standard': 15,    # Moderate: brief descriptions allowed
+        'detailed': 999    # No limit: explanatory text expected
+    }
+
+    limit = word_limits.get(tier, 999)
+
+    # Validate each text block
+    for i, block in enumerate(metrics['text_blocks']):
+        text = block['text']
+        level = block.get('level', 1)
+        word_count = len(text.split())
+
+        # Only validate levels 1-2 (headlines and primary stats)
+        # Levels 3-4 are annotations/citations, less critical
+        if level <= 2 and word_count > limit:
+            violations.append({
+                'block_index': i,
+                'level': level,
+                'text': text[:50] + '...' if len(text) > 50 else text,
+                'word_count': word_count,
+                'limit': limit,
+                'excess': word_count - limit
+            })
+
+    return {
+        'valid': len(violations) == 0,
+        'tier': tier,
+        'violations': violations,
+        'total_blocks': len(metrics['text_blocks']),
+        'level12_blocks': sum(1 for b in metrics['text_blocks'] if b.get('level', 1) <= 2),
+        'word_limit': limit
+    }
+
+def score_visual_hierarchy(image_path):
+    """
+    Score visual hierarchy quality based on font size distribution.
+
+    Analyzes font size separation between hierarchy levels using
+    the existing KMeans clustering from analyze_infographic_structure().
+    Good hierarchy has clear separation (ratio 1.5-2.5x between levels).
+
+    Args:
+        image_path: Path to image file
+
+    Returns:
+        dict with hierarchy score (0.0-1.0) and analysis
+
+    Example:
+        >>> result = score_visual_hierarchy('infographic.webp')
+        >>> print(result['score'])  # e.g., 0.85 (Good)
+        >>> print(result['assessment'])  # 'Excellent' | 'Good' | 'Fair' | 'Poor'
+    """
+    import numpy as np
+
+    # Get OCR analysis with hierarchy levels
+    metrics = analyze_infographic_structure(image_path)
+
+    if 'error' in metrics:
+        return {
+            'score': 0.0,
+            'assessment': 'Error',
+            'error': metrics['error']
+        }
+
+    text_blocks = metrics['text_blocks']
+    n_clusters = metrics['n_clusters']
+
+    if not text_blocks:
+        return {
+            'score': 0.0,
+            'assessment': 'No Text',
+            'n_levels': 0
+        }
+
+    # Group blocks by hierarchy level and calculate mean size per level
+    level_sizes = {}
+    for block in text_blocks:
+        level = block.get('level', 1)
+        if level not in level_sizes:
+            level_sizes[level] = []
+        level_sizes[level].append(block['size'])
+
+    # Calculate mean size per level
+    level_means = {
+        level: float(np.mean(sizes))
+        for level, sizes in level_sizes.items()
+    }
+
+    # Calculate ratios between adjacent levels
+    # (Level 1 should be larger than Level 2, etc.)
+    sorted_levels = sorted(level_means.keys())
+    ratios = []
+
+    for i in range(len(sorted_levels) - 1):
+        level_a = sorted_levels[i]
+        level_b = sorted_levels[i + 1]
+        ratio = level_means[level_a] / level_means[level_b]
+        ratios.append(ratio)
+
+    # Calculate overall hierarchy quality score
+    # Based on average ratio and how well it fits ideal range
+    if not ratios:
+        avg_ratio = 1.0
+    else:
+        avg_ratio = float(np.mean(ratios))
+
+    # Scoring logic:
+    # Excellent: 1.5 ≤ ratio ≤ 2.5 (ideal separation)
+    # Good: 1.3 ≤ ratio ≤ 3.0 (acceptable separation)
+    # Fair: 1.1 ≤ ratio < 1.3 (weak separation)
+    # Poor: ratio < 1.1 (flat hierarchy)
+
+    if 1.5 <= avg_ratio <= 2.5:
+        score = 1.0
+        assessment = 'Excellent'
+    elif 1.3 <= avg_ratio <= 3.0:
+        # Linear interpolation: 0.7-0.9 for 1.3-1.5 and 2.5-3.0
+        if avg_ratio < 1.5:
+            score = 0.7 + 0.3 * (avg_ratio - 1.3) / (1.5 - 1.3)
+        else:  # avg_ratio > 2.5
+            score = 1.0 - 0.2 * (avg_ratio - 2.5) / (3.0 - 2.5)
+        assessment = 'Good'
+    elif avg_ratio >= 1.1:
+        score = 0.4 + 0.3 * (avg_ratio - 1.1) / (1.3 - 1.1)
+        assessment = 'Fair'
+    else:
+        score = max(0.1, avg_ratio * 0.4)
+        assessment = 'Poor'
+
+    return {
+        'score': round(float(score), 2),
+        'avg_ratio': round(avg_ratio, 2),
+        'n_levels': n_clusters,
+        'level_means': {k: round(v, 1) for k, v in level_means.items()},
+        'ratios': [round(float(r), 2) for r in ratios],
+        'assessment': assessment
+    }
+
 def validate_image_against_tier(image_path, tier='concise'):
     """
     Analyze infographic via OCR and validate against density tier.

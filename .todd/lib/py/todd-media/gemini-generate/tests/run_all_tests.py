@@ -39,6 +39,7 @@ def main():
     suites = [
         ('test_prompt_analysis.py', 'Structural Analysis Unit Tests'),
         ('test_prompt_validation.py', 'Validation Logic Unit Tests'),
+        ('test_image_validation.py', 'Image Validation Unit Tests (OCR)'),
         ('test_density_validation.py', 'CLI Integration Tests'),
     ]
     

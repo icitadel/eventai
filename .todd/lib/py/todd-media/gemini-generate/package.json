@@ -6,6 +6,7 @@
     "test": "cd tests && python3 run_all_tests.py",
     "test:analysis": "cd tests && python3 test_prompt_analysis.py",
     "test:validation": "cd tests && python3 test_prompt_validation.py",
+    "test:images": "cd tests && python3 test_image_validation.py",
     "test:integration": "cd tests && python3 test_density_validation.py",
     "test:watch": "cd tests && while true; do python3 run_all_tests.py; sleep 2; done"
   },

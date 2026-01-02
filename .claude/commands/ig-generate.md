@@ -360,11 +360,51 @@ gemini-generate --content barriers.content.md --prompt barriers.prompt.md \
 
 ### Step 1: Read Files
 
+**CRITICAL DISTINCTION:**
+
 ```
 barriers/
-  ├── barriers.prompt.md   ← Style instructions
-  ├── barriers.content.md  ← Data/content
+  ├── barriers.content.md  ← RAW DATA (unfiltered dump of information)
+  ├── barriers.prompt.md   ← VISUAL SPECIFICATION (how to design/present it)
   └── (output files will be created here)
+```
+
+**content.md** = The raw, unfiltered information to visualize
+- Source data, statistics, facts, quotes
+- No formatting, no design guidance
+- Just the content dump
+
+**Example content.md:**
+```markdown
+Festival Revenue Breakdown (10,000 attendees):
+- Ticket sales: $750,000
+- Food & Beverage: $180,000
+- Merchandise: $95,000
+- Sponsorships: $120,000
+- VIP Upgrades: $85,000
+Total: $1.23M
+```
+
+**prompt.md** = The infographic specification (visual design)
+- Layout, style, colors, typography
+- How to present the data visually
+- NO raw data (that's in content.md)
+
+**Example prompt.md:**
+```markdown
+# Festival Revenue Breakdown
+
+Create a vertical bar chart showing revenue by category.
+
+Style:
+- Colors: Deep purple (#6B46C1), electric coral (#FF6B6B), sky blue (#4299E1)
+- White space: 40%+ composition
+- Typography: Clean sans-serif, 16pt minimum
+- Context: Festival entry gates, crowd silhouettes
+
+Structure:
+Vertical bar chart with 5 categories. Each bar labeled with category name
+and dollar amount. Total revenue displayed prominently at top.
 ```
 
 ### Step 2: Browser Automation
