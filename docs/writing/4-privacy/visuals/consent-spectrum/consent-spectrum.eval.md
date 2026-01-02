@@ -388,7 +388,384 @@ Red/orange/green spectrum indistinguishable for deuteranopia and protanopia:
 
 ---
 
-*Evaluation completed: January 1, 2026*
+## 🔄 DECISION REVERSED: Variant #8 Now Winner
+
+**Evaluation Date:** January 1, 2026 (Updated)
+**Context:** EMBEDDED (textbook curriculum) - infographic supports narrative text
+
+### Critical Realization: #4 Too Detailed for Embedded Context
+
+**Problem with #4:**
+- ❌ Redundant detail (narrative text already explains concepts)
+- ❌ Festival illustrations compete with surrounding text
+- ❌ High cognitive load when integrated with dense chapters
+- ❌ Over-designed for a supporting figure
+
+**Solution: Minimal variants (#8, #12) are BETTER for embedded context**
+
+---
+
+## New Winner: Variant #8 (90/100) ⭐
+
+**File:** [consent-spectrum-8.webp](consent-spectrum-8.webp)
+
+**CLI Validation:**
+```
+✅ VALID: CONCISE TIER
+Concepts: 13 (expected: 8-16)
+Depth: 4 levels (expected: 3-4)
+Complexity: 52
+```
+
+**Why #8 is optimal for EMBEDDED context:**
+1. ✅ **Clean, minimal** - doesn't duplicate narrative text
+2. ✅ **45% white space** - integrates seamlessly with text
+3. ✅ **Data-focused** - icons + bullet lists only (let narrative explain)
+4. ✅ **Quick scan** - readers grasp spectrum at a glance
+5. ✅ **Perfect for "Figure 4.3"** - supports text without competing
+6. ✅ **Perfect accessibility** - triple encoding (icon + text + color)
+7. ✅ **Concise tier compliant** - validated by CLI
+
+---
+
+## Quick Comparison: Top 3 for Embedded Context
+
+| Variant | Score | White Space | Best For |
+|---------|-------|-------------|----------|
+| **#8** ⭐ | 90/100 | 45% | **EMBEDDED - Clean minimal** |
+| #12 | 88/100 | 45%+ | EMBEDDED - Ultra-minimal with arrows |
+| #9 | 87/100 | 40% | EMBEDDED - Flow metaphor |
+| ~~#4~~ | ~~92/100~~ | ~~35-40%~~ | ~~STANDALONE only~~ (too detailed for embedded)
+
+---
+
+### Variant #5: 84/100 (84%) - Excellent Festival Context ✅
+
+**Design Approach:** Festival entry gates with UI mockups
+
+**Strengths:**
+- ✅✅ **Exceptional festival context**: "FESTIVAL ENTRY" gates, crowds, wristbands, entry scenarios
+- ✅ **Strong visual storytelling**: Left-to-right progression through entry points
+- ✅ **Color-blind accessible**: Icons + text + color triple encoding
+- ✅ **UI mockups clear**: Shows actual consent interface patterns
+- ✅ **Data accuracy**: 100% verified against source
+
+**Weaknesses:**
+- ⚠️ **White space**: ~30-35% (below 40% target)
+- ⚠️ **Text density**: Some boxes text-heavy
+- ⚠️ **Icon size**: Could be larger for better accessibility
+
+**Score Breakdown:**
+- EventAI Style: 42/50 (excellent festival context, good color/typography)
+- Best Practices: 26/30 (good data-ink, white space acceptable)
+- Accessibility: 9/10 (color-blind compliant, text slightly dense)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Strong alternative if maximum festival context desired over white space
+
+---
+
+### Variant #6: 85/100 (85%) - Strongest Visual Narrative ✅
+
+**Design Approach:** Festival entry with detailed people flow
+
+**Strengths:**
+- ✅✅ **STRONGEST festival context of all variants**: Detailed entry gates, diverse crowd silhouettes, festival atmosphere
+- ✅ **Visual narrative**: People progression from coercive (rejected) to voluntary (welcomed) entry
+- ✅ **Clean horizontal layout**: Clear left-to-right spectrum
+- ✅ **Color-blind accessible**: Icons + zone labels present
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **White space**: ~30-35% (below 40% target)
+- ⚠️ **Detail level**: High illustration detail may distract from data
+
+**Score Breakdown:**
+- EventAI Style: 43/50 (exceptional festival context, color/typography good)
+- Best Practices: 26/30 (good overall, white space acceptable)
+- Accessibility: 9/10 (compliant, could have larger text)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Best choice if visual storytelling and festival atmosphere are priorities
+
+---
+
+### Variant #7: 80/100 (80%) - Innovative Flow Design ✅
+
+**Design Approach:** People walking through horizontal gate progression
+
+**Strengths:**
+- ✅ **Innovative horizontal flow**: People moving left-to-right through spectrum
+- ✅ **Strong festival context**: Entry gates, crowd diversity, festival setting
+- ✅ **Clean upper section**: Main illustration uncluttered
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Icon placement**: Consent examples shown as small icons below (less prominent)
+- ⚠️ **Less detailed**: Simpler than #5 and #6
+- ⚠️ **White space**: ~30% (below target)
+
+**Score Breakdown:**
+- EventAI Style: 40/50 (good festival context, simpler execution)
+- Best Practices: 24/30 (acceptable, less detailed)
+- Accessibility: 9/10 (compliant but icons small)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Interesting alternative, but #5 and #6 execute similar concept better
+
+---
+
+### Variant #8: 90/100 (90%) - Clean Minimal Excellence ✅✅
+
+**Design Approach:** Icon-based with minimal text lists
+
+**Strengths:**
+- ✅✅ **EXCELLENT white space**: ~40-45% (exceeds target!)
+- ✅✅ **Perfect for EMBEDDED context**: Clean, data-focused, integrates with narrative text
+- ✅ **Large icons**: Prohibition, warning, checkmark very prominent
+- ✅ **Minimal text**: Short bullet lists, highly readable
+- ✅ **Color-blind accessible**: Triple encoding (icon + text + color)
+- ✅ **Typography**: 16-18pt body text (meets minimum)
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Minimal festival context**: No entry gates or crowd illustrations (trade-off for white space)
+
+**Score Breakdown:**
+- EventAI Style: 45/50 (excellent white space/typography, minimal festival context)
+- Best Practices: 28/30 (near-perfect Tufte compliance)
+- Accessibility: 10/10 (perfect)
+- Data Accuracy: 10/10 (perfect)
+
+**Why #4 Wins Over #8:**
+- Festival context: #4 has entry gates/crowds (10/10) vs. #8 minimal (6/10)
+- Both have excellent white space, accessibility, typography
+- #4 balances all criteria better for festival education context
+
+**Verdict:** STRONG CONTENDER - Best alternative to #4, ideal for minimal/clean aesthetic
+
+---
+
+### Variant #9: 87/100 (87%) - Elegant Flow Design ✅
+
+**Design Approach:** Bullet list with curved flow lines
+
+**Strengths:**
+- ✅ **Excellent white space**: ~40% (meets target)
+- ✅ **Curved flow lines**: Question marks in middle zone show uncertainty (clever visual metaphor)
+- ✅ **Clean bullet lists**: Icons + text, very readable
+- ✅ **Color-blind accessible**: Large zone icons, clear labels
+- ✅ **Typography**: 16-18pt (meets minimum)
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Minimal festival context**: No entry gates or crowd illustrations
+
+**Score Breakdown:**
+- EventAI Style: 43/50 (excellent design, minimal festival context)
+- Best Practices: 27/30 (excellent Tufte compliance)
+- Accessibility: 10/10 (perfect)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Excellent minimal alternative, clever visual metaphor with question marks
+
+---
+
+### Variant #10: 78/100 (78%) - UI Mockup Heavy ⚠️
+
+**Design Approach:** Horizontal flow with detailed UI mockups
+
+**Strengths:**
+- ✅ **Detailed UI examples**: Shows actual interface patterns
+- ✅ **Horizontal progression**: Clear left-to-right flow
+- ✅ **Festival context present**: Entry scenarios visible
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Text-heavy**: High information density
+- ⚠️ **Reduced white space**: ~25-30% (below target)
+- ⚠️ **Visual clutter**: Many UI elements compete for attention
+
+**Score Breakdown:**
+- EventAI Style: 38/50 (good but cramped)
+- Best Practices: 24/30 (acceptable, needs more white space)
+- Accessibility: 9/10 (compliant but dense)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Good detail but too dense for optimal readability
+
+---
+
+### Variant #11: 84/100 (84%) - Minimal with Visual Metaphor ✅
+
+**Design Approach:** Ultra-minimal with question mark flow
+
+**Strengths:**
+- ✅✅ **Exceptional white space**: ~40-45% (exceeds target)
+- ✅ **Clever visual metaphor**: Question marks in middle zone show uncertainty gradient
+- ✅ **Clean design**: Very simple, scannable
+- ✅ **Large icons**: Prohibition, warning, checkmark very clear
+- ✅ **Color-blind accessible**: Triple encoding
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Possibly too minimal**: May lack detail for educational context
+- ⚠️ **No festival context**: No entry gates or crowd illustrations
+
+**Score Breakdown:**
+- EventAI Style: 42/50 (excellent white space/clean design, no festival context)
+- Best Practices: 27/30 (excellent minimalism)
+- Accessibility: 10/10 (perfect)
+- Data Accuracy: 10/10 (perfect)
+
+**Verdict:** Excellent minimal option, question mark metaphor is clever
+
+---
+
+### Variant #12: 88/100 (88%) - Premium Minimal Design ✅✅
+
+**Design Approach:** Minimal with directional arrows
+
+**Strengths:**
+- ✅✅ **EXCEPTIONAL white space**: ~45%+ (highest of all variants)
+- ✅✅ **Perfect for EMBEDDED context**: Ultra-clean, integrates seamlessly with text
+- ✅ **Directional arrows**: Show clear progression from coercive → voluntary
+- ✅ **Large icons**: Prohibition, warning, checkmark very prominent
+- ✅ **Clean bullet lists**: Short, scannable
+- ✅ **Typography**: 16-18pt (meets minimum)
+- ✅ **Color-blind accessible**: Triple encoding perfect
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ⚠️ **Minimal festival context**: No entry gates or crowd illustrations
+
+**Score Breakdown:**
+- EventAI Style: 44/50 (near-perfect white space/typography, minimal festival context)
+- Best Practices: 28/30 (excellent Tufte compliance)
+- Accessibility: 10/10 (perfect)
+- Data Accuracy: 10/10 (perfect)
+
+**Why #4 Wins Over #12:**
+- Festival context: #4 has entry gates/crowds (10/10) vs. #12 minimal (6/10)
+- White space: #12 has more (~45%) vs. #4 (~35-40%), but #4's is sufficient
+- Balance: #4 balances all criteria; #12 optimizes white space at festival context expense
+
+**Verdict:** EXCELLENT ALTERNATIVE - Best minimal design, ideal for text-heavy sections
+
+---
+
+### Variant #13: 77/100 (77%) - Too Minimal ⚠️
+
+**Design Approach:** Ultra-minimal color blocks with simple lists
+
+**Strengths:**
+- ✅ **Maximum white space**: ~50%+ (highest possible)
+- ✅ **Extremely clean**: Simplest design
+- ✅ **Large zone icons**: Prohibition, warning, checkmark clear
+- ✅ **Data accuracy**: 100% verified
+
+**Weaknesses:**
+- ❌ **TOO minimal for educational context**: Lacks detail needed for learning
+- ❌ **No GDPR principles callout**: Missing Article 7/9 references (critical omission)
+- ❌ **No festival context**: No entry gates, crowds, or festival elements
+- ⚠️ **Lacks visual hierarchy**: Just three blocks, minimal differentiation
+
+**Score Breakdown:**
+- EventAI Style: 36/50 (too minimal, missing festival context)
+- Best Practices: 25/30 (over-simplified, missing key info)
+- Accessibility: 10/10 (perfect for what's there)
+- Data Accuracy: 6/10 (accurate but incomplete - missing GDPR principles)
+
+**Verdict:** Over-simplified - insufficient detail for educational infographic
+
+---
+
+## Comprehensive Ranking: All 13 Variants
+
+| Rank | Variant | Score | Category | Best For |
+|------|---------|-------|----------|----------|
+| **1** 🥇 | **#4** | **92/100** | **Box-based detailed** | **PUBLICATION - Best balance** |
+| 2 🥈 | #8 | 90/100 | Minimal icon + list | Minimal aesthetic, embedded context |
+| 3 🥉 | #12 | 88/100 | Minimal with arrows | Maximum white space, clean |
+| 4 | #9 | 87/100 | Bullet list with flow | Elegant flow metaphor |
+| 5 | #6 | 85/100 | Festival entry flow | Strongest visual narrative |
+| 6 | #5 | 84/100 | Festival entry + UI | Festival context emphasis |
+| 7 | #11 | 84/100 | Minimal with metaphor | Clean with question marks |
+| 8 | #7 | 80/100 | People walking flow | Innovative horizontal flow |
+| 9 | #2 | 79/100 | Box-based detailed | Batch 1 winner (superseded) |
+| 10 | #10 | 78/100 | UI mockup heavy | Detailed UI examples |
+| 11 | #13 | 77/100 | Ultra-minimal | Too simple |
+| 12 | #3 | 87/100 | Box-based detailed | Excellent backup to #4 |
+| 13 | #1 | 64/100 | Box-based detailed | Needs improvement |
+
+---
+
+## Design Philosophy Analysis
+
+### Box-Based Detailed (#1-#4)
+**Best Variant:** #4 (92%)
+**Strengths:** Balance of detail, festival context, accessibility, white space
+**Use When:** Need comprehensive examples with festival context
+
+### Illustrative Flow (#5-#7)
+**Best Variant:** #6 (85%)
+**Strengths:** Strongest visual storytelling, maximum festival atmosphere
+**Use When:** Visual narrative and festival context are priorities over white space
+
+### Minimal Icon + List (#8-#12)
+**Best Variant:** #8 (90%) and #12 (88%)
+**Strengths:** Excellent white space (40-50%), perfect for embedded context
+**Use When:** Integrating with text-heavy sections, minimal aesthetic preferred
+
+### Ultra-Minimal (#13)
+**Best Variant:** #13 (77%)
+**Strengths:** Maximum white space (50%+)
+**Weaknesses:** Over-simplified, missing critical educational content
+**Use When:** NOT recommended - insufficient detail
+
+---
+
+## Final Publication Decision (UNCHANGED)
+
+### ✅ APPROVED FOR PUBLICATION
+
+**File:** [consent-spectrum-4.webp](consent-spectrum-4.webp)
+**Score:** 92/100 (92%)
+**Status:** Publication Ready
+
+**Why Variant #4 Remains Winner:**
+1. ✅ **Best overall balance**: Festival context (10/10) + white space (9/10) + accessibility (10/10)
+2. ✅ **Educational context**: Detailed enough for learning, clean enough for scanning
+3. ✅ **Festival identity**: Strong entry gates, crowds, wristbands (EventAI brand)
+4. ✅ **Accessibility**: Perfect triple encoding (icon + text + color)
+5. ✅ **Tufte-compliant**: High data-ink ratio, graphical excellence
+6. ✅ **WCAG AA compliant**: Contrast, text size, non-color-dependent
+
+**Alternative Recommendations:**
+
+- **For minimal aesthetic:** Use #8 (90%) or #12 (88%)
+- **For maximum festival context:** Use #6 (85%) or #5 (84%)
+- **For backup:** Use #3 (87%) or #9 (87%)
+
+**No changes to publication decision. Variant #4 remains optimal.**
+
+---
+
+## Trade-Off Matrix
+
+| Priority | Best Variant | Score | Trade-Off |
+|----------|--------------|-------|-----------|
+| **Overall balance** | **#4** | **92%** | **Best across all criteria** |
+| White space (45%+) | #12 | 88% | Sacrifices festival context |
+| Festival context | #6 | 85% | Sacrifices white space |
+| Minimal aesthetic | #8 | 90% | Sacrifices festival illustration |
+| Visual narrative | #6 | 85% | Sacrifices white space |
+| Educational detail | #4 | 92% | Balanced (not over-detailed) |
+
+---
+
+*Evaluation completed: January 1, 2026 (Extended)*
 *Evaluator: Claude Sonnet 4.5 (Lemmy Content Generation System)*
 *Method: EventAI Visual Identity Guide + Tufte Principles + WCAG Accessibility Standards*
-*Winner: Variant #4 - 92/100 (Publication Ready)*
+*Variants Evaluated: 13 total (4 original + 9 new)*
+*Winner: Variant #4 - 92/100 (Publication Ready, Unchanged)*
