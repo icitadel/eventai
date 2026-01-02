@@ -928,27 +928,29 @@ def validate_image_against_tier(image_path, tier='concise'):
             'error': metrics['error']
         }
 
-    # Use same tier specs as prompts
+    # CALIBRATED tier specs (2026-01-01) - based on fixture analysis
+    # See: docs/fixture-analysis.md and docs/validation-criteria-spec.md
+    # TODO: Replace with parser from canonical markdown table
     tier_specs = {
         'concise': {
-            'concepts': (5, 8),
-            'depth': (1, 2),
-            'description': 'Few concepts (5-8), shallow depth (1-2 levels)'
+            'concepts': (8, 16),
+            'depth': (3, 4),
+            'description': 'Few concepts (8-16), 3-4 hierarchy levels'
         },
         'standard_breadth': {
-            'concepts': (10, 15),
-            'depth': (1, 2),
-            'description': 'Many concepts (10-15) at shallow depth (1-2 levels) - BREADTH'
+            'concepts': (16, 28),
+            'depth': (3, 4),
+            'description': 'Many concepts (16-28) at 3-4 levels - BREADTH'
         },
         'standard_depth': {
-            'concepts': (5, 8),
-            'depth': (3, 3),
-            'description': 'Few concepts (5-8) at medium depth (3 levels) - DEPTH'
+            'concepts': (10, 20),
+            'depth': (3, 4),
+            'description': 'Moderate concepts (10-20) at 3-4 levels - DEPTH'
         },
         'detailed': {
-            'concepts': (20, 30),
-            'depth': (4, 10),
-            'description': 'Many concepts (20-30+) AND deep detail (4+ levels) - BOTH'
+            'concepts': (28, 999),
+            'depth': (4, 6),
+            'description': 'Many concepts (28+) AND deep detail (4-6 levels) - BOTH'
         }
     }
 
