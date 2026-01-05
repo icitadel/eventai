@@ -129,30 +129,76 @@ Content that fails question alignment should be flagged immediately, even if dat
 ### Step 0: Gather All Source Materials
 **CRITICAL**: Don't validate against just one file. Find ALL related materials:
 
-1. **Check the section directory** for:
-   - Previous draft versions (draft.1, draft.md, etc.)
-   - Research files (*.research.md, *-notes.md)
-   - Content files for visuals (visuals/*/*.content.md)
-   - Evaluation reports (*-EVALUATION-REPORT.md, *.eval.md)
+1. **FIRST: Locate primary source files (REQUIRED)**:
+
+   **`*.sources.md`** - Authoritative source catalog
+   - Search pattern: `find [section-dir] -name "*.sources.md"`
+   - Example files: `transformation.sources.md`, `privacy.sources.md`
+   - Contains: Tier-classified URLs, source metadata, access dates
+   - **If missing**: ❌ VALIDATION CANNOT PROCEED - Flag critical error
+
+   **`*.research.md`** - Research notes with claims and context
+   - Search pattern: `find [section-dir] -name "*.research.md"`
+   - Example files: `transformation-attendee.research.md`, `topic-subtopic.research.md`
+   - Contains: Extracted statistics, vendor claims, caveats, context
+   - **If missing**: ❌ VALIDATION CANNOT PROCEED - Flag critical error
+
+2. **Check the section directory** for supporting materials:
+   - Previous draft versions (draft.1.md, draft.2.md, etc.)
+   - Content files for visuals (visuals/\*/\*.content.md)
+   - Evaluation reports (\*-EVALUATION-REPORT.md, \*.eval.md)
    - README files that may index content
 
-2. **Look in parent directories** for:
+3. **Look in parent directories** for:
    - Section-level research documents
    - Shared data/statistics files
    - Source interview transcripts or Q&A files
+   - Shared *.sources.md files (e.g., section-wide source catalog)
 
-3. **Search for related content** by:
-   - Grepping for key vendor names mentioned in draft
-   - Finding files that mention the same statistics
+4. **Search for related content** by:
+   - Grepping for key vendor names mentioned in draft across *.research.md files
+   - Finding statistics in *.research.md files: `grep -r "40-41%" */**.research.md`
+   - Cross-referencing *.sources.md entries with draft citations
    - Locating any "Question X" files if this answers a specific question
 
-4. **Create a source inventory**:
+5. **Create a source inventory** (REQUIRED before validation):
+   ```markdown
+   ## Source Material Inventory: [Section Name]
+
+   ### PRIMARY SOURCES (CRITICAL)
+   - **Sources Catalog**: [transformation.sources.md](path) ✅ FOUND / ❌ MISSING
+   - **Research File(s)**:
+     - [transformation-attendee.research.md](path) ✅ FOUND
+     - [transformation-personalization.research.md](path) ✅ FOUND
+
+   ### SUPPORTING MATERIALS
+   - **Previous Drafts**:
+     - [draft.1.md](path): Original long-form content
+     - [draft.2.md](path): First condensed version
+   - **Visual Content**:
+     - [visuals/confidence-matrix/confidence-matrix.content.md](path)
+     - [visuals/decision-flow/decision-flow.content.md](path)
+   - **Evaluation Reports**:
+     - [visuals/confidence-matrix/confidence-matrix.eval.md](path)
+
+   ### CROSS-REFERENCE FILES
+   - **Related Sections**: Privacy section shares MWC statistics
+   - **Shared Sources**: Check privacy.sources.md for overlapping URLs
    ```
-   Sources for validation:
-   - [draft.1](path): Original long-form content
-   - [visual.content.md](path): Supporting research for Figure X
-   - [section-research.md](path): Initial Q&A and data gathering
-   - [vendor-case-studies.md](path): Evidence base
+
+6. **Validation Pre-Check**:
+   ```
+   ✅ *.sources.md located and readable
+   ✅ *.research.md located and readable
+   ✅ All supporting materials inventoried
+   ✅ Cross-reference files identified
+
+   → PROCEED with validation
+
+   OR
+
+   ❌ Missing *.sources.md or *.research.md
+   → STOP: Create source materials first or identify existing authoritative files
    ```
 
 ### Step 1: Initial Read-Through
@@ -471,11 +517,14 @@ Use this for rapid validation:
 - Any visuals integrated
 
 **Skill will automatically**:
-- Find previous draft versions in same directory
-- Locate visual content files (visuals/*/*.content.md)
-- Search for related research documents
+- **Search for `*.sources.md`** in section directory and parent directories
+- **Search for `*.research.md`** in section directory and subdirectories
+- Find previous draft versions in same directory (draft.1.md, draft.2.md, etc.)
+- Locate visual content files (visuals/\*/\*.content.md)
+- Cross-reference claims in draft against *.research.md files
+- Verify all citations against *.sources.md catalog
 - Check README.md files for content indexes
-- Identify evaluation reports for visuals
+- Identify evaluation reports for visuals (\*.eval.md)
 
 **Output**:
 - Validation report (markdown format)

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Transform content into concise, flowing narrative using accessible prose principles. This command applies narrative best practices to reduce word count while improving readability and engagement.
+Transform content into concise, flowing narrative using accessible prose principles while enforcing thematic consistency with the question posed. This command ensures every section directly answers the question, applies narrative best practices to reduce word count, and structures documents with explicit Question + Narrative + Points framework.
 
 ## When to Use
 
@@ -28,7 +28,9 @@ Use this command when you have content that needs:
 
 | Use Case | Target Range | Characteristics |
 |----------|--------------|-----------------|
-| **Concise Infographic** | 100-300 words | Ultra-tight, data-forward, minimal prose |
+| **Concise Infographic** | 30-60 words | Visual-first, headline stats only, minimal labels (see gemini-generate, infographics-bestpractices) |
+| **Standard Infographic** | 80-150 words | Balanced detail, category labels, brief explanations (30-60 sec comprehension) |
+| **Detailed Infographic** | 200-400 words | Comprehensive annotations, educational context (2-3 min comprehension) |
 | **Instagram Post** | 150-400 words | Punchy, scannable, mobile-friendly |
 | **Blog Post** | 800-1,200 words | Conversational, SEO-friendly, subheaders |
 | **Textbook Section** | 1,500-2,000 words | Educational, thorough, accessible |
@@ -89,6 +91,176 @@ This command applies five narrative best practices:
 ```
 
 ## Workflow
+
+### Step 0: Thematic Consistency Analysis (REQUIRED FIRST STEP)
+
+**Before any narrative transformation, analyze whether each section actually answers the question posed.**
+
+#### 0.1: Identify the Question
+
+**Locate the question at the top of the document:**
+- Should be explicitly stated in a "Question" or similar heading
+- If missing, infer from title, learning objectives, or opening paragraphs
+- Document the question clearly before proceeding
+
+**Example:**
+```markdown
+# Question
+> In your view, what is the ultimate, long-term future of AI in the festival
+> and live events industry over the next decade? What will be the most
+> significant, visible difference for the average attendee?
+```
+
+#### 0.2: Rate Each Section for Relevance
+
+**For each major section, rate relevance to the question (1-10 scale):**
+
+| Rating | Meaning | Action |
+|--------|---------|--------|
+| **9-10** | Directly answers the question | Keep, potentially strengthen |
+| **7-8** | Provides essential context | Keep, ensure clear connection |
+| **5-6** | Useful background, tangential | Condense or reframe |
+| **3-4** | Weakly related, optional | Consider removing/moving |
+| **1-2** | Off-topic, answers different question | Remove or move to appendix |
+
+**Rating criteria:**
+- Does this section directly answer the question posed?
+- Is this information necessary to understand the answer?
+- Could the question be answered fully without this section?
+- Does this section answer a *different* question than the one posed?
+
+**Example analysis:**
+```
+Section: "What Attendees Will Experience" - 10/10
+  → Directly answers "What will be the most significant, visible difference?"
+
+Section: "Three-Phase Transformation" - 10/10
+  → Directly answers "What is the long-term future over the next decade?"
+
+Section: "Why AI Fails Most of the Time" - 6/10
+  → Provides context for realistic expectations but doesn't answer what the future IS
+  → Answers "Why might it not happen?" not "What will happen?"
+  → DECISION: Condense by 50% or integrate into timeline as barriers
+
+Section: "What Actually Works" - 5/10
+  → Answers "How to implement successfully" not "What is the future?"
+  → Implementation tactics, not outcome predictions
+  → DECISION: Remove or move to appendix/different document
+```
+
+#### 0.3: Handle Tangential Sections
+
+**For sections rated below 7/10, choose one approach:**
+
+**Option 1: Delete entirely**
+- Use when: Section answers a completely different question
+- Example: Implementation best practices in a document about future predictions
+
+**Option 2: Condense significantly (50-70% reduction)**
+- Use when: Section provides useful context but is over-developed
+- Keep core insight in 1-2 paragraphs
+- Example: "Why AI Fails" condensed to acknowledge barriers without full analysis
+
+**Option 3: Reframe within high-relevance sections**
+- Use when: Information supports the answer but is misplaced
+- Example: Move barrier discussion into timeline phases ("Phase 1 faces these challenges...")
+
+**Option 4: Move to appendix**
+- Use when: Information is valuable but tangential
+- Create "Context: [Topic]" or "Appendix: [Topic]" section
+- Example: "Appendix: Implementation Best Practices for Festival AI"
+
+**Document your decisions:**
+```markdown
+## Thematic Consistency Decisions
+
+Sections removed:
+- "What Actually Works" (5/10 relevance) → Answers implementation question, not future prediction
+- Moved to: appendix-implementation-patterns.md
+
+Sections condensed:
+- "Why AI Fails" (6/10 relevance) → 500 words → 150 words
+- Reason: Provides context for realistic predictions but over-developed
+- Action: Keep 80% failure stat, remove detailed five-barrier analysis
+
+Sections strengthened:
+- "Bottom Line" (9/10) → Add explicit return to attendee experience to bookend answer
+```
+
+#### 0.4: Verify Document Structure
+
+**Required structure for question-answer documents:**
+
+```markdown
+# Question
+> [The question being answered, verbatim]
+
+---
+
+# Narrative
+
+**Target:** [word count range, e.g., "1,500-2,000 words"]
+
+[2-3 sentence summary that directly answers the question]
+
+**This narrative covers [3-5] points:**
+
+- **Point 1: [Title]** — [1 sentence describing what this section argues]
+- **Point 2: [Title]** — [1 sentence describing what this section argues]
+- **Point 3: [Title]** — [1 sentence describing what this section argues]
+- **Point 4: [Title]** — [1 sentence describing what this section argues] (optional)
+- **Point 5: [Title]** — [1 sentence describing what this section argues] (optional)
+
+---
+
+# [Title for Article/Section]
+
+**Learning Objectives:** (if educational content)
+- [Objective 1]
+- [Objective 2]
+- [Objective 3]
+
+---
+
+## [Section matching Point 1]
+[Content that develops Point 1...]
+
+## [Section matching Point 2]
+[Content that develops Point 2...]
+
+## [Section matching Point 3]
+[Content that develops Point 3...]
+
+## [Conclusion/Bottom Line]
+[Synthesis and implications...]
+
+---
+
+**Sources:**
+[Bibliography...]
+```
+
+**Structural requirements:**
+1. **Question section**: Explicit statement of question being answered
+2. **Narrative section**:
+   - Word count target (e.g., "1,500-2,000 words" for textbook sections)
+   - 2-3 sentence direct answer to the question
+   - 3-5 point preview of the argument
+3. **Body sections**: Each point has corresponding section(s) in body
+4. **No orphaned sections**: Every major section maps to a point or is removed
+5. **Proper bookends**: Opening narrative + closing synthesis that echoes it
+6. **Learning objectives**: Immediately after title (for educational content)
+
+**Word count targets by use case:**
+- Textbook section: 1,500-2,000 words
+- Blog post: 800-1,200 words
+- White paper: 2,500-5,000 words
+- Instagram post: 150-400 words
+
+**If structure is missing:**
+- Create it before proceeding with narrative transformation
+- Extract the core argument from existing content
+- Map existing sections to points or mark for removal/condensing
 
 ### Step 1: Analyze Current State
 
@@ -403,6 +575,6 @@ festival-ai-instagram.md (280 words, punchy)
 ---
 
 **Command Created:** January 2, 2026
-**Version:** 1.0
+**Version:** 2.0 (Updated January 4, 2026 - Added thematic consistency analysis and structural requirements)
 **Based On:** .claude/skills/narrative-bp.md
 **Related Commands:** /narrative-refine-validate, /validate, /optimize-tokens

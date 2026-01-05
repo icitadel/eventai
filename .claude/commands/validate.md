@@ -84,9 +84,86 @@ You are a meticulous fact-checker and academic reviewer. Analyze the provided co
 
 ---
 
+## Finding Source Materials
+
+**CRITICAL FIRST STEP**: Before validating, locate ALL source materials for the section.
+
+### Required Source Files to Locate
+
+**Priority 1: Primary Source Files**
+1. **`*.sources.md`** - Authoritative source catalog with tier classifications
+   - Search pattern: Same directory as draft, or parent directories
+   - Example: `transformation.sources.md`, `section-name.sources.md`
+   - Contains: URLs, tier rankings, source metadata, access dates
+
+2. **`*.research.md`** - Research notes with extracted claims and context
+   - Search pattern: Same directory or research subdirectory
+   - Example: `transformation-attendee.research.md`, `topic.research.md`
+   - Contains: Key statistics, vendor claims, contextual notes, caveats
+
+**Priority 2: Supporting Materials**
+3. Previous draft versions (draft.1.md, draft.2.md, etc.)
+4. Visual content files (visuals/*/\*.content.md)
+5. Evaluation reports (\*.eval.md, *-EVALUATION-REPORT.md)
+6. README files that may index content
+
+### Source Discovery Process
+
+```bash
+# Step 1: Search for sources file in section directory
+find docs/writing/[section-name] -name "*.sources.md"
+
+# Step 2: Search for research files in section directory
+find docs/writing/[section-name] -name "*.research.md"
+
+# Step 3: Check parent directory for shared sources
+find docs/writing -maxdepth 2 -name "*.sources.md"
+
+# Step 4: Grep for specific statistics to find their origin
+grep -r "40-41%" docs/writing/[section-name]
+```
+
+### Source Inventory Template
+
+Create this inventory BEFORE starting validation:
+
+```markdown
+## Source Material Inventory: [Section Name]
+
+### Primary Sources
+- **Sources Catalog**: [path/to/section.sources.md] ✅ FOUND / ❌ MISSING
+- **Research File**: [path/to/section.research.md] ✅ FOUND / ❌ MISSING
+
+### Supporting Materials
+- **Previous Drafts**: [list all draft.X.md files]
+- **Visual Content**: [list visuals/*/content.md files]
+- **Evaluation Reports**: [list *.eval.md files]
+
+### Cross-Reference Files
+- **Related Sections**: [other sections that share statistics]
+- **Shared Sources**: [sources files from other sections with overlapping data]
+```
+
+**If *.sources.md or *.research.md are missing:**
+- ❌ VALIDATION CANNOT PROCEED - Flag as critical error
+- Must create source catalog from inline citations first
+- Or identify which existing files serve as authoritative source
+
+---
+
 ## Validation Process
 
 ### Phase 1: Extraction & Inventory
+
+**Step 0: Load Source Files**
+
+Before extracting claims from the draft, load authoritative sources:
+
+```
+1. Read [section].sources.md → Build source catalog index
+2. Read [section].research.md → Build claims database
+3. Cross-reference: Ensure all research claims map to sources catalog
+```
 
 **Step 1: Extract all quantitative claims**
 ```
@@ -176,38 +253,120 @@ PATTERN CHECK: Ranges and approximations
 
 **Step 1: Match claims to sources**
 
-For each claim, verify source exists and supports the claim:
+For each claim, verify source exists and supports the claim by cross-referencing BOTH *.sources.md AND *.research.md:
 
 ```
 CLAIM: "Cleveland Browns achieved 50%+ season ticket holder enrollment"
-SOURCE CHECK:
-- Cited source: Stadium Tech Report (Tier 2 #97)
-- URL: https://stadiumtechreport.com/feature/wickets-facial-authentication...
-- ✅ VERIFIED: Article states "more than 50% of season ticket holders"
+SOURCE CHECK (3-step verification):
+
+1️⃣ CHECK *.research.md for claim origin:
+   - transformation-attendee.research.md:L145
+   - Original note: "50%+ of season ticket holders enrolled (Stadium Tech Report)"
+   - Includes caveat: "As of January 2024"
+   - ✅ FOUND in research file
+
+2️⃣ CHECK *.sources.md for source details:
+   - transformation.sources.md: Tier 2 #97
+   - Title: "Wickets Facial Authentication at Cleveland Browns"
+   - URL: https://stadiumtechreport.com/feature/wickets-facial-authentication...
+   - Access date: 2024-01-15
+   - ✅ FOUND in source catalog
+
+3️⃣ VERIFY claim accuracy:
+   - Draft says: "50%+ season ticket holder enrollment"
+   - Research says: "50%+ of season ticket holders enrolled"
+   - Source article states: "more than 50% of season ticket holders"
+   - ✅ CONSISTENT across all three
 
 CLAIM: "Mobile World Congress saw 43% opt-in (7,585 of 17,462 attendees)"
-SOURCE CHECK:
-- Cited source: GSMA (Tier 1 #88)
-- URL: https://techcrunch.com/2023/05/08/gsma-mwc-aedp-gdpr-dpia-fine/
-- ✅ VERIFIED: TechCrunch article confirms 43% figure
-- ⚠️ NOTE: Is this GSMA data or TechCrunch reporting? Clarify attribution
+SOURCE CHECK (3-step verification):
+
+1️⃣ CHECK *.research.md:
+   - privacy-biometric.research.md:L234
+   - Original note: "MWC 2023: 43% opt-in rate (7,585/17,462)"
+   - ✅ FOUND with exact figures
+
+2️⃣ CHECK *.sources.md:
+   - privacy.sources.md: Tier 1 #88
+   - Source: TechCrunch article about GSMA fine
+   - URL: https://techcrunch.com/2023/05/08/gsma-mwc-aedp-gdpr-dpia-fine/
+   - ✅ FOUND in source catalog
+
+3️⃣ VERIFY accuracy:
+   - ✅ Numbers match across draft/research/source
+   - ⚠️ ATTRIBUTION ISSUE: Is this "GSMA data" or "TechCrunch reporting"?
+   - → CHECK research.md for original context
+   - → CLARIFY: "According to GSMA data reported by TechCrunch..."
 ```
 
-**Step 2: Check for orphan claims**
+**Step 2: Cross-reference research.md for context preservation**
+
+For each claim in draft, verify that important context from *.research.md is preserved:
+
+```
+CLAIM: "DICE achieved 40-41% of ticket sales via AI recommendations"
+
+RESEARCH FILE CHECK (transformation-attendee.research.md):
+- ✅ Statistic present: "40-41%"
+- ✅ Context preserved: "AI-powered recommendations"
+- ⚠️ MISSING CAVEAT: Research notes "As of TechCrunch 2025 article - no independent verification"
+- ⚠️ MISSING CONTEXT: Research specifies "at specific DICE events, not universal"
+- → RECOMMENDATION: Add caveat to draft or confirm with sources.md
+
+SOURCES FILE CHECK (transformation.sources.md):
+- ✅ Source listed: TechCrunch 2025 article (Tier 2 #45)
+- ✅ Tier appropriate: Tier 2 (vendor-reported via news)
+- ✅ URL accessible
+- → VERIFIED: Claim properly sourced
+```
+
+**Step 3: Check for orphan claims**
+
+Use *.research.md and *.sources.md to identify and resolve orphan claims:
 
 ```
 ORPHAN CLAIM DETECTION:
-Find claims without clear source attribution
 
-❌ Line 234: "Studies show that 67% of users experienced inaccurate personalization"
-   → No parenthetical citation, no contextual source
-   → SEARCH source catalog for "67%" and "personalization"
-   → FOUND: BCG study (Tier 2 #XX) - ADD CITATION
+❌ Draft Line 234: "Studies show that 67% of users experienced inaccurate personalization"
+   → No parenthetical citation, no contextual source in draft
 
-❌ Line 456: "Only 3 universities integrate AI into event management curriculum"
+RESOLUTION PROCESS:
+
+1️⃣ SEARCH *.research.md files:
+   → grep -r "67%" docs/writing/*/.*research.md
+   → FOUND: personalization.research.md:L89
+   → "BCG study: 67% negative personalization experiences"
+   → Research file HAS the source!
+
+2️⃣ SEARCH *.sources.md files:
+   → grep -r "BCG" docs/writing/*/*.sources.md
+   → FOUND: personalization.sources.md: Tier 2 #102
+   → "BCG Consumer Sentiment Study 2023"
+   → URL verified accessible
+
+3️⃣ CORRECTION REQUIRED:
+   → ADD to draft: "(BCG Consumer Sentiment Study, 2023)"
+   → Claim is valid but attribution was missing in draft
+
+❌ Draft Line 456: "Only 3 universities integrate AI into event management curriculum"
    → No source cited
-   → VERIFY: Is this from education-curriculum.research.md?
-   → ADD ATTRIBUTION
+
+RESOLUTION PROCESS:
+
+1️⃣ SEARCH *.research.md:
+   → grep -r "universities" docs/writing/*/*.research.md
+   → NOT FOUND in any research file
+   → ⚠️ CRITICAL: Claim has no research foundation
+
+2️⃣ SEARCH *.sources.md:
+   → grep -r "curriculum\|universities" docs/writing/*/*.sources.md
+   → NOT FOUND in any source catalog
+   → ❌ CRITICAL: No source exists
+
+3️⃣ FLAG FOR AUTHOR:
+   → CANNOT VERIFY: Claim must be removed or author must provide source
+   → Add to source catalog if source exists
+   → Add to research file with proper context
 ```
 
 **Step 3: Validate source catalog completeness**
@@ -437,6 +596,12 @@ Standardize to "FC Copenhagen" (official name)
 ## Validation Checklist
 
 Use this checklist to ensure comprehensive validation:
+
+### Source Materials (CRITICAL FIRST STEP)
+- [ ] *.sources.md file located and loaded
+- [ ] *.research.md file(s) located and loaded
+- [ ] Source inventory created (primary + supporting materials)
+- [ ] Cross-reference files identified (related sections, shared sources)
 
 ### Quantitative Claims
 - [ ] All statistics extracted and indexed
