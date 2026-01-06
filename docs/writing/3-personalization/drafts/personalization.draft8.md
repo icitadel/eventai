@@ -35,7 +35,7 @@ You're setting up a three-day festival for 80,000 attendees. Your app vendor's p
 
 Impressive, right? Then you read the fine print: only 20% actually engaged with the personalization features. A 66-percentage-point gap between availability and adoption.
 
-![Bonnaroo Engagement Gap: 86% Downloaded vs 20% Engaged](../visuals/engagement-metrics/engagement-metrics-5.png)
+![Bonnaroo Engagement Gap: 86% Downloaded vs 20% Engaged](../visuals/engagement-metrics/engagement-metrics-5.webp)
 *Figure 1: The Bonnaroo iBeacon adoption-engagement gap (2014). 86% of 60,000+ attendees downloaded the app for maps and schedules, but only 20% (12,000 active users) engaged with personalization features—a 66-point gap revealing the difference between availability and actual use. 97,000+ notifications sent over 4 days (12.6/user/day) achieved 20% engagement rate with zero spam complaints through year-one restraint (no sponsor messages, only wayfinding and safety alerts).*
 
 This pattern repeats everywhere. When explicit consent is required, users increasingly decline: iOS users reject notifications at 56% (Airship 2025), while Android decline rates doubled in just one year—jumping from 15% to 33% after Android 13 mandated explicit permission (Batch 2025). Industry data shows 77% of daily app users disappear within 3 days (Solveit, 2024). Gartner's 2025 research found 53% of customers report negative personalization experiences, making them 3.2 times more likely to regret purchases.
@@ -82,21 +82,21 @@ The critical element: all data contribution was *active, not passive*. Attendees
 
 The boundary question: when does gamification cross into manipulation? Behavioral economics shows variable rewards (surprise bonuses, random badges) can exploit psychological vulnerabilities similar to gambling. SXSW kept rewards predictable and skill-based rather than random, staying on the ethical side of that line.
 
-![Three Paths to Organic Personalization](../visuals/three-paths/three-paths-1.png)
+![Three Paths to Organic Personalization](../visuals/three-paths/three-paths-1.webp)
 *Figure 2: Three Paths to Organic Personalization - Comparison of approaches that succeed. **Bonnaroo (Restraint):** Year 1 zero sponsor messages, 3.15 notifications/day, 20% engagement, zero spam complaints. Lesson: Build trust before monetizing. **Meow Wolf (Collective AI):** Tracks aggregate behavior only, no individual IDs, environment responds to crowd energy. Lesson: Personalization without surveillance. **SXSW (Gamification):** Active opt-in check-ins/ratings, leaderboards & badges, users control sharing. Lesson: Explicit value exchange. All three avoid intrusive tracking while creating personalized experiences.*
 
 ---
 
 ## When It Works: The Pattern Behind Success
 
-![Helpful vs Intrusive Personalization Framework](../visuals/helpful-intrusive/helpful-intrusive-5.png)
+![Helpful vs Intrusive Personalization Framework](../visuals/helpful-intrusive/helpful-intrusive-5.webp)
 *Figure 3: What separates helpful from intrusive personalization. Helpful features (personalized schedules +45 NPS, interactive maps) provide control and transparency. Intrusive approaches (location tracking -40 NPS, 12+ notifications/day) feel like surveillance and cognitive overload. The threshold: control + transparency drives +40 NPS shift from intrusive to helpful. Bottom callout: "The difference between adoption and rejection" highlights the critical importance of Three-Factor Framework (control, transparency, frequency). Note: NPS figures are illustrative based on industry patterns.*
 
 Beyond specific philosophies, what makes personalization succeed? Nine verified deployments across festivals reveal common factors—not through vendor marketing materials, but through documented third-party outcomes.
 
 **DICE's AI recommendations** account for 40-41% of ticket sales across 10 million monthly users and 10,000+ venues. The platform analyzes listening history, past attendance, social connections, and real-time availability to surface events users didn't know existed. This represents a fundamental shift: nearly half of festival attendance is now algorithmically curated rather than self-selected.
 
-![AI Recommendation Engine Impact](../visuals/recommendation-engine/recommendation-engine-8.png)
+![AI Recommendation Engine Impact](../visuals/recommendation-engine/recommendation-engine-5.webp)
 *Figure 4: AI Recommendation Engine Impact - Data flow visualization showing 5 input sources (listening history, past attendance, social connections, real-time availability, demographics) feeding hybrid collaborative filtering + content-based + deep learning algorithm that drives 40-41% of festival ticket sales on DICE platform (10M monthly users, 10,000+ venues, 2023 data). 3x higher conversion for timing-optimized recommendations vs search-initiated purchases.*
 
 What made it work? Low friction—leverages existing Spotify data attendees already generate. Transparent opt-in—users can toggle recommendations off. Clear value proposition—discover events matching your taste. No commercialization disguised as personalization.
@@ -125,7 +125,7 @@ Fight for the Future secured "no facial recognition" pledges from 40+ major fest
 
 The lesson: vendor promises about "seamless deployment" ignore political realities. What's technically feasible isn't necessarily socially acceptable.
 
-![Warning Signs: When Personalization Fails](../visuals/failure-patterns/failure-patterns-1.png)
+![Warning Signs: When Personalization Fails](../visuals/failure-patterns/failure-patterns-1.webp)
 *Figure 5: Warning Signs - When Personalization Fails. Three critical failure patterns: **Red Rocks Palm Scanning** - 300+ artist protests, 35+ rights organizations opposed, abandoned March 2022. Warning: Political risk > technical capability. **MWC Facial Recognition** - 43% opted in, €200,000 fine anyway, inadequate DPIA. Warning: Opt-in ≠ regulatory compliance. **Accelerating Opt-Out Rates** - iOS 56% decline, Android 33% (doubled from 15% in one year post-Android 13), 77% app abandonment within 3 days. Warning: Explicit consent reveals true rejection rates. Bottom line: What's technically feasible isn't necessarily socially acceptable—and adoption is declining.*
 
 ---
@@ -148,7 +148,7 @@ The most sophisticated AI is useless if attendees reject it. The 66% engagement 
 
 What matters: does personalization feel organic—attendees barely notice it's AI, just notice better experiences—or intrusive—surveilled, manipulated, reduced to data points?
 
-![Decision Framework: Before You Deploy](../visuals/decision-framework/decision-framework-1.png)
+![Decision Framework: Before You Deploy](../visuals/decision-framework/decision-framework-1.webp)
 *Figure 6: Decision Framework - Before You Deploy. **Three Questions** (assess first): (1) Is value clear to attendees, not just organizers? (2) Can they opt out without penalty? (3) Does it preserve core values? **Four Principles** (implement if yes to all three): (1) **Value First** - Prove utility before requesting data. (2) **Symmetric Consent** - "Reject All" = "Accept All" prominence. (3) **Restraint** - 1-3 notifications/day max (88% retention vs 54% at 5/day). (4) **Accountability** - Explainable recommendations, toggle sources. Green = deploy, Yellow = caution/revise, Red = don't deploy. Bottom line: Control + Transparency + Restraint = +40 NPS shift from intrusive to helpful. Note: NPS figure is illustrative based on industry patterns.*
 
 Four principles separate success from failure:

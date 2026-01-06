@@ -118,8 +118,7 @@ When `/ig-generate-prompt` is invoked:
 Ask user (or infer from arguments):
 1. **Topic:** What does the infographic show?
 2. **Tier:** Concise, Standard, or Detailed?
-3. **Context:** Embedded (textbook) or Standalone (social media)?
-4. **Visual type:** Spectrum, timeline, breakdown, comparison, process?
+3. **Visual type:** Spectrum, timeline, breakdown, comparison, process?
 
 ### Step 2: Generate Prompt Structure
 
@@ -140,10 +139,9 @@ Ask user (or infer from arguments):
 ## Style
 
 - Colors: [EventAI palette]
-- White space: 40%+ composition
-- Typography: 16pt minimum body text
-- Context: [Embedded/Standalone], [festival context]
-- Accessibility: [Icons + text + color triple encoding]
+- White space: 40%+
+- Typography: 18pt minimum
+- Format: 1280×720 webp, landscape
 
 ## Structure
 
@@ -386,10 +384,9 @@ Simple bar chart showing revenue by category.
 ## Style
 
 - Colors: Deep purple (#6B46C1), electric coral (#FF6B6B)
-- White space: 40%+ composition
-- Typography: Clean sans-serif, 16pt minimum
-- Context: Embedded (textbook curriculum)
-- Accessibility: Large category labels, values directly on bars
+- White space: 40%+
+- Typography: 18pt minimum
+- Format: 1280×720 webp, landscape
 
 ## Structure
 
@@ -465,8 +462,7 @@ When `/ig-generate-prompt` is invoked:
 - ✅ Text patterns match tier expectations (3-5 words for Concise, etc.)
 - ✅ No drilldown patterns in Concise tier (topic - detail)
 - ✅ EventAI palette and festival context included
-- ✅ Accessibility triple encoding specified (icon + text + color)
-- ✅ Embedded context correct (no title on infographic if textbook visual)
+- ✅ Format specified (1280×720 webp, landscape, no title)
 
 **Prompt needs REVISION when:**
 - ❌ CLI validation fails (wrong tier range)
