@@ -28,9 +28,8 @@ Meanwhile, over 40 festivals—Bonnaroo, Lollapaloola, Electric Forest—pledged
 
 ---
 
-![Privacy vs Safety Trade-Off Matrix showing when biometric surveillance is appropriate, conditional, constrained, or illegal based on safety threat and privacy intrusion levels](../visuals/privacy-safety-matrix/privacy-safety-matrix-12.png)
-
-*Figure 4.1: Privacy vs. Safety Trade-Off Matrix - When biometric surveillance is appropriate, conditional, constrained, or illegal*
+![Privacy vs. Safety Trade-Off Matrix](../visuals/privacy-safety-matrix/privacy-safety-matrix-12.png)
+*Figure 4.1: The Privacy vs. Safety Trade-Off Matrix illustrates when biometric surveillance is appropriate (high threat, low intrusion), conditional (moderate scenarios requiring case-by-case evaluation), constrained (high intrusion requiring strict safeguards), or illegal (low threat, high intrusion). The framework guides proportionality assessments required under GDPR Article 9 and the Danish "Concerts ≠ Football" principle.*
 
 ---
 
@@ -114,9 +113,8 @@ The difference isn't technical—it's contextual. One-time festival attendance o
 
 ---
 
-![Consent Architecture Spectrum showing GDPR-compliant consent patterns from coercive (illegal) to voluntary (compliant)](../visuals/consent-spectrum/consent-spectrum-17.png)
-
-*Figure 4.2: Consent Architecture Spectrum - GDPR-compliant consent patterns from coercive (illegal) to voluntary (compliant)*
+![Consent Architecture Spectrum](../visuals/consent-spectrum/consent-spectrum-17.png)
+*Figure 4.2: The Consent Architecture Spectrum maps eight consent patterns from coercive (left, illegal under GDPR) to voluntary (right, compliant). Forced enrollment and access barriers fail proportionality requirements, while default opt-out and convenience incentives raise power imbalance concerns. Only equal alternatives with symmetric choice architecture satisfy GDPR Article 9's "explicit consent" standard for biometric data processing.*
 
 ---
 
@@ -142,9 +140,8 @@ Prohibited uses carry fines up to €35 million or 7% of global turnover, whiche
 
 ---
 
-![EU AI Act Risk Classification showing three-tier framework: prohibited, high-risk, and limited-risk applications](../visuals/eu-ai-act/eu-ai-act-17.png)
-
-*Figure 4.3: EU AI Act Risk Classification - Three-tier framework: prohibited, high-risk, limited-risk*
+![EU AI Act Risk Classification](../visuals/eu-ai-act/eu-ai-act-17.png)
+*Figure 4.3: The EU AI Act establishes a three-tier risk framework effective February 2, 2025. Prohibited applications (red) include real-time biometric identification by private entities, carrying fines up to €35M or 7% of global turnover. High-risk applications (yellow) require conformity assessment and include post-event biometric analysis. Limited-risk applications (green) face transparency obligations only. For festivals, this means entry-gate facial recognition is banned outright, while post-event analysis requires extensive compliance documentation.*
 
 ---
 
@@ -160,9 +157,8 @@ Governance requirements include limiting retention periods with automatic deleti
 
 ---
 
-![GDPR Biometric Compliance Flowchart showing five checkpoints for evaluating biometric system legality](../visuals/gdpr-flowchart/gdpr-flowchart-5.png)
-
-*Figure 4.4: GDPR Compliance Decision Tree - Five checkpoints for evaluating biometric system legality*
+![GDPR Biometric Compliance Flowchart](../visuals/gdpr-flowchart/gdpr-flowchart-10.png)
+*Figure 4.4: The GDPR Biometric Compliance Decision Tree guides festival organizers through five checkpoints: biometric data classification (Article 9 special category), legal basis evaluation (explicit consent or substantial public interest), DPIA completion requirements (Article 35 mandate), proportionality assessment (Danish framework), and ongoing obligations (retention limits, access controls, breach response). All five must pass for lawful deployment—GSMA and Osasuna both paid €200,000 fines for inadequate DPIA despite meeting other requirements.*
 
 ---
 
