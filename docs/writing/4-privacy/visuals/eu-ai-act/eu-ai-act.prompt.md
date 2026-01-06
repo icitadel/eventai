@@ -1,36 +1,36 @@
-# EU AI Act Risk Classification - Three-Tier Pyramid
+# EU AI Act Risk Classification
 
-Three-tier vertical pyramid showing EU AI Act biometric risk levels for festivals with enforcement penalties and compliance requirements.
+Three-tier pyramid: Prohibited (Red) → High-Risk (Orange) → Limited-Risk (Green). Landscape format, side-by-side layout for direct comparison.
 
-🚨 CRITICAL: Pure white background #FFFFFF, three equal-height rounded-corner boxes, two-tone tier design (colored header + light-tinted content), icon-heavy layout with simple line-art icons, exact regulatory stats, festival context
+🚨 CRITICAL: Pure white #FFFFFF, rounded-corner boxes, two-tone design (colored header + light fill), line-art icons, equal-width tiers, landscape, concise
 
-## Prohibited Tier (Red #FF6B6B - Top)
+## Prohibited (Red #FF6B6B)
 - €35M fine, Feb 2025
 - Real-time facial recognition
-- Emotion detection systems
+- Emotion detection
 - Mass web scraping
 
-## High-Risk Tier (Orange #ED8936 - Middle)
-- Conformity assessment required
-- Post-event ID permitted
-- Human oversight mandatory
-- Danish football example
+## High-Risk (Orange #ED8936)
+- Conformity assessment
+- Post-event ID allowed
+- Human oversight required
+- Danish football case
 
-## Limited-Risk Tier (Green #48BB78 - Bottom)
+## Limited-Risk (Green #48BB78)
 - AI disclosure only
-- Chatbots, recommendations allowed
+- Chatbots, recommendations
 - No biometric data
 - High user agency
 
-## STYLE
+## Style
 
-- Rounded-corner boxes, 12-16px radius
-- Two-tone tiers: colored header + light tint
-- Line-art icons, simple outlines
-- Equal tier heights, clear separation
-- White background #FFFFFF
-- 25-30% white space
+- Rounded boxes: 12-16px radius
+- Two-tone: colored header + light pastel fill
+- Line-art icons: 2×2 grid per tier
+- Equal-width tiers, side-by-side
+- White space: 30%+
+- Typography: 16-18pt body
 
-## AVOID
+## Avoid
 
-Cream backgrounds, unequal tiers, text under 14pt, horizontal layouts
+Vertical layout, cream backgrounds, unequal tiers, small icons, <14pt text

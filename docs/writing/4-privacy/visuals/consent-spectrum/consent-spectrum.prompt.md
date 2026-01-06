@@ -1,22 +1,24 @@
 # Consent Architecture Spectrum
 
-Horizontal spectrum showing coercive to voluntary consent designs for festival biometric systems. Left-to-right progression from non-compliant to compliant.
+Horizontal spectrum: coercive → voluntary consent. Three color zones with icon + bullet list. Clean minimal design for embedded textbook use.
+
+🚨 CRITICAL: Pure white #FFFFFF background, 45%+ white space, LARGE icons (❌ ⚠️ ✅), minimal festival context, landscape, concise
 
 ## Data Points
 
-**Coercive (Left, Red):**
+**Coercive (Red #FF6B6B):**
 - Mandatory facial recognition
 - Bundled consent
 - Pre-checked boxes
 - Hidden in terms
 
-**Problematic (Middle, Orange):**
+**Problematic (Orange #ED8936):**
 - Default opt-in
 - Soft wall penalties
 - Confusing interfaces
 
-**Voluntary (Right, Green):**
-- Clear opt-in choice
+**Voluntary (Green #48BB78):**
+- Clear opt-in
 - Genuine alternatives
 - Granular controls
 - Plain language
@@ -24,12 +26,13 @@ Horizontal spectrum showing coercive to voluntary consent designs for festival b
 
 ## Style
 
-- Colors: Red (#FF6B6B), Orange (#ED8936), Green (#48BB78), White background (#FFFFFF)
-- White space: 40%+ composition
-- Typography: 16pt minimum body text, clean sans-serif
-- Context: Embedded (textbook curriculum), festival entry gates
-- Accessibility: Large ❌ ⚠️ ✅ icons, compliance labels ("NON-COMPLIANT", "GRAY AREA", "COMPLIANT")
+- Clean icon-based: Large ❌ ⚠️ ✅ (primary info carriers)
+- Short bullet lists: 3-4 items max per zone
+- Triple encoding: icon + text + color
+- White space: 45%+ (embedded context needs breathing room)
+- Typography: 16-18pt body, bold zone labels
+- GDPR refs: Articles 7, 9 at bottom
 
-## Structure
+## Avoid
 
-Three horizontal color zones with 3-5 examples per zone. Each example shows icon + label. Bottom section cites GDPR Article 7 (Freely Given Consent) and Article 9 (Biometric Data).
+Cream backgrounds, festival illustrations, <14pt text, cramped layouts, color-only encoding

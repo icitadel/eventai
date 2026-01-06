@@ -1,49 +1,34 @@
 # GDPR Biometric Compliance: Festival Entry Gates
 
-Horizontal festival security journey: 5 checkpoint gates (left→right)
+Horizontal journey: 5 security checkpoint gates (left→right). Simple archways, minimal 3D, maximum clarity.
 
-🚨 CRITICAL: Pure white #FFFFFF background, landscape format, EventAI colors, festival gates metaphor
+🚨 CRITICAL: Pure white #FFFFFF, simple archways (not badges), minimal 3D, landscape, concise, clarity over aesthetics
 
----
+## Structure
 
-## STRUCTURE
+**START:** Purple #6B46C1, "Deploying biometric?", YES→Gate1
 
-**START ZONE:** Purple #6B46C1 gate, "Deploying biometric system?", YES→Gate1, NO→Exit
+**GATE 1:** Blue #4299E1, "NECESSARY?" (Article 5), PASS→Gate2, DENIED→€20M
 
-**GATE 1 (Necessity):** Blue #4299E1, "Collection NECESSARY?", Article 5, PASS→Gate2, DENIED→€20M
+**GATE 2:** Blue, "EXPLICIT consent?" (Article 9), PASS→Gate3, DENIED→€20M
 
-**GATE 2 (Consent):** Blue, "EXPLICIT consent?", Article 9, PASS→Gate3, DENIED→€20M
+**GATE 3:** Blue, "Opt-out allowed?" (Autonomy), PASS→Gate4, DENIED→€20M
 
-**GATE 3 (Opt-Out):** Blue, "Opt-out WITHOUT penalty?", GDPR Autonomy, PASS→Gate4, DENIED→€20M
+**GATE 4:** Blue, "LIMITED retention?" (Article 5), PASS→Gate5, DENIED→€20M
 
-**GATE 4 (Retention):** Blue, "LIMITED retention?", Article 5, PASS→Gate5, DENIED→€20M
+**GATE 5:** Blue, "DPIA done?" (Article 35), PASS→Success, NO→Elevated Risk
 
-**GATE 5 (DPIA):** Blue, "DPIA completed?", Article 35, PASS→Success, NO→Elevated Risk
+**SUCCESS:** Green #48BB78, festival crowd, safeguards
 
-**SUCCESS ZONE:** Green #48BB78, festival crowd, safeguards list
+## Style
 
----
+- Simple archway gates: Traditional structure, immediately clear
+- Minimal 3D: Just enough depth, not complex
+- Person icons: Walking through each gate
+- Typography: 16-18pt labels, readable
+- White space: 35-40%
+- Comprehension: 15-30 seconds
 
-## STYLE
+## Avoid
 
-**Colors:** Purple #6B46C1, Blue #4299E1, Green #48BB78, Red #FF6B6B, Amber #ED8936, White background
-
-**Gates:** Simple archway structures (minimal 3D), clear labels inside gates, person icon walking through
-
-**Typography:** 16-18pt gate text, clean sans-serif, maximum readability
-
-**Clarity:** Prioritize comprehension over visual complexity
-
----
-
-## AVOID
-
-- Heavy 3D rendering effects
-- Abstract badge shapes
-- Vertical flowchart
-- Beige backgrounds
-- Text <14pt
-
----
-
-*Festival security: horizontal compliance journey*
+Heavy 3D, rounded badges, abstract shapes, vertical layout, beige backgrounds, <14pt text

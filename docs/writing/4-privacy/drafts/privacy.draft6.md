@@ -28,9 +28,9 @@ Over 40 festivals—Bonnaroo, Lollapaloola, Electric Forest—pledged never to u
 
 ---
 
-![Privacy vs Safety Trade-Off Matrix](../visuals/privacy-safety-matrix/privacy-safety-matrix-12.png)
+![Privacy vs Safety Trade-Off Matrix showing when biometric surveillance is appropriate, conditional, constrained, or illegal based on safety threat and privacy intrusion levels](../visuals/privacy-safety-matrix/privacy-safety-matrix-12.png)
 
-**Figure 4.1: Privacy vs Safety Trade-Off Matrix** — When biometric surveillance is appropriate, conditional, constrained, or illegal.
+*Figure 4.1: Privacy vs. Safety Trade-Off Matrix - When biometric surveillance is appropriate, conditional, constrained, or illegal*
 
 ---
 
@@ -108,9 +108,9 @@ The difference: one-time festival attendance offers minimal ROI, most festivals 
 
 ---
 
-![Consent Architecture Spectrum](../visuals/consent-spectrum/consent-spectrum-8.png)
+![Consent Architecture Spectrum showing GDPR-compliant consent patterns from coercive (illegal) to voluntary (compliant)](../visuals/consent-spectrum/consent-spectrum-17.png)
 
-**Figure 4.2: Consent Architecture Spectrum** — GDPR-compliant consent patterns from coercive (illegal) to voluntary (compliant).
+*Figure 4.2: Consent Architecture Spectrum - GDPR-compliant consent patterns from coercive (illegal) to voluntary (compliant)*
 
 ---
 
@@ -130,9 +130,9 @@ The Act bans real-time biometric identification in public spaces for private ent
 
 ---
 
-![EU AI Act Risk Classification](../visuals/eu-ai-act/eu-ai-act-10.png)
+![EU AI Act Risk Classification showing three-tier framework: prohibited, high-risk, and limited-risk applications](../visuals/eu-ai-act/eu-ai-act-17.png)
 
-**Figure 4.3: EU AI Act Risk Classification** — Three-tier framework: prohibited, high-risk, limited-risk.
+*Figure 4.3: EU AI Act Risk Classification - Three-tier framework: prohibited, high-risk, limited-risk*
 
 ---
 
@@ -148,9 +148,9 @@ Governance requires limiting retention periods to delete data after the event or
 
 ---
 
-![GDPR Biometric Compliance Flowchart](../visuals/gdpr-flowchart/gdpr-flowchart-10.png)
+![GDPR Biometric Compliance Flowchart showing five checkpoints for evaluating biometric system legality](../visuals/gdpr-flowchart/gdpr-flowchart-5.png)
 
-**Figure 4.4: GDPR Compliance Decision Tree** — Five checkpoints for evaluating biometric system legality.
+*Figure 4.4: GDPR Compliance Decision Tree - Five checkpoints for evaluating biometric system legality*
 
 ---
 

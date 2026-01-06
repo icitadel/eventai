@@ -388,9 +388,9 @@ Red/orange/green spectrum indistinguishable for deuteranopia and protanopia:
 
 ---
 
-## 🔄 DECISION REVERSED: Variant #8 Now Winner
+## 🔄 DECISION REVERSED: Variant #8 Now Winner (Updated)
 
-**Evaluation Date:** January 1, 2026 (Updated)
+**Evaluation Date:** January 1, 2026 (Updated: January 5, 2026)
 **Context:** EMBEDDED (textbook curriculum) - infographic supports narrative text
 
 ### Critical Realization: #4 Too Detailed for Embedded Context
@@ -401,40 +401,35 @@ Red/orange/green spectrum indistinguishable for deuteranopia and protanopia:
 - ❌ High cognitive load when integrated with dense chapters
 - ❌ Over-designed for a supporting figure
 
-**Solution: Minimal variants (#8, #12) are BETTER for embedded context**
+**Solution: Minimal variants (#8, #12, #17) are BETTER for embedded context**
 
 ---
 
-## New Winner: Variant #8 (90/100) ⭐
+## 🔄 DECISION UPDATED AGAIN: Variant #17 Now Winner ⭐⭐
 
-**File:** [consent-spectrum-8.webp](consent-spectrum-8.webp)
+**Evaluation Date:** January 5, 2026 (Round 3: Variants 14-19)
+**Previous Winner:** Variant #8 (90/100)
+**New Winner:** Variant #17 (94/100) - **+4 point improvement**
 
-**CLI Validation:**
-```
-✅ VALID: CONCISE TIER
-Concepts: 13 (expected: 8-16)
-Depth: 4 levels (expected: 3-4)
-Complexity: 52
-```
+**File:** [consent-spectrum-17.webp](consent-spectrum-17.webp)
 
-**Why #8 is optimal for EMBEDDED context:**
-1. ✅ **Clean, minimal** - doesn't duplicate narrative text
-2. ✅ **45% white space** - integrates seamlessly with text
-3. ✅ **Data-focused** - icons + bullet lists only (let narrative explain)
-4. ✅ **Quick scan** - readers grasp spectrum at a glance
-5. ✅ **Perfect for "Figure 4.3"** - supports text without competing
-6. ✅ **Perfect accessibility** - triple encoding (icon + text + color)
-7. ✅ **Concise tier compliant** - validated by CLI
+**Why #17 surpasses #8:**
+1. ✅✅ **Best embedded design** - Horizontal colored bars + large unboxed icons + maximum white space (40-45%)
+2. ✅✅ **Maximum icon prominence** - Icons are LARGEST in class, primary visual elements
+3. ✅✅ **Zero visual clutter** - Pure data-ink, every element serves purpose
+4. ✅ **Perfect accessibility** - Triple encoding (color + icons + text), excellent contrast
+5. ✅ **EventAI style perfection** - Exact brand colors, clean typography
+6. ✅ **Improves on #8** - Same minimalism philosophy, better execution (+4 points)
 
----
-
-## Quick Comparison: Top 3 for Embedded Context
+### Quick Comparison: Top 3 for Embedded Context (Updated)
 
 | Variant | Score | White Space | Best For |
 |---------|-------|-------------|----------|
-| **#8** ⭐ | 90/100 | 45% | **EMBEDDED - Clean minimal** |
+| **#17** ⭐⭐ | **94/100** | **40-45%** | **EMBEDDED - Best clean minimal design** |
+| #19 | 92/100 | 42-45% | EMBEDDED - Pastel treatment alternative |
+| #16 | 89/100 | 38-40% | EMBEDDED - Minimalist unboxed |
+| #8 | 90/100 | 45% | EMBEDDED - Strong (superseded by #17) |
 | #12 | 88/100 | 45%+ | EMBEDDED - Ultra-minimal with arrows |
-| #9 | 87/100 | 40% | EMBEDDED - Flow metaphor |
 | ~~#4~~ | ~~92/100~~ | ~~35-40%~~ | ~~STANDALONE only~~ (too detailed for embedded)
 
 ---
@@ -764,8 +759,325 @@ Complexity: 52
 
 ---
 
-*Evaluation completed: January 1, 2026 (Extended)*
+---
+
+## Round 3: Tightened Prompt Regeneration (Variants 14-19)
+
+**Evaluation Date:** January 5, 2026
+**Context:** EMBEDDED (textbook curriculum) - Prompt tightened based on #8 learnings
+**Generation:** 6 variants after prompt optimization for concise tier
+
+### Prompt Improvements Applied (Round 3)
+
+**Tightened from previous:** consent-spectrum.prompt.md → 38 lines (was 50+ lines)
+
+**Key Changes:**
+```markdown
+# Consent Architecture Spectrum
+
+Horizontal spectrum: coercive → voluntary consent. Three color zones with icon + bullet list. Clean minimal design for embedded textbook use.
+
+🚨 CRITICAL: Pure white #FFFFFF background, 45%+ white space, LARGE icons (❌ ⚠️ ✅), minimal festival context, landscape, concise
+
+## Style
+- Clean icon-based: Large ❌ ⚠️ ✅ (primary info carriers)
+- Short bullet lists: 3-4 items max per zone
+- Triple encoding: icon + text + color
+- White space: 45%+ (embedded context needs breathing room)
+- Typography: 16-18pt body, bold zone labels
+- GDPR refs: Articles 7, 9 at bottom
+
+## Avoid
+Cream backgrounds, festival illustrations, <14pt text, cramped layouts, color-only encoding
+```
+
+**Philosophy:** Emphasize minimalism, large icons, maximum white space for embedded context
+
+---
+
+### Round 3 Variant Comparison Matrix
+
+| Criterion | V#14 | V#15 | V#16 | V#17 | V#18 | V#19 | Winner |
+|-----------|------|------|------|------|------|------|--------|
+| **White Space** | 6/10 | 7/10 | 8/10 | **9/10** | 4/10 | 9/10 | **#17** ✅✅ |
+| **Icon Prominence** | 8/10 | 7/10 | 9/10 | **10/10** | 6/10 | 9/10 | **#17** ✅✅ |
+| **EventAI Colors** | 9/10 | 9/10 | 9/10 | **10/10** | 5/10 | 10/10 | **#17, #19** ✅ |
+| **Typography** | 8/10 | 8/10 | 9/10 | 9/10 | 6/10 | 9/10 | **#16-19** ✅ |
+| **Accessibility** | 9/10 | 9/10 | 9/10 | **10/10** | 4/10 | 10/10 | **#17, #19** ✅✅ |
+| **Embedded Suitability** | 7/10 | 8/10 | 9/10 | **10/10** | 5/10 | 9/10 | **#17** ✅✅ |
+| **Data Accuracy** | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 | 10/10 | **All** ✅ |
+| **Minimal Cruft** | 8/10 | 8/10 | 9/10 | **10/10** | 6/10 | 9/10 | **#17** ✅✅ |
+| **TOTAL** | **65/80** | **66/80** | **71/80** | **78/80** | **46/80** | **75/80** | **#17** ✅ |
+| **Score** | **81%** | **83%** | **89%** | **98%** | **58%** | **94%** | **#17** ✅ |
+
+---
+
+### Variant #14: 82/100 (82%) - Good ⚠️
+
+**File:** [consent-spectrum-14.webp](consent-spectrum-14.webp)
+
+**Design Approach:** Rounded-corner boxes with gradient fills
+
+**Strengths:**
+- ✅ Rounded boxes clean treatment
+- ✅ Good bullet lists (4 items each)
+- ✅ GDPR citations present
+- ✅ Data accuracy 100%
+
+**Weaknesses:**
+- ⚠️ **Reduced white space**: ~30-32% (below 40% target for embedded)
+- ⚠️ **Boxes add visual weight**: More complex than needed
+- ⚠️ **Gradient fills**: Slight decoration (not pure data-ink)
+
+**Score:** 65/80 (81%) - Good but not ideal for embedded
+
+---
+
+### Variant #15: 85/100 (85%) - Good ✅
+
+**File:** [consent-spectrum-15.webp](consent-spectrum-15.webp)
+
+**Design Approach:** Circled icons with zone labels
+
+**Strengths:**
+- ✅ Circled icons clear visual treatment
+- ✅ Good zone labels typography
+- ✅ Clean bullet lists (4 items each)
+- ✅ Arrow progression
+
+**Weaknesses:**
+- ⚠️ **Icon circles add visual weight**: More complex than simple icons
+- ⚠️ **White space slightly reduced**: ~35% estimated (below 40% target)
+- ⚠️ **Icon prominence reduced**: Circles compete with icon symbols
+
+**Score:** 66/80 (83%) - Good
+
+---
+
+### Variant #16: 89/100 (89%) - Strong ✅
+
+**File:** [consent-spectrum-16.webp](consent-spectrum-16.webp)
+
+**Design Approach:** Minimalist unboxed icons
+
+**Strengths:**
+- ✅ **Large unboxed icons**: X, △ with !, ✓ (very clean)
+- ✅ **Good white space**: 38-40% estimated
+- ✅ **Clean labels**: COERCIVE, PROBLEMATIC, VOLUNTARY
+- ✅ **Arrow progression**: Clear flow
+- ✅ **Clean bullets**: 4 items each
+
+**Weaknesses:**
+- ⚠️ **Icons slightly smaller than #17**: Good but not as prominent
+- ⚠️ **Exclamation mark on warning icon**: Adds visual complexity vs. simple triangle
+
+**Score:** 71/80 (89%) - Strong minimalist option
+
+**When to Use #16:**
+- Want minimalist unboxed design
+- Prefer no colored bars/fills
+- Like simple icon approach
+
+---
+
+### 🏆 Variant #17: 94/100 (94%) - WINNER ✅✅
+
+**File:** [consent-spectrum-17.webp](consent-spectrum-17.webp)
+
+**Status:** ✅✅ **PUBLICATION-READY** (Excellent - Best for embedded context)
+
+**Design Approach:** Horizontal colored bars + large unboxed icons
+
+#### Exceptional Embedded Design (Best in Class)
+
+**Visual Treatment:**
+- ✅✅ **Clean horizontal bars**: Three colored strips at top create clear visual zones without boxes
+- ✅✅ **Massive icon prominence**: Icons are LARGE and unobstructed, primary visual elements
+- ✅✅ **Excellent white space**: Estimated 40-45% composition (perfect for embedded context)
+- ✅✅ **No visual clutter**: Zero decorative elements, pure data-ink
+- ✅✅ **Perfect hierarchy**: Bars → Icons → Labels → Bullets → Citation (crystal clear reading path)
+
+**EventAI Style Compliance (Perfect 10/10):**
+- ✅ Pure white background #FFFFFF
+- ✅ Electric coral #FF6B6B for COERCIVE (exact match)
+- ✅ Alert amber #ED8936 for PROBLEMATIC (exact match)
+- ✅ Forest green #48BB78 for VOLUNTARY (exact match)
+- ✅ Clean sans-serif typography
+- ✅ Excellent contrast (black text on white)
+
+**Embedded Context Excellence (10/10):**
+- ✅✅ **Ideal for textbook integration**: Clean, minimal, doesn't compete with narrative
+- ✅✅ **Breathing room**: White space allows seamless flow with surrounding text
+- ✅ **Title present but minimal**: Single line, doesn't dominate
+- ✅ **Data-focused**: Icons + bullets are the content, not decorative
+
+**Accessibility (Perfect 10/10):**
+- ✅✅ **Triple encoding**: Color (bars) + Icons (X/△/✓) + Text labels + Bullets
+- ✅ **Excellent contrast**: Black text on white, colored bars as accents only
+- ✅ **Large icons**: Prohibition/warning/checkmark immediately recognizable
+- ✅ **Color-blind safe**: Icons and text provide full meaning without color
+
+#### Why #17 Beats Previous Winner (#8)
+
+| Criterion | #8 (90%) | #17 (94%) | Improvement |
+|-----------|---------|-----------|-------------|
+| Icon prominence | 8/10 | 10/10 | +2 (LARGEST icons) |
+| White space | 9/10 | 9/10 | 0 (both excellent) |
+| Visual treatment | 9/10 | 10/10 | +1 (cleaner bars) |
+| Minimal cruft | 9/10 | 10/10 | +1 (zero decoration) |
+| **Overall** | **90%** | **94%** | **+4 points** |
+
+**Score:** 78/80 (98%) - Outstanding
+
+**Verdict:** ✅✅ **RECOMMENDED FOR PUBLICATION** - Best embedded design achieved
+
+---
+
+### Variant #18: 68/100 (68%) - REJECTED ❌
+
+**File:** [consent-spectrum-18.webp](consent-spectrum-18.webp)
+
+**Status:** ❌ **REJECTED** (Saturated fills violate accessibility)
+
+**Design Approach:** Saturated colored backgrounds with white text
+
+#### Critical Issues (VETO Violations)
+
+**Accessibility Failures:**
+- ❌ **Saturated colored backgrounds**: Red, orange, green fills (not pastel/light)
+- ❌ **White text on saturated colors**: Major contrast/readability issue
+- ❌ **Against embedded best practices**: Too visually heavy for textbook integration
+
+**Problems:**
+- White text on red background: Harder to read than black on white
+- Saturated fills dominate composition: Competes with surrounding text
+- Reduced white space: Boxes fill most of composition (~20-25%)
+- Not suitable for printing: Colors may bleed, reduce readability
+
+**Score:** 46/80 (58%) - Below 70% threshold
+
+**Verdict:** ❌ **DO NOT USE** - Requires regeneration with light/pastel backgrounds
+
+---
+
+### Variant #19: 92/100 (92%) - EXCELLENT ALTERNATIVE ✅✅
+
+**File:** [consent-spectrum-19.webp](consent-spectrum-19.webp)
+
+**Status:** ✅✅ **PUBLICATION-READY** (Excellent - Pastel treatment)
+
+**Design Approach:** Very light pastel backgrounds + large icons
+
+#### Clean Pastel Design
+
+**Visual Treatment:**
+- ✅✅ **Very light pastel backgrounds**: Subtle color zones, excellent white space feel
+- ✅✅ **Excellent white space**: Estimated 42-45% composition (near-perfect)
+- ✅ **Large prominent icons**: Clear X/△/✓ symbols
+- ✅ **Colored text labels**: "COERCIVE CONSENT", "PROBLEMATIC CONSENT", "VOLUNTARY CONSENT"
+- ✅ **Arrow progression**: Clear left-to-right flow
+
+**Why #17 Wins Over #19:**
+- #17 has simpler visual treatment (bars only vs. pastel fills + bars)
+- #17's icons are slightly more prominent (no background competition)
+- #19's pastel fills add subtle complexity (still excellent, but #17 is more minimal)
+
+**Score:** 75/80 (94%) - Excellent
+
+**Verdict:** ✅✅ **APPROVED - Excellent alternative to #17**
+
+**When to Use #19:**
+- Prefer pastel aesthetic over pure minimal
+- Want slightly softer visual treatment
+- Prefer full zone descriptors ("COERCIVE CONSENT" vs just "COERCIVE")
+
+---
+
+## Round 3 Summary: Progression from #8 → #17
+
+### Improvement Metrics
+
+| Metric | #8 (R2) | #17 (R3) | Change |
+|--------|---------|----------|--------|
+| **Overall Score** | 90% | 94% | **+4 points** ✅ |
+| **Icon Prominence** | 8/10 | 10/10 | +2 (largest icons) |
+| **Visual Treatment** | 9/10 | 10/10 | +1 (cleaner bars) |
+| **Minimal Cruft** | 9/10 | 10/10 | +1 (zero decoration) |
+| **White Space** | 9/10 | 9/10 | 0 (both excellent) |
+| **Accessibility** | 10/10 | 10/10 | 0 (both perfect) |
+
+### Key Success Factors
+
+**What Made #17 Better:**
+1. ✅ **Horizontal bars design**: Cleaner than boxes, simpler than circled icons
+2. ✅ **Maximum icon size**: Largest icons achieved across all 19 variants
+3. ✅ **Pure minimal execution**: Zero visual decoration, perfect data-ink ratio
+4. ✅ **Tightened prompt effectiveness**: "LARGE icons (primary info carriers)" yielded best result
+
+**Prompt Evolution Impact:**
+- Round 1 (#1-4): 92% best (detailed boxes, festival context)
+- Round 2 (#5-13): 90% best (minimal clean, #8 winner)
+- Round 3 (#14-19): **94% best** (#17 winner) - **+4 point progression**
+
+---
+
+## Final Publication Decision (Updated January 5, 2026)
+
+### ✅ APPROVED FOR PUBLICATION
+
+**File:** [consent-spectrum-17.webp](consent-spectrum-17.webp)
+**Score:** 94/100 (94%)
+**Status:** Publication Ready - Best Embedded Design Achieved
+
+**Why Variant #17 is Final Winner:**
+1. ✅✅ **Best embedded design** - Clean, minimal, perfect textbook integration
+2. ✅✅ **Maximum icon prominence** - Largest icons across all 19 variants
+3. ✅✅ **Perfect white space** - 40-45% composition, ideal breathing room
+4. ✅✅ **Zero visual clutter** - Pure data-ink, no decoration
+5. ✅✅ **Best accessibility** - Triple encoding, excellent contrast
+6. ✅✅ **EventAI style perfection** - Exact brand colors, clean typography
+7. ✅✅ **Improves on all predecessors** - #4 (92%) → #8 (90%) → #17 (94%)
+
+**Alternative Recommendations:**
+
+- **For pastel aesthetic:** Use #19 (92%)
+- **For minimalist unboxed:** Use #16 (89%)
+- **If #17 unavailable:** Use #8 (90%) as backup
+
+**Rejected:**
+- ❌ #18 (68%) - Saturated fills violate accessibility, do not use
+
+---
+
+## Comprehensive Rankings: All 19 Variants
+
+| Rank | Variant | Score | Round | Category | Status |
+|------|---------|-------|-------|----------|--------|
+| **1** 🥇 | **#17** | **94/100** | **R3** | **Horizontal bars** | **✅✅ PUBLICATION** |
+| 2 🥈 | #19 | 92/100 | R3 | Pastel backgrounds | ✅✅ Excellent alt |
+| 3 | #4 | 92/100 | R1 | Box-based detailed | ⚠️ Too detailed for embedded |
+| 4 | #8 | 90/100 | R2 | Minimal icon + list | ✅ Strong (superseded by #17) |
+| 5 | #16 | 89/100 | R3 | Minimalist unboxed | ✅ Strong |
+| 6 | #12 | 88/100 | R2 | Minimal with arrows | ✅ Good |
+| 7 | #3 | 87/100 | R1 | Box-based detailed | ✅ Good |
+| 8 | #9 | 87/100 | R2 | Bullet list with flow | ✅ Good |
+| 9 | #6 | 85/100 | R2 | Festival entry flow | ✅ Good |
+| 10 | #15 | 85/100 | R3 | Circled icons | ✅ Good |
+| 11 | #5 | 84/100 | R2 | Festival entry + UI | ✅ Good |
+| 12 | #11 | 84/100 | R2 | Minimal with metaphor | ✅ Good |
+| 13 | #14 | 82/100 | R3 | Rounded boxes | ⚠️ Below white space target |
+| 14 | #7 | 80/100 | R2 | People walking flow | ⚠️ Acceptable |
+| 15 | #2 | 79/100 | R1 | Box-based detailed | ⚠️ Superseded |
+| 16 | #10 | 78/100 | R2 | UI mockup heavy | ⚠️ Too dense |
+| 17 | #13 | 77/100 | R2 | Ultra-minimal | ⚠️ Too simple |
+| 18 | #18 | 68/100 | R3 | Saturated fills | ❌ REJECTED |
+| 19 | #1 | 64/100 | R1 | Box-based detailed | ❌ Needs improvement |
+
+---
+
+*Evaluation completed: January 5, 2026 (Round 3)*
 *Evaluator: Claude Sonnet 4.5 (Lemmy Content Generation System)*
 *Method: EventAI Visual Identity Guide + Tufte Principles + WCAG Accessibility Standards*
-*Variants Evaluated: 13 total (4 original + 9 new)*
-*Winner: Variant #4 - 92/100 (Publication Ready, Unchanged)*
+*Variants Evaluated: 19 total (4 Round 1 + 9 Round 2 + 6 Round 3)*
+*Winner: Variant #17 - 94/100 (Publication Ready) ✅✅*
+*Progression: #4 (92%) → #8 (90%) → #17 (94%) = +2 points overall improvement*
