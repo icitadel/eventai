@@ -95,6 +95,30 @@
 
 ---
 
+## 🚨 CRITICAL: LANDSCAPE FORMAT REQUIRED
+
+**ALL EventAI infographics MUST be landscape orientation (1280×720).**
+
+### Enforcement Rules
+
+**When generating prompts:**
+1. ALWAYS include in Style section: `Format: 1280×720 webp, landscape, no title on image`
+2. NEVER generate square or portrait infographics
+3. Landscape accommodates more data horizontally, matches presentation format, and embeds better in documents
+
+**When calling ig-generate:**
+1. ALWAYS use `--aspect-ratio landscape` parameter
+2. Example: `gemini-generate --prompt file.prompt.md --aspect-ratio landscape --ig-density concise --ig-no-title`
+3. The CLI will fail gracefully if aspect ratio is omitted, but YOU must include it
+
+**Why landscape is mandatory:**
+- EventAI visuals are designed for slides, documents, and web embedding
+- Horizontal layout supports left-right comparisons (sports vs festivals, before vs after)
+- 16:9 aspect ratio matches modern presentation standards
+- Text readability improves with horizontal scanning
+
+---
+
 ## Tier Ranges (Real-World Validated)
 
 **After analyzing real prompts, the CLI now uses these ranges:**
@@ -141,7 +165,7 @@ Ask user (or infer from arguments):
 - Colors: [EventAI palette]
 - White space: 40%+
 - Typography: 18pt minimum
-- Format: 1280×720 webp, landscape
+- Format: 1280×720 webp, landscape, no title on image
 
 ## Structure
 
@@ -171,7 +195,10 @@ Ask user (or infer from arguments):
 
 ## Style
 
-[Standard style specifications]
+- Colors: [EventAI palette with specific colors]
+- White space: 35-40%+
+- Typography: 16-18pt minimum
+- Format: 1280×720 webp, landscape, no title on image
 
 ## Structure
 
@@ -201,7 +228,12 @@ Ask user (or infer from arguments):
 
 ## Style
 
-[Detailed style specifications with reasoning]
+- Colors: [EventAI palette with detailed color strategy and reasoning]
+- White space: 30-35%+
+- Typography: 14-16pt body, 18-24pt headings
+- Format: 1280×720 webp, landscape, no title on image
+- **CRITICAL:** ALWAYS landscape orientation
+- [Additional style specifications with reasoning]
 
 ## Structure
 
@@ -355,8 +387,8 @@ def validate_detailed_text_patterns(prompt_text):
 # ✅ Text patterns: PASS (all bullets 3-5 words)
 # 📄 Written to: consent-spectrum.prompt.md
 
-# 2. Generate infographic variants
-/ig-generate docs/writing/4-privacy/visuals/consent-spectrum/consent-spectrum.prompt.md
+# 2. Generate infographic variants (MUST include --aspect-ratio landscape)
+gemini-generate --prompt docs/writing/4-privacy/visuals/consent-spectrum/consent-spectrum.prompt.md --output-dir docs/writing/4-privacy/visuals/consent-spectrum --name consent-spectrum --variants 3 --aspect-ratio landscape --ig-density concise --ig-no-title
 
 # 3. Evaluate results
 /ig-evaluate docs/writing/4-privacy/visuals/consent-spectrum/*.webp
@@ -386,7 +418,8 @@ Simple bar chart showing revenue by category.
 - Colors: Deep purple (#6B46C1), electric coral (#FF6B6B)
 - White space: 40%+
 - Typography: 18pt minimum
-- Format: 1280×720 webp, landscape
+- Format: 1280×720 webp, landscape, no title on image
+- **CRITICAL:** ALWAYS landscape orientation
 
 ## Structure
 
@@ -447,11 +480,12 @@ When `/ig-generate-prompt` is invoked:
 1. **Parse arguments:** topic, tier, output path
 2. **Load best practices:** EventAI palette, festival context, accessibility
 3. **Generate prompt structure:** Template based on tier
-4. **Validate text patterns:** Enforce 3-5 words (Concise), 10-15 words (Standard), etc.
-5. **CLI validation:** Run `gemini-generate --validate-prompt`
-6. **Iterate if needed:** Adjust and re-validate until pass
-7. **Write file:** Save with validation metadata
-8. **Report:** Show metrics and readiness for ig-generate
+4. **Enforce landscape format:** ALWAYS include "Format: 1280×720 webp, landscape, no title" in Style section 🚨 CRITICAL
+5. **Validate text patterns:** Enforce 3-5 words (Concise), 10-15 words (Standard), etc.
+6. **CLI validation:** Run `gemini-generate --validate-prompt`
+7. **Iterate if needed:** Adjust and re-validate until pass
+8. **Write file:** Save with validation metadata
+9. **Report:** Show metrics and remind to use --aspect-ratio landscape for ig-generate
 
 ---
 
@@ -462,7 +496,8 @@ When `/ig-generate-prompt` is invoked:
 - ✅ Text patterns match tier expectations (3-5 words for Concise, etc.)
 - ✅ No drilldown patterns in Concise tier (topic - detail)
 - ✅ EventAI palette and festival context included
-- ✅ Format specified (1280×720 webp, landscape, no title)
+- ✅ Format specified (1280×720 webp, landscape, no title) 🚨 CRITICAL
+- ✅ Landscape orientation explicitly stated in Style section
 
 **Prompt needs REVISION when:**
 - ❌ CLI validation fails (wrong tier range)
@@ -471,9 +506,11 @@ When `/ig-generate-prompt` is invoked:
 - ❌ Missing style or structure sections
 - ❌ Generic color palette (not EventAI)
 - ❌ Missing festival context
+- ❌ Missing or incorrect format specification (MUST be landscape)
 
 ---
 
 *Command created: January 1, 2026*
+*Last updated: January 6, 2026 (Added LANDSCAPE FORMAT REQUIRED enforcement)*
 *Purpose: Generate tier-appropriate infographic prompts with text pattern enforcement*
-*Method: Template generation + CLI validation + text pattern analysis*
+*Method: Template generation + CLI validation + text pattern analysis + landscape enforcement*
