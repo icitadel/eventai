@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Prepare a draft section for publishing by removing the narrative outline/summary section while preserving the question, main content (with images), and sources.
+Prepare a draft section for publishing by removing the narrative outline/summary section and word count/document statistics while preserving the question, main content (with images), and sources.
 
 ## Input Format
 
@@ -30,6 +30,14 @@ Summary paragraph...
 # Main Title
 
 [Main content with images, sections, etc.]
+
+---
+
+**Word Count:** X words
+**Infographics:** X visuals
+**Voice:** ...
+**Style:** ...
+**Structure:** ...
 
 ---
 
@@ -63,8 +71,9 @@ RC (Release Candidate) files should have:
 
 1. **Keep:** Question section (from start to first `---`)
 2. **Remove:** Narrative section (from first `---` to second `---`, including both markers)
-3. **Keep:** Main content (from after second `---` to final `---` before Sources)
-4. **Keep:** Sources section (final `---` and everything after)
+3. **Keep:** Main content (from after second `---` to third `---`)
+4. **Remove:** Word Count / Document Statistics section (from third `---` to fourth `---`, including both markers)
+5. **Keep:** Sources section (final `---` and everything after, if present)
 
 ## Output File Naming
 
@@ -97,8 +106,9 @@ The command should:
 ## Success Criteria
 
 - Narrative section completely removed
+- Word Count / Document Statistics section completely removed
 - Question preserved exactly
 - Main content preserved exactly (including images, formatting, line breaks)
-- Sources preserved exactly
+- Sources preserved exactly (if present)
 - File saved with `.rc` naming convention
 - Confirmation message showing what was removed and what remains

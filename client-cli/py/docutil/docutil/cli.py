@@ -91,9 +91,22 @@ def format_images_cmd(filepath, width, wrap):
 @click.option('--resource-path', type=click.Path(exists=True), help='Path for resolving relative image/resource paths')
 @click.option('--width', type=float, help='Resize images to specified width in inches (e.g., 6.5)')
 @click.option('--justify/--no-justify', default=False, help='Apply justified alignment to body paragraphs')
-def convert(input_file, output, resource_path, width, justify):
+@click.option('--replace', is_flag=True, help='Replace existing output file if it exists')
+def convert(input_file, output, resource_path, width, justify, replace):
     """Convert a file to DOCX format using Pandoc (supports Markdown, HTML, etc.)."""
     try:
+        # Determine output path
+        if output:
+            output_path = Path(output)
+        else:
+            input_path = Path(input_file)
+            output_path = input_path.with_suffix('.docx')
+
+        # Check if output exists and --replace not specified
+        if output_path.exists() and not replace:
+            click.echo(f"Error: Output file '{output_path}' already exists. Use --replace to overwrite.", err=True)
+            raise click.Abort()
+
         output_path = convert_to_docx(input_file, output, resource_path, image_width=width, justify=justify)
         click.echo(f"✅ Converted to: {output_path}")
         if width:

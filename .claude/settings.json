@@ -3,6 +3,23 @@
     "CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR": "1"
   },
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "allow": [
+      "Skill(infographics-bestpractices)",
+      "Skill(infographics-bestpractices:*)",
+      "Skill(narrative-refine-validate)",
+      "Skill(narrative-refine-validate:*)",
+      "Skill(narrative-add-media)",
+      "Skill(narrative-add-media:*)",
+      "Skill(section-create)",
+      "Skill(section-create:*)",
+      "Skill(section-publish)",
+      "Skill(section-publish:*)",
+      "Skill(section-revise)",
+      "Skill(section-revise:*)",
+      "Skill(textbook-bestpractices)",
+      "Skill(textbook-bestpractices:*)",
+      "Skill(validate)",
+      "Skill(validate:*)"
+    ]
   }
 }
