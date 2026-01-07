@@ -1,0 +1,676 @@
+<!-- VALIDATED: detailed tier (concepts: 31, depth: 5, complexity: 155) -->
+<!-- CLI validation: ✅ PASS -->
+
+# Lemmy System Complete Architecture
+
+Comprehensive view of the three-phase knowledge-to-output creation system, showing how Lemmy (corpus building), Taley (narrative extraction), and Tooly (output creation) work together with three knowledge types to enable reusable, collaborative content creation. Demonstrates the complete workflow from initial research through to multiple output formats.
+
+## Data Points
+
+**Phase 1: Lemmy - Knowledge Corpus Building**
+- Collaborative research process between agent and user
+  - User contribution pathways
+    - Provide links to existing knowledge sources
+    - Upload documents and research materials
+    - Guide research direction with questions
+      - Example: "How does AI improve event security?"
+      - Example: "What privacy concerns exist?"
+  - Agent research workflows
+    - Deep Research chains for comprehensive exploration
+      - Web search across academic and industry sources
+      - Multi-source synthesis and comparison
+    - Analysis chains verify claims
+      - Cross-reference multiple sources
+      - Assess source reliability and bias
+      - Classify sources by tier (Tier 1: academic, Tier 2: industry, Tier 3: general)
+    - Verification chains prevent hallucination
+      - Fact-check extracted claims
+      - Identify unsupported assertions
+      - Flag contradictions across sources
+  - Together they assemble comprehensive corpus
+    - Systematic knowledge assembly, not just search
+    - Iterative refinement through questions
+    - Comprehensive coverage of topic domains
+- Outputs Topic Knowledge corpus
+  - Deep understanding of the subject matter
+    - Domain concepts and relationships
+    - Key trends and developments
+    - Controversies and open questions
+  - Well-sourced with tier-classified references
+    - Tier 1: Academic journals, peer-reviewed research
+    - Tier 2: Industry reports, technical documentation
+    - Tier 3: General articles, blog posts, news
+  - Verified claims prevent drift
+    - Each assertion traceable to sources
+    - Cross-validation reduces errors
+    - Systematic approach prevents hallucination
+  - Ready to support multiple narratives
+    - Rich enough for diverse storytelling
+    - Structured for efficient extraction
+    - Flexible for various audiences
+
+**Phase 2: Taley - Narrative Extraction**
+- Extract narratives from Topic Knowledge corpus
+  - Whether information is fact or fiction, find the stories
+    - Factual content: Identify storylines in data and research
+    - Fictional content: Extract plot structures and themes
+  - Multiple narratives can emerge from same corpus
+    - Different angles on same subject matter
+    - Varied emphasis and framing choices
+    - Audience-specific storytelling
+      - Example: Security topic corpus yields:
+        - Privacy-focused narrative for users
+        - Compliance narrative for legal teams
+        - User experience narrative for designers
+        - Risk management narrative for executives
+  - Each narrative serves different purpose
+    - Persuasion vs. education vs. documentation
+    - Different stakeholder concerns addressed
+    - Varied depth and technical detail levels
+- Apply Voice Knowledge for communication style
+  - Tone selection for target audience
+    - Formal: legal documents, academic papers
+      - Precise terminology and structured arguments
+      - Third-person perspective
+    - Casual: blog posts, social media
+      - Conversational language and personal connection
+      - First/second-person perspective
+    - Academic: textbooks, research summaries
+      - Rigorous but accessible explanations
+      - Balanced evidence presentation
+  - Phrasing patterns and vocabulary
+    - Domain-specific terminology choices
+    - Sentence complexity for readability
+    - Active vs. passive voice strategy
+  - Narrative structure and storytelling
+    - Argument flow and evidence sequencing
+    - Hook, development, resolution
+    - Example integration and illustration
+      - Same facts as regulatory compliance guide: "Organizations must..."
+      - Same facts as user empowerment story: "You have the right to..."
+- Shape information into compelling storylines
+  - Identify key themes and connections
+    - Core concepts that drive narrative
+    - Relationships between ideas
+    - Cause-and-effect chains
+  - Structure arguments and evidence flow
+    - Build from foundational to advanced
+    - Layer complexity progressively
+    - Strategic evidence placement
+  - Create narrative arc with engagement
+    - Opening hook captures attention
+    - Development maintains interest
+    - Resolution provides satisfaction
+  - Balance technical accuracy with accessibility
+    - Preserve factual integrity
+    - Simplify complex concepts without distortion
+    - Provide context for specialized terms
+
+**Phase 3: Tooly - Output Creation**
+- Transform narratives into format-specific outputs
+  - Each output format has unique best practices
+    - Written formats: Structure, citations, voice
+      - Research papers: Academic rigor, methodology sections, peer review standards
+        - Introduction, literature review, methods, results, discussion
+        - Formal citation systems (APA, MLA, Chicago)
+      - Executive briefs: Concise, action-oriented, business context
+        - Executive summary, key findings, recommendations
+        - Bullet-driven format with visual emphasis
+    - Visual formats: Hierarchy, white space, accessibility
+      - Infographics: Visual data design principles
+        - Density tiers: concise (5-16 concepts), standard (15-25), detailed (25+)
+        - White space requirements: 40%+ concise, 35-40% standard, 30-35% detailed
+        - Typography minimums: 18pt concise, 16-18pt standard, 14-16pt detailed
+        - Landscape format: 1280×720 for presentations and documents
+      - Slide decks: Presentation design principles
+        - One idea per slide rule
+        - Visual hierarchy and progressive disclosure
+        - Consistent branding and template use
+    - Interactive formats: User experience, engagement, accessibility
+      - Social media: Platform-specific optimization
+        - Twitter/X: Thread structure, character limits, hashtag strategy
+        - LinkedIn: Professional tone, document posts, engagement hooks
+        - Instagram: Visual-first, caption storytelling, carousel posts
+      - Applications: UX/UI best practices
+        - Information architecture and navigation
+        - Responsive design for device contexts
+        - Accessibility: WCAG AA compliance
+    - Multimedia formats: Pacing, storytelling, production quality
+      - Video overviews: Visual storytelling and pacing
+        - Hook in first 10 seconds
+        - Visual variety maintains engagement
+        - Clear audio and professional production
+      - Cover art and branding: Design systems and visual identity
+        - Color palette consistency
+        - Typography hierarchy
+        - Brand recognition elements
+  - Content Knowledge guides professional quality
+    - Format-specific conventions prevent amateur mistakes
+    - Standards compliance ensures acceptance in target medium
+    - Accessibility requirements built into each format
+  - Leverage format conventions
+    - Academic: Peer review standards, citation requirements
+    - Business: ROI framing, executive summary structure
+    - Social: Platform algorithms, engagement patterns
+    - Visual: Hierarchy principles, white space rules
+      - Example: EventAI infographics follow tier-aware density control
+        - Concise tier: 3-5 words per concept, 40%+ white space
+        - Standard tier: 10-15 words per concept, 35-40% white space
+        - Detailed tier: multi-level explanations, 30-35% white space
+
+**Three Knowledge Types and Their Interactions**
+- Topic Knowledge: Subject matter understanding
+  - Built during Lemmy phase through collaborative research
+    - Deep Research chains explore domain comprehensively
+      - Academic sources provide theoretical foundations
+      - Industry sources offer practical applications
+      - General sources capture public discourse
+    - Verification chains ensure accuracy
+      - Cross-reference claims across sources
+      - Identify contradictions and gaps
+      - Flag unsupported assertions
+    - Tier classification enables trust assessment
+      - Tier 1: Peer-reviewed, academic rigor
+      - Tier 2: Professional, industry expertise
+      - Tier 3: General, public information
+  - Forms foundation for all narratives and outputs
+    - Same facts support multiple storytelling approaches
+    - Quality research enables quality downstream content
+    - Comprehensive coverage allows flexible extraction
+  - Verified, sourced, comprehensive
+    - Every claim traceable to specific sources
+    - Source quality visible through tier system
+    - Systematic process prevents hallucination
+  - Example: EventAI corpus covers AI transformation
+    - Topics: Transformation, education, personalization, privacy, analytics
+    - Sources: Academic papers, industry reports, case studies
+    - Depth: Technical implementations, business impacts, user experiences
+- Voice Knowledge: Communication style and tone
+  - Applied during Taley phase to shape narratives
+    - Tone selection for target audience
+      - Academic: Rigorous but accessible
+        - Precise terminology with explanations
+        - Evidence-based arguments
+        - Balanced presentation of perspectives
+      - Casual: Conversational and engaging
+        - Personal pronouns and direct address
+        - Everyday language and analogies
+        - Storytelling and examples
+      - Formal: Professional and authoritative
+        - Third-person perspective
+        - Technical accuracy and precision
+        - Structured argumentation
+    - Phrasing patterns create consistency
+      - Vocabulary level matches audience
+      - Sentence complexity appropriate for context
+      - Active vs. passive voice strategy
+    - Narrative structure guides flow
+      - Argument sequencing and evidence placement
+      - Transition strategies between concepts
+      - Hook, development, resolution arc
+  - Defines how stories are told
+    - Same Topic Knowledge, different Voice = different narrative
+    - Voice adapts to audience without changing facts
+    - Multiple narratives from one corpus serve different purposes
+  - Can vary by narrative even from same Topic Knowledge
+    - Privacy corpus → Legal compliance narrative (formal tone)
+    - Privacy corpus → User empowerment narrative (casual tone)
+    - Privacy corpus → Academic analysis narrative (academic tone)
+  - Example: EventAI textbook uses casual-academic style
+    - "You" and "we" pronouns engage readers
+    - Technical terms explained with examples
+    - Concise language maintains accessibility
+    - Rigor preserved through source citations
+- Content Knowledge: Format-specific best practices
+  - Applied during Tooly phase for output creation
+    - Format conventions ensure professional quality
+      - Infographics: Density tiers, white space, landscape format
+        - Concise tier: Label-only (3-5 words), 40%+ white space
+        - Standard tier: Brief descriptors (10-15 words), 35-40% white space
+        - Detailed tier: Multi-level explanations, 30-35% white space
+        - Always landscape 1280×720 for presentations
+      - Academic papers: Structure, citations, methodology
+        - IMRAD format: Introduction, Methods, Results, Analysis, Discussion
+        - Citation systems: APA, MLA, Chicago as appropriate
+        - Peer review standards and formatting requirements
+      - Social media: Platform optimization and engagement
+        - Thread structure for Twitter/X
+        - Document posts for LinkedIn
+        - Carousel posts for Instagram
+        - Character limits and hashtag strategies
+    - Standards compliance for target medium
+      - Accessibility: WCAG AA color contrast, screen reader compatibility
+      - Professional: Industry-standard formats and conventions
+      - Platform: Algorithm-friendly structures for social media
+  - Ensures professional quality matches expectations
+    - Best practices prevent amateur mistakes
+    - Format mastery improves consistency
+    - Quality signals build trust and credibility
+  - Example: EventAI infographics follow tier system
+    - Validated prompts ensure correct density
+    - Landscape format matches presentation context
+    - Color palette (#6B46C1 purple, #FF6B6B coral, #4ECDC4 teal)
+    - White space and typography meet accessibility standards
+- Knowledge type interactions across phases
+  - Topic Knowledge stays constant
+    - Built once in Lemmy phase
+    - Supports all narratives and outputs
+    - Quality investment pays compound dividends
+  - Voice Knowledge shapes narratives
+    - One Topic corpus → Multiple Voice narratives
+    - Same facts told different ways
+    - Audience adaptation without re-research
+      - Example: Security corpus with formal Voice = compliance guide
+      - Example: Security corpus with casual Voice = user tips
+  - Content Knowledge adapts outputs
+    - One narrative → Multiple Content formats
+    - Same story across different media
+    - Format mastery without narrative re-extraction
+      - Example: Privacy narrative → Infographic (visual Content Knowledge)
+      - Example: Privacy narrative → Research paper (academic Content Knowledge)
+      - Example: Privacy narrative → Social thread (platform Content Knowledge)
+  - Result: Multiplicative reusability
+    - One Topic corpus supports N Voice narratives
+    - Each narrative generates M Content outputs
+    - Total outputs = 1 × N × M
+    - Example: 1 Security corpus → 3 narratives → 5 formats = 15 outputs
+
+**Reusability Pattern: Cascading Creation**
+- One corpus supports many narratives
+  - Research once, extract multiple stories
+    - Single research investment enables multiple perspectives
+    - Same Topic Knowledge base for all narratives
+    - No re-research needed for new angles
+  - Same facts told different ways for different audiences
+    - Legal team: Compliance-focused narrative with regulatory citations
+    - Users: Privacy-focused narrative with empowerment framing
+    - Executives: Risk-focused narrative with business impacts
+    - Designers: UX-focused narrative with implementation guidance
+  - Modify narratives without rebuilding Topic Knowledge
+    - Adjust tone, emphasis, structure independently
+    - Add new narratives without corpus changes
+    - Quality foundation persists across iterations
+  - Example: Privacy corpus generates multiple narratives
+    - Consent narrative: User rights and choice mechanisms
+    - Compliance narrative: GDPR, CCPA, regulatory requirements
+    - Trust narrative: Transparency and relationship building
+    - Security narrative: Data protection and breach prevention
+- Many narratives generate many outputs
+  - Each narrative can become multiple output formats
+    - Written: Research papers, executive briefs, blog posts
+    - Visual: Infographics, slide decks, diagrams
+    - Interactive: Social media threads, applications, dashboards
+    - Multimedia: Videos, podcasts, interactive tutorials
+  - Adapt presentation without re-extracting narrative
+    - Same narrative substance across all formats
+    - Format-specific Content Knowledge ensures quality
+    - No narrative revision needed for new output type
+  - Leverage content across media channels
+    - Infographic becomes slide deck with minimal adaptation
+    - Research paper condensed to executive brief
+    - Blog post expanded to social media thread
+    - Consistent messaging across all touchpoints
+  - Example: Consent narrative generates multiple outputs
+    - Infographic: Visual spectrum showing consent models
+    - Slide deck: Presentation for stakeholder education
+    - Social thread: Twitter/X series on user rights
+    - Video overview: Animated explanation of consent frameworks
+    - Research paper: Academic analysis of consent effectiveness
+- Efficiency gains compound
+  - Quality research investment pays dividends
+    - One research session → multiple narratives → many outputs
+    - Time saved increases exponentially with reuse
+    - Example: 10 hours research → 3 narratives (3h each) → 15 outputs (2h each)
+      - Without reuse: 10h + 30h + 30h = 70 hours
+      - With reuse: 10h + 9h + 30h = 49 hours (30% savings)
+  - Narrative refinement benefits all outputs
+    - Improve one narrative, all its outputs improve
+    - Quality improvements cascade downstream
+    - Consistent messaging across all formats
+  - Format mastery improves consistency
+    - Learn infographic best practices once, apply to all
+    - Template development amortizes across many outputs
+    - Quality standards become repeatable process
+  - Total outputs = Corpora × Narratives × Formats
+    - Example: 2 corpora × 3 narratives each × 5 formats each = 30 outputs
+    - Linear effort investment, multiplicative output generation
+
+**Current Implementation: EventAI Prototype**
+- Demonstrates all three phases in academic textbook pipeline
+  - Lemmy: Deep research with tier-classified sources
+    - Topic: AI transformation in event management
+      - Transformation chapter: Traditional vs. AI-powered operations
+      - Education chapter: Literacy requirements and skills gaps
+      - Personalization chapter: Recommendation systems and user experience
+      - Privacy chapter: Data protection and consent frameworks
+      - Analytics chapter: Predictive insights and ROI measurement
+    - Research process
+      - Web search across academic journals (Tier 1)
+      - Industry reports and case studies (Tier 2)
+      - General articles and news (Tier 3)
+      - Verification chains prevent hallucination
+      - Claim attribution to specific sources
+  - Taley: Casual-academic narrative style
+    - Voice characteristics
+      - "You" and "we" pronouns for engagement
+      - Technical terms explained with examples
+      - Concise language (2,000-2,500 words per section)
+      - Evidence-based arguments with source citations
+    - Narrative structure
+      - Hook: Opening question or scenario
+      - Development: Layered complexity with examples
+      - Resolution: Practical implications and takeaways
+    - Style guides ensure consistency
+      - Tone guidelines in EventAI textbook best practices
+      - Narrative revision commands validate conciseness
+      - Source attribution standards for tier awareness
+  - Tooly: Multiple output formats with best practices
+    - DOCX documents for textbook chapters
+      - Academic structure: Introduction, body, conclusion
+      - Source citations with tier indicators [Tier 1]
+      - Consistent formatting and styling
+    - Tier-aware infographics for visual explanation
+      - Concise tier: 5-16 concepts, label-only, 40%+ white space
+      - Standard tier: 15-25 concepts, brief descriptors, 35-40% white space
+      - Detailed tier: 25+ concepts, multi-level explanations, 30-35% white space
+      - Landscape format 1280×720 for presentations
+      - Color palette: #6B46C1 purple, #FF6B6B coral, #4ECDC4 teal
+    - Visual content with systematic validation
+      - gemini-generate CLI for infographic creation
+      - Prompt validation against density tiers
+      - Image validation for compliance
+      - Automated quality checks
+- Topic Knowledge: AI transformation in event management
+  - Comprehensive coverage across five domains
+    - Transformation: Operational changes and efficiency gains
+    - Education: Skills requirements and literacy challenges
+    - Personalization: User experience and recommendation systems
+    - Privacy: Data protection, consent, regulatory compliance
+    - Analytics: Predictive insights, ROI, decision support
+  - Source quality through tier classification
+    - Tier 1: Academic journals, peer-reviewed research
+      - Example: IEEE papers on AI systems
+      - Example: Journal articles on privacy frameworks
+    - Tier 2: Industry reports, technical documentation
+      - Example: Gartner reports on event technology
+      - Example: Vendor whitepapers on implementations
+    - Tier 3: General articles, blog posts, news
+      - Example: Tech news on AI adoption
+      - Example: Case studies from event organizers
+  - Claim verification prevents drift
+    - Cross-reference multiple sources for key claims
+    - Flag unsupported assertions during research
+    - Systematic process reduces hallucination risk
+- Voice Knowledge: Casual-academic style
+  - Balance accessibility with rigor
+    - Technical accuracy without jargon overload
+    - Examples and analogies for complex concepts
+    - Evidence-based claims with source attribution
+  - Concise language with precise terminology
+    - 2,000-2,500 words per section target
+    - Remove redundancy without losing clarity
+    - Precise terms when needed, plain language when possible
+  - Narrative structure supports learning
+    - Build from familiar to novel concepts
+    - Layer complexity progressively
+    - Practical implications for each topic
+- Content Knowledge: Academic textbook best practices
+  - Infographic density tier system
+    - Validation before generation ensures correct tier
+    - Text pattern enforcement (3-5 words concise, 10-15 words standard)
+    - Complexity metrics guide tier assignment
+  - Landscape format requirements
+    - Always 1280×720 for presentation compatibility
+    - Horizontal layout for left-right comparisons
+    - 16:9 aspect ratio matches modern standards
+  - White space and typography standards
+    - Concise: 40%+ white space, 18pt minimum
+    - Standard: 35-40% white space, 16-18pt minimum
+    - Detailed: 30-35% white space, 14-16pt body
+  - Source attribution and tier awareness
+    - Citations include tier indicators [Tier 1]
+    - Source quality visible in references
+    - Enables reader trust assessment
+- Prototype demonstrates viability
+  - Successfully produced multi-chapter textbook content
+    - Five chapters with consistent quality
+    - Narrative maintains casual-academic style
+    - Source citations throughout
+  - Infographics follow systematic density control
+    - CLI validation ensures tier compliance
+    - Automated quality checks catch errors
+    - Consistent visual language across chapters
+  - Narrative maintains quality across sections
+    - Voice Knowledge applied consistently
+    - Conciseness standards enforced
+    - Revision commands validate structure
+  - Tools automate validation and quality checks
+    - gemini-generate for image generation and validation
+    - Narrative revision commands for content quality
+    - Section workflow commands coordinate process
+    - Beads project management tracks dependencies
+
+**System Benefits**
+- Reusability maximizes research investment
+  - One corpus enables unlimited narratives and outputs
+    - Research effort amortizes across all downstream work
+    - Each narrative and output adds value without added research cost
+    - Example: 10 hours research → 3 narratives → 15 outputs = 150 hours of content from 10 hours research
+  - Quality foundation pays compound dividends
+    - Better research → better narratives → better outputs
+    - Quality improvements cascade through all phases
+    - Investment in foundation quality multiplies returns
+  - Adaptation without complete rebuilding
+    - Modify narratives without touching Topic Knowledge
+    - Add outputs without revising narratives
+    - Incremental evolution vs. complete restart
+      - Example: Add social media output without regenerating research or narrative
+      - Example: Adjust narrative tone without rebuilding corpus
+- Quality through focused expertise
+  - Each phase has specialized knowledge and standards
+    - Lemmy: Research methodology, source evaluation, verification
+      - Deep Research chains for comprehensive exploration
+      - Analysis chains for claim verification
+      - Tier classification for source quality
+    - Taley: Narrative structure, voice consistency, storytelling
+      - Tone selection for audience
+      - Argument sequencing and flow
+      - Evidence integration and examples
+    - Tooly: Format conventions, medium-specific best practices
+      - Infographic density tiers and white space
+      - Academic citation systems and structure
+      - Social media platform optimization
+  - Separation of concerns enables mastery
+    - Focus on one type of knowledge at a time
+    - Build expertise through repeated application
+    - Standards and templates improve with practice
+  - Systematic validation at each stage
+    - Research: Claim verification and source quality checks
+    - Narrative: Conciseness validation and style compliance
+    - Output: Format validation and quality metrics
+      - Example: CLI validates infographic prompts before generation
+      - Example: Narrative revision commands check word count and structure
+- Collaboration leverages strengths
+  - Human provides context, judgment, domain knowledge
+    - Guide research direction with questions
+    - Provide domain expertise and priorities
+    - Make judgment calls on trade-offs
+    - Evaluate quality and relevance
+  - Agent conducts deep research and systematic analysis
+    - Comprehensive web search across sources
+    - Cross-reference and verification
+    - Systematic organization and synthesis
+    - Tireless iteration and refinement
+  - Together build better corpus than either alone
+    - Human judgment + Agent thoroughness
+    - Domain expertise + Research capacity
+    - Creative direction + Systematic execution
+    - Example: User asks "How does AI improve security?" → Agent finds 50+ sources → User evaluates relevance → Agent synthesizes → Together build comprehensive corpus
+- Flexibility adapts to change
+  - Update narratives without re-research
+    - Adjust tone, emphasis, structure
+    - Target new audiences from same corpus
+    - Refine messaging while preserving facts
+  - Add outputs without re-extracting narratives
+    - New format requirements don't force narrative revision
+    - Leverage same content across emerging media
+    - Format experimentation without content risk
+  - Evolve content incrementally
+    - Small changes don't cascade through entire system
+    - Phase isolation enables targeted improvements
+    - Continuous refinement vs. periodic overhauls
+    - Example: Add new output format → Apply Content Knowledge → Done (no research or narrative changes needed)
+- Reliability from well-sourced foundation
+  - Verified claims prevent hallucination
+    - Every assertion traceable to sources
+    - Cross-validation reduces errors
+    - Systematic fact-checking process
+    - Unsupported claims flagged during research
+  - Tier-classified sources enable trust assessment
+    - Source quality visible to readers
+    - Tier 1 claims carry more weight
+    - Transparent methodology builds credibility
+    - Example: [Tier 1] citation signals peer-reviewed source
+  - Systematic process reduces errors
+    - Checklists and validation at each phase
+    - Automated tools catch common mistakes
+    - Repeatable workflows ensure consistency
+    - Example: CLI validation prevents tier mismatches before generation
+
+## Style
+
+**Aesthetic**: Full Schoolhouse Rock!-inspired educational design with rich owl characters, learning symbolism, and playful psychedelic warmth
+
+**Color Palette** (Full spectrum - 6-10 colors):
+- **Primary Phase Colors:**
+  - Wise Owl Purple (#6B46C1) - Lemmy phase, owl mascot, wisdom and knowledge elements
+  - Electric Coral (#FF6B6B) - Taley phase, narrative and storytelling, human warmth
+  - Soft Teal (#4ECDC4) - Tooly phase, output creation, finished products
+- **Secondary Accent Colors:**
+  - Sunshine Yellow (#FFE66D) - "Aha!" moments, insights, illumination, discoveries
+  - Sage Green (#95E1A3) - Growth, learning progression, knowledge connections
+  - Warm Terracotta (#E07A5F) - Grounding, practical application, real-world examples
+  - Sky Blue (#81B1D5) - Open exploration, brainstorming, possibilities
+- **Neutral Foundation:**
+  - Cream (#F7F7F2) - Warm background, inviting and approachable
+  - Charcoal (#3A3A3A) - Text and outlines, friendly contrast
+  - Light Gray (#E0E0DC) - Subtle dividers, supporting structure
+- **Color Strategy:**
+  - Use phase colors to trace knowledge flow and transformations
+  - Apply accent colors to highlight specific concepts (yellow for insights, green for connections)
+  - Maintain warm, earthy palette with psychedelic brightness
+  - Create visual rhythm through color repetition and variation
+
+**Visual Style** (Comic book art aesthetic):
+- Hand-drawn quality with bold outlines (3-5pt stroke throughout)
+- Flat colors with strategic subtle gradients for depth
+- Dynamic angles and compositions (5-15° tilts for energy)
+- Peter Max-inspired psychedelic warmth and optimism
+- Geometric shapes with organic, friendly curves
+- Expressive character poses and gestures
+- Playful but information-rich
+- Educational optimism and accessibility
+
+**Typography** (Detailed tier - multi-level hierarchy):
+- **Main Headings:** 18-24pt bold, playful sans-serif (Cooper Black or Rockwell Extra Bold style)
+- **Subheadings:** 16-18pt bold, supporting hierarchy
+- **Body Text:** 14-16pt, friendly sans-serif (Avenir Next, Nunito, or Inter)
+- **Annotations/Labels:** 12pt minimum (never smaller - accessibility)
+- **Accent Text:** Hand-drawn style font for emphasis (Komika Hand, Pangolin, or Patrick Hand)
+- **Font Strategy:**
+  - Maximum 3 font families total
+  - Heading font has personality (Cooper Black warmth)
+  - Body font prioritizes readability (Avenir Next clarity)
+  - Accent font adds hand-drawn charm (Pangolin organic feel)
+- **Typography Rules:**
+  - Generous line spacing (1.5× minimum)
+  - Bold for emphasis, italic sparingly
+  - ALL CAPS for short labels only (3-5 words max)
+  - High contrast for accessibility (WCAG AA)
+  - Never smaller than 12pt
+
+**Owl & Learning Motifs** (Rich, throughout infographic):
+- **Owl Characters (Multiple poses and interactions):**
+  - "Lemmy" the Owl (purple/blue plumage)
+    - Props: Magnifying glass, research notes, books, thinking cap
+    - Expressions: Curious, thoughtful, discovering
+    - Positions: Throughout Lemmy phase, examining knowledge, collaborative poses with human figures
+  - "Taley" the Storyteller (coral/pink bird - parrot, fox, or friendly animal)
+    - Props: Quill pen, scroll, speech bubbles, storybook
+    - Expressions: Animated, expressive, engaging
+    - Positions: Throughout Taley phase, narrating, gesturing, multiple voice variations
+  - "Tooly" the Creator (teal/green bird - woodpecker, beaver, or crafty animal)
+    - Props: Paintbrush, tools, blueprint, building materials
+    - Expressions: Focused, productive, crafting
+    - Positions: Throughout Tooly phase, creating, building, finishing touches
+- **Character Interactions:**
+  - Owls guide eye flow through the infographic
+  - Collaborative scenes show human-AI partnership
+  - Characters react to and annotate key concepts
+  - Multiple poses show progression and process
+- **Educational Icons (Unlimited, positioned meaningfully):**
+  - **Books and Reading:** Open books for active learning, book stacks for corpus, closed books for references
+  - **Light Bulbs:** Classic bulb shape for insights and "aha!" moments (rays emanating outward)
+  - **Arrows and Flow:** Thick, hand-drawn arrows with slight wobble showing transformation and progression
+  - **Collaborative Symbols:** Connected nodes for knowledge networks, hands together for partnership
+  - **Learning Symbols:** Graduation caps, scrolls, certificates for knowledge acquisition
+  - **Creative Symbols:** Paintbrushes, tools, gears for output creation
+- **Mini-Scenes and Vignettes:**
+  - Small illustrative scenarios showing concepts in action
+  - Examples embedded as visual stories
+  - Process flows with character annotations
+  - Callout boxes with owl commentary
+
+**Composition** (Multi-zone layout with layered depth):
+- **White Space:** 30-35% (comprehensive but not cluttered)
+- **Layout Zones:**
+  - Top: Phase flow with detailed process boxes
+  - Middle: Knowledge types as supporting layers
+  - Bottom Left: Reusability pattern cascading diagram
+  - Bottom Right: EventAI implementation example
+- **Visual Hierarchy:**
+  - Phase level (largest, bold color blocks)
+  - Process level (medium, grouped elements)
+  - Detail level (smallest, nested information)
+  - Example level (callouts, annotations, mini-scenes)
+- **Information Density:**
+  - 5+ visual sections with clear grouping
+  - Multi-level nested information
+  - Annotations and examples throughout
+  - Visual variety maintains engagement
+- **Flow and Reading Path:**
+  - Left-to-right primary flow
+  - Top-to-bottom secondary flow
+  - Arrows guide eye through transformations
+  - Color coding reinforces phase distinctions
+
+**Format**:
+- **Dimensions:** 1280×720 webp, landscape (16:9 aspect ratio)
+- **Orientation:** **CRITICAL - ALWAYS landscape** to accommodate horizontal flow and comparisons
+- **Title:** No title on image (title in file metadata only)
+- **Export:** High-quality WebP with optimized compression
+- **Presentation Context:** Designed for slides, documents, web embedding
+
+**Accessibility** (WCAG AA minimum):
+- **Color Contrast:** Minimum 4.5:1 for all text and important elements
+  - Wise Owl Purple on Cream: 7.2:1 ✓
+  - Electric Coral on Cream: 4.8:1 ✓
+  - Soft Teal on Charcoal: 6.1:1 ✓
+  - Sunshine Yellow on Charcoal: 8.9:1 ✓
+- **Multi-Modal Communication:**
+  - Icons paired with descriptive text labels
+  - Color + shape + text for all meanings
+  - Patterns/textures for data visualization
+  - Never rely on color alone
+- **Typography Accessibility:**
+  - Readable font sizes throughout (12pt absolute minimum)
+  - Generous spacing and clear hierarchy
+  - High contrast text on all backgrounds
+- **Visual Clarity:**
+  - Clear distinction between elements
+  - Adequate white space for breathing room
+  - Logical grouping and flow
+
+## Structure
+
+Top section shows horizontal flow of three phases with detailed process boxes. Each phase has nested detail showing specific tools and workflows. Middle section displays three knowledge types as layers with examples of how they're applied. Show interaction arrows between knowledge types and phases. Bottom left shows reusability pattern as cascading diagram: one corpus branching to multiple narratives, each branching to multiple outputs. Bottom right shows EventAI implementation as concrete example with specific artifacts. Use phase-specific color coding throughout. Include mini-examples and annotations to illustrate key concepts.
